@@ -11,10 +11,10 @@ const Sidebar = ({searchData,returnData,detailData}) => {
     <>
       <div>검색기간: {searchData.startmonth}~{searchData.endmonth}</div>
       <br/><br/><br/>
-      {returnData?.map((x,i)=>(
-        <div key={i}>{x.bsnsMbyNm}</div>
+      {detailData?.map((x,i)=>(
+        <div key={i}>{x.housenm}</div>
       ))}
-      <br/><br/><br/>
+      <br/>
       {detailData?.map((x,i)=>(
         <div key={i}>{x.hssplyadres}</div>
       ))}

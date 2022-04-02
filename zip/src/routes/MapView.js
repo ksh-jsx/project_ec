@@ -16,11 +16,11 @@ const MapView = ({  }) => {
 
   useEffect(async() => {
 
-    const ary = await getData_apt(searchData)  
+    const ary = await getData_apt(searchData)  //청약 데이터 가져오기
     setReturnData(ary.body.items.item)
 
     let detailDataArr = [] 
-    for(let i=0;i<ary.body.items.item.length;i++){
+    for(let i=0;i<ary.body.items.item.length;i++){ //각 청약 데이터 상세하게 가져오기
       let ary2 = await getDetailData_apt(ary.body.items.item[i].houseManageNo)  
       detailDataArr = [...detailDataArr,ary2]
     }
@@ -40,7 +40,7 @@ const MapView = ({  }) => {
             <Sidebar searchData={searchData} returnData={returnData} detailData={detailData}/>
           </div>
           <div>
-            <KakaoMap/> 
+            <KakaoMap detailData={detailData}/> 
           </div>
         </div> 
       ):(
