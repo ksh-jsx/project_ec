@@ -4,6 +4,7 @@ const Address = "/OpenAPI_ToolInstallPackage/service/rest/ApplyhomeInfoSvc";
 
 export const getData_apt = async (data) => {
   try {
+     console.log(data.startmonth+' ~ '+data.endmonth)
      const res = await axios.get(`${Address}/getLttotPblancList?serviceKey=${process.env.REACT_APP_OPEN_API_KEY}&startmonth=${data.startmonth}&endmonth=${data.endmonth}`)    
      return res.data.response;
   } catch (err) {

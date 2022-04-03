@@ -8,17 +8,21 @@ const MapView = ({  }) => {
   
   const [loading, setLoading] = useState(false); 
   const [searchData, setSearchData] = useState({
-    startmonth: '202106',
-    endmonth: '202204'
+    startmonth: '202005',
+    endmonth: '202203'
   }); 
   const [returnData, setReturnData] = useState({}); 
   const [detailData, setDetailData] = useState({}); 
 
-  useEffect(async() => {
-
+  useEffect(() => {
+    getHouseDate()
+    
+  }, []);
+  
+  const getHouseDate = async() => {
+    setLoading(false)    
     const ary = await getData_apt(searchData)  //청약 데이터 가져오기
     setReturnData(ary.body.items.item)
-
     let detailDataArr = [] 
     for(let i=0;i<ary.body.items.item.length;i++){ //각 청약 데이터 상세하게 가져오기
       let ary2 = await getDetailData_apt(ary.body.items.item[i].houseManageNo)  
@@ -26,10 +30,9 @@ const MapView = ({  }) => {
     }
     
     setDetailData(detailDataArr)
-   
+    console.log(detailDataArr)
     setLoading(true)
-  }, []);
-  
+  }
   
 
   return (
@@ -37,7 +40,7 @@ const MapView = ({  }) => {
       {loading ? ( 
         <div className="mapview_wrapper">
           <div>
-            <Sidebar searchData={searchData} returnData={returnData} detailData={detailData}/>
+            <Sidebar searchData={searchData} detailData={detailData} setSearchData={setSearchData} getHouseDate={getHouseDate}/>
           </div>
           <div>
             <KakaoMap detailData={detailData}/> 

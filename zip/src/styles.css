@@ -27,3 +27,12 @@ html,body,#root {
   height: 100vh;
   margin: 0 auto;
 }
+.datePickerWrapper{
+  display: flex;
+}
+.datePicker{
+  width:150px;
+}
+.datePicker input{
+  font-size: 13px;
+}

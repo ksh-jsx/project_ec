@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 const KakaoMap = ({detailData}) => {
   
   useEffect(() => {
-    generateMap()
-    console.log(detailData)
+    generateMap()    
   }, []);
   
   const generateMap = () => {
@@ -16,7 +15,7 @@ const KakaoMap = ({detailData}) => {
     };
     const map = new kakao.maps.Map(container, options);
 
-    detailData.map((x) => (
+    detailData?.map((x) => (
       createLocation(map,x)
     ))
     
