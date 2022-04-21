@@ -11,6 +11,8 @@ const Main = ({}) => {
     <>
       <div>메인임</div>
       <Link to="/view" className="btn_goToMapView">지도 보기</Link>
+      <br/>
+      <Link to="/login  " className="btn_goToMapView">로그인뷰</Link>
     </>
   );
 };

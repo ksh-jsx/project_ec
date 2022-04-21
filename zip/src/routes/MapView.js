@@ -36,7 +36,7 @@ const MapView = ({  }) => {
   
 
   return (
-    <div className="container full">
+    <div className="mapViewWrapper full">
       {loading ? ( 
         <div className="mapview_wrapper">
           <div>
