@@ -1,24 +1,13 @@
 import axios from "axios";
 
-const Address = "/OpenAPI_ToolInstallPackage/service/rest/ApplyhomeInfoSvc";
+const Address = "http://api.odcloud.kr/api";
 
 export const getData_apt = async (data) => {
-  try {
-     console.log(data.startmonth+' ~ '+data.endmonth)
-     const res = await axios.get(`${Address}/getLttotPblancList?serviceKey=${process.env.REACT_APP_OPEN_API_KEY}&startmonth=${data.startmonth}&endmonth=${data.endmonth}`)    
-     return res.data.response;
+  try {     
+     const res = await axios.get(`${Address}/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail?page=1&perPage=10&serviceKey=${process.env.REACT_APP_OPEN_API_KEY}`)         
+     return res.data.data;
   } catch (err) {
      console.log(err);
      throw err;
   }
 };
-
-export const getDetailData_apt = async (data) => {
-   try {
-      const res = await axios.get(`${Address}/getAPTLttotPblancDetail?serviceKey=${process.env.REACT_APP_OPEN_API_KEY}&houseManageNo=${data}&pblancNo=${data}`);            
-      return res.data.response.body.items.item;
-   } catch (err) {
-      console.log(err);
-      throw err;
-   }
- };

@@ -12,7 +12,6 @@ const MapView = ({  }) => {
     endmonth: '202203'
   }); 
   const [returnData, setReturnData] = useState({}); 
-  const [detailData, setDetailData] = useState({}); 
 
   useEffect(() => {
     getHouseDate()
@@ -22,15 +21,9 @@ const MapView = ({  }) => {
   const getHouseDate = async() => {
     setLoading(false)    
     const ary = await getData_apt(searchData)  //청약 데이터 가져오기
-    setReturnData(ary.body.items.item)
-    let detailDataArr = [] 
-    for(let i=0;i<ary.body.items.item.length;i++){ //각 청약 데이터 상세하게 가져오기
-      let ary2 = await getDetailData_apt(ary.body.items.item[i].houseManageNo)  
-      detailDataArr = [...detailDataArr,ary2]
-    }
+    console.log(ary)
+    setReturnData(ary)
     
-    setDetailData(detailDataArr)
-    console.log(detailDataArr)
     setLoading(true)
   }
   
@@ -40,10 +33,10 @@ const MapView = ({  }) => {
       {loading ? ( 
         <div className="mapview_wrapper">
           <div>
-            <Sidebar searchData={searchData} detailData={detailData} setSearchData={setSearchData} getHouseDate={getHouseDate}/>
+            <Sidebar searchData={searchData} setSearchData={setSearchData} getHouseDate={getHouseDate}/>
           </div>
           <div>
-            <KakaoMap detailData={detailData}/> 
+            <KakaoMap returnData={returnData}/> 
           </div>
         </div> 
       ):(

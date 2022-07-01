@@ -1,7 +1,7 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
 
-const KakaoMap = ({detailData}) => {
+const KakaoMap = ({returnData}) => {
   
   useEffect(() => {
     generateMap()    
@@ -15,7 +15,8 @@ const KakaoMap = ({detailData}) => {
     };
     const map = new kakao.maps.Map(container, options);
 
-    detailData?.map((x) => (
+    returnData?.map((x) => (
+      //console.log(x)
       createLocation(map,x)
     ))
     
@@ -26,7 +27,7 @@ const KakaoMap = ({detailData}) => {
     var geocoder = new kakao.maps.services.Geocoder();
 
     // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(data.hssplyadres, function(result, status) {
+    geocoder.addressSearch(data.HSSPLY_ADRES, function(result, status) {
 
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
@@ -41,7 +42,7 @@ const KakaoMap = ({detailData}) => {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-          content: '<div style="width:150px;text-align:center;padding:6px 0;">'+data.housenm+'</div>'
+          content: '<div style="width:150px;text-align:center;padding:6px 0;">'+data.HOUSE_NM+'</div>'
         });
         infowindow.open(map, marker);
 

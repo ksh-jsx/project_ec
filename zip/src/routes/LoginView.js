@@ -21,8 +21,6 @@ const LoginView = ({  }) => {
     }
   }
   
-
-
   const Naver = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: process.env.REACT_APP_NAVER_CLIENT_ID,
@@ -58,7 +56,7 @@ const LoginView = ({  }) => {
             // 로그인이 되었으니 이 후 process 로 이동
           }
         }).catch((err) => console.log(err));
-        */
+      */
     }
     
   };
