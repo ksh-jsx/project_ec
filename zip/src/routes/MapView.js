@@ -1,3 +1,4 @@
+/*global kakao*/
 import React, { useState, useEffect } from "react";
 import KakaoMap from "../components/mapview/KakaoMap";
 import Sidebar from "../components/mapview/Sidebar";
@@ -13,6 +14,7 @@ const MapView = ({  }) => {
   }); 
   const [returnData, setReturnData] = useState({}); 
 
+
   useEffect(() => {
     getHouseDate()
     
@@ -21,13 +23,11 @@ const MapView = ({  }) => {
   const getHouseDate = async() => {
     setLoading(false)    
     const ary = await getData_apt(searchData)  //청약 데이터 가져오기
-    console.log(ary)
     setReturnData(ary)
-    
+  
     setLoading(true)
   }
   
-
   return (
     <div className="mapViewWrapper full">
       {loading ? ( 
