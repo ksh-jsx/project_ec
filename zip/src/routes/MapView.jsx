@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import KakaoMap from "../components/mapview/KakaoMap";
 import Sidebar from "../components/mapview/Sidebar";
-import { getData_apt } from '../lib/api/openapi'
-import { getDetailData_apt } from '../lib/api/openapi'
+import { getAPTLttotPblancDetail } from '../lib/api/openapi'
+import { getAPTLttotPblancMdl } from '../lib/api/openapi'
+
 
 const MapView = ({  }) => {
   
@@ -14,7 +15,6 @@ const MapView = ({  }) => {
   }); 
   const [returnData, setReturnData] = useState({}); 
 
-
   useEffect(() => {
     getHouseDate()
     
@@ -22,9 +22,9 @@ const MapView = ({  }) => {
   
   const getHouseDate = async() => {
     setLoading(false)    
-    const ary = await getData_apt(searchData)  //청약 데이터 가져오기
+    const ary = await getAPTLttotPblancDetail(searchData)  //청약 데이터 가져오기
     setReturnData(ary)
-  
+    
     setLoading(true)
   }
   
