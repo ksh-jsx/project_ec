@@ -1,21 +1,23 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
 
-const KakaoMap = ({returnData,returnData2}) => {
+const KakaoMap = ({returnData}) => {
   
   const myPosContent = '<div class="myPos"></div>'
   const dataContent = '<div class="myPos"></div>'
-  
+
+
   useEffect(() => {    
-    console.log(returnData)
+    //console.log(returnData)
     generateMap()  
   }, []);
   
   const generateMap = () => {
+
     const container = document.getElementById('map');
-    var options = {
+    const options = {
       center: new kakao.maps.LatLng(36.2683, 127.6358),
-      level: 12
+      level: 13
     };
     const map = new kakao.maps.Map(container, options);
  
@@ -25,7 +27,22 @@ const KakaoMap = ({returnData,returnData2}) => {
       minLevel: 2 // 클러스터 할 최소 지도 레벨 
     });
 
-    createMyLocation(map)
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((position)=>{
+        const myPos = new kakao.maps.LatLng(position.coords.latitude,position.coords.longitude)
+
+        new kakao.maps.CustomOverlay({
+          map: map,
+          position: myPos,
+          content: myPosContent,
+        });
+
+        // 지도 중심을 이동 시킵니다
+        map.setCenter(myPos);
+      })
+
+      
+    }
 
     returnData?.map(function(x,i){       
       createDataLocation(map,clusterer,x)
@@ -57,21 +74,7 @@ const KakaoMap = ({returnData,returnData2}) => {
   }
   
   const createMyLocation = (map) => {
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position)=>{
-        
-        const markerPosition = new kakao.maps.LatLng(
-          position.coords.latitude, 
-          position.coords.longitude
-        ); 
-        
-        new kakao.maps.CustomOverlay({
-          map: map,
-          position: markerPosition,
-          content: myPosContent,
-      });
-      })
-    }
+    
   }
 
   return (

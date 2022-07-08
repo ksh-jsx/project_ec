@@ -1,7 +1,7 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
 import KakaoMap from "../components/mapview/KakaoMap";
-import Sidebar from "../components/mapview/Sidebar";
+import Drawer from "../components/mapview/BottomDrawer";
 import { getAPTLttotPblancDetail } from '../lib/api/openapi'
 import { getAPTLttotPblancMdl } from '../lib/api/openapi'
 
@@ -31,12 +31,12 @@ const MapView = ({  }) => {
   return (
     <div className="mapViewWrapper full">
       {loading ? ( 
-        <div className="mapview_wrapper">
-          <div>
-            <Sidebar searchData={searchData} setSearchData={setSearchData} getHouseDate={getHouseDate}/>
-          </div>
-          <div>
+        <div className="mapviewContainer">
+          <div className="mapContainer">
             <KakaoMap returnData={returnData}/> 
+          </div>
+          <div className="drawerContainer">
+            <Drawer/>
           </div>
         </div> 
       ):(
