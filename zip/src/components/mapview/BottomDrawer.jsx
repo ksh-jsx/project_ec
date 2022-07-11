@@ -4,13 +4,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
+import useStore from '../../useStore';
+import { useObserver } from "mobx-react";
 
 const drawerBleeding = 56;
 
 function BottomDrawer(props) {
+
+  const { counter } = useStore();
   const { window } = props;
   const [open, setOpen] = useState(true);
-  const [datas, setDatas] = useState(props.returnData);
+  const [datas, setDatas] = useState(counter.data);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -18,13 +22,13 @@ function BottomDrawer(props) {
   };
 
   useEffect(() => {
-    console.log(datas)
+    //console.log(datas)
   }, []);
 
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
 
-  return (
+  return useObserver(() => (
     <div >
       <Global
         styles={{
@@ -52,18 +56,18 @@ function BottomDrawer(props) {
         >
           <div className='drawerBox' >
             <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}>{props.returnData.length} results</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}>{counter.data.length} results</Typography>
             
           </div>
           <div className="cardBox">
-            {datas?.map((x)=>(
-              <BasicCard data={x}/>
+            {datas?.map((x,i)=>(
+              <BasicCard data={x} i={i}key={i}/>
             ))}
           </div>
         </SwipeableDrawer>
       </Box>
     </div>
-  );
+  ));
 }
 
 

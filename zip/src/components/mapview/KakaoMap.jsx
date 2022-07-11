@@ -1,13 +1,19 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
+import useStore from '../../useStore';
+import { useObserver } from "mobx-react";
 
-const KakaoMap = ({returnData}) => {
+
+const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
-  
+
+  const { counter } = useStore();
+
   useEffect(() => {    
-    //console.log(returnData)
-    generateMap()  
+        
+      generateMap()
+    
   }, []);
   
   const generateMap = () => {
@@ -17,8 +23,10 @@ const KakaoMap = ({returnData}) => {
       center: new kakao.maps.LatLng(36.2683, 127.6358),
       level: 13
     };
+
     const map = new kakao.maps.Map(container, options);
- 
+    counter.setMap(map)
+
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
@@ -39,12 +47,12 @@ const KakaoMap = ({returnData}) => {
         map.setCenter(myPos);
       })
     }
-    returnData?.map(function(x,i){       
-      createDataLocation(map,clusterer,x)
+    counter.data?.map(function(x,i){       
+      createDataLocation(clusterer,x,i)
     })
   }
 
-  const createDataLocation = (map,clusterer,data) =>{
+  const createDataLocation = (clusterer,data,i) =>{
     
     const geocoder = new kakao.maps.services.Geocoder();
     
@@ -52,11 +60,11 @@ const KakaoMap = ({returnData}) => {
     geocoder.addressSearch(data.HSSPLY_ADRES, function(result, status) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK){   
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);        
 
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.Marker({
-          map: map,
+          map: counter.map,
           position: coords
         });
 
@@ -66,10 +74,10 @@ const KakaoMap = ({returnData}) => {
     
   }
 
-  return (
+  return useObserver(() => (
     <>
       <div id="map"></div> 
     </>
-  );
+  ));
 };
 export default KakaoMap;

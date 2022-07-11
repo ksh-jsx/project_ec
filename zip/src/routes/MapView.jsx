@@ -4,16 +4,17 @@ import KakaoMap from "../components/mapview/KakaoMap";
 import Drawer from "../components/mapview/BottomDrawer";
 import { getAPTLttotPblancDetail } from '../lib/api/openapi'
 import { getAPTLttotPblancMdl } from '../lib/api/openapi'
-
+import useStore from '../useStore';
+import { useObserver } from "mobx-react";
 
 const MapView = ({  }) => {
   
+  const { counter } = useStore();
   const [loading, setLoading] = useState(false); 
   const [searchData, setSearchData] = useState({
     startmonth: '202005',
     endmonth: '202203'
-  }); 
-  const [returnData, setReturnData] = useState({}); 
+  });   
 
   useEffect(() => {
     getHouseDate()
@@ -23,20 +24,19 @@ const MapView = ({  }) => {
   const getHouseDate = async() => {
     setLoading(false)    
     const ary = await getAPTLttotPblancDetail(searchData)  //청약 데이터 가져오기
-    setReturnData(ary)
-    
+    counter.setData(ary)
     setLoading(true)
   }
   
-  return (
+  return useObserver(() => (
     <div className="mapViewWrapper full">
       {loading ? ( 
         <div className="mapviewContainer">
           <div className="mapContainer">
-            <KakaoMap returnData={returnData}/> 
+            <KakaoMap /> 
           </div>
           <div className="drawerContainer">
-            <Drawer returnData={returnData}/>
+            <Drawer/>
           </div>
         </div> 
       ):(
@@ -45,6 +45,6 @@ const MapView = ({  }) => {
         </div>
       )}
     </div>
-  );
+  ));
 };
 export default MapView;

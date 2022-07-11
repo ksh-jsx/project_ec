@@ -1,16 +1,30 @@
+/*global kakao*/
 import React, { useState, useEffect } from "react";
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import useStore from '../../useStore';
+import { useObserver } from "mobx-react";
 
-function BasicCard({data}) {
+function BasicCard({data,i}) {
   
-  useEffect(() => {
-    console.log(data)
-    console.log('hello')
+  const { counter } = useStore();
+
+  const select = (i) => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(counter.data[i].HSSPLY_ADRES, function(result, status) {
+      if (status === kakao.maps.services.Status.OK){   
+        const coords = new kakao.maps.LatLng((result[0].y-0.001), result[0].x);        
+
+        counter.map.panTo(coords);
+        counter.map.setLevel(3,{animate: true});
+      }
+    })
+  };
+
+  useEffect(() => {    
   }, []);
 
-  return(
-    <Card sx={{ minWidth: 275 }}>
+  return useObserver (()=>(
+    <Card sx={{ minWidth: 275 }} onClick={()=>(select(i))}>
       <div className="cardInner">
         <div className="cardLeft">
           <div>
@@ -30,6 +44,6 @@ function BasicCard({data}) {
         </div>
       </div>
     </Card>
-  );
+  ));
 }
 export default BasicCard;
