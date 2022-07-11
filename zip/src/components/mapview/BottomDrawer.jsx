@@ -1,24 +1,25 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from "react";
 import { Global } from '@emotion/react';
-import { styled } from '@mui/material/styles';
-
-import { grey } from '@mui/material/colors';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import BasicCard from "./BasicCard";
 
 const drawerBleeding = 56;
 
 function BottomDrawer(props) {
   const { window } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(true);
+  const [datas, setDatas] = useState(props.returnData);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+    
   };
+
+  useEffect(() => {
+    console.log(datas)
+  }, []);
 
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -33,7 +34,7 @@ function BottomDrawer(props) {
           },
         }}
       />
-      <Box>
+      <Box style={{backgroundColor:"#E7EBF0"}}>
         <SwipeableDrawer
           container={container}
           anchor="bottom"
@@ -47,12 +48,18 @@ function BottomDrawer(props) {
           }} 
           hideBackdrop={true}
           hysteresis={0.3}
-        >
-          <div className='drawerBox' onClick={()=>console.log('click!')} onDrag={(e)=>(console.log('drag'))}>
-            <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
-          </div>
           
+        >
+          <div className='drawerBox' >
+            <span className='puller'/>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}>{props.returnData.length} results</Typography>
+            
+          </div>
+          <div className="cardBox">
+            {datas?.map((x)=>(
+              <BasicCard data={x}/>
+            ))}
+          </div>
         </SwipeableDrawer>
       </Box>
     </div>

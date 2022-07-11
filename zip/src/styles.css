@@ -42,10 +42,67 @@ html,body,#root {
   visibility: visible;
   right: 0;
   left: 0;
+  background-color: #E7EBF0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px -7px 8px;
 }
+.cardBox{
+  background-color: #E7EBF0;
+  
+  height:100%;
+  overflow: scroll;
+}
+.cardBox > div{
+  width:95%;
+  height: 120px;
+  margin:0 auto;
+  margin-bottom: 10px;
+}
+.cardInner{
+  height:100px;
+  padding: 10px 0 10px;
+}
+.cardInner > div{
+  float: left;
+}
+.cardLeft{
+  width:40%;
+  height:100%;
+}
+.cardLeft > div{
+  width: 100%;
+  max-width: 100px;
+  height: 100px;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 2;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #6297FF;
+  border-radius: 10px;
+}
+.cardLeft > div > div{
+  font-size: 13px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cardRight{
+  width:60%;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  
+}
+.cardRight > div{
+  padding-bottom:5px ;
+}
 .css-1u2w381-MuiModal-root-MuiDrawer-root{
-  position: inherit !important
+  position: inherit !important;
+  background-color:#E7EBF0
 }
 .mapContainer{
   width: 100%;

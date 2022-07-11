@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 const KakaoMap = ({returnData}) => {
   
   const myPosContent = '<div class="myPos"></div>'
-  const dataContent = '<div class="myPos"></div>'
-
-
+  
   useEffect(() => {    
     //console.log(returnData)
     generateMap()  
@@ -40,10 +38,7 @@ const KakaoMap = ({returnData}) => {
         // 지도 중심을 이동 시킵니다
         map.setCenter(myPos);
       })
-
-      
     }
-
     returnData?.map(function(x,i){       
       createDataLocation(map,clusterer,x)
     })
@@ -60,20 +55,14 @@ const KakaoMap = ({returnData}) => {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
         // 결과값으로 받은 위치를 마커로 표시합니다
-        
         const marker = new kakao.maps.Marker({
           map: map,
           position: coords
         });
 
         clusterer.addMarker(marker)
-        
       }
     })
-    
-  }
-  
-  const createMyLocation = (map) => {
     
   }
 

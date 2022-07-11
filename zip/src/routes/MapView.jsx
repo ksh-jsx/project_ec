@@ -36,7 +36,7 @@ const MapView = ({  }) => {
             <KakaoMap returnData={returnData}/> 
           </div>
           <div className="drawerContainer">
-            <Drawer/>
+            <Drawer returnData={returnData}/>
           </div>
         </div> 
       ):(
