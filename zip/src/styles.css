@@ -101,9 +101,26 @@ html,body,#root {
   padding-bottom:5px ;
 }
 .css-1u2w381-MuiModal-root-MuiDrawer-root{
-  position: inherit !important;
-  background-color:#E7EBF0
+  position: relative !important;  
 }
+.searchContainer{
+  width: 85%;
+  min-width: 330px;
+  position: fixed;
+  z-index: 3;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.search{
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
 .mapContainer{
   width: 100%;
   position: absolute;

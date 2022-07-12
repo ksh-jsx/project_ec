@@ -35,8 +35,6 @@ const Sidebar = ({searchData,detailData,setSearchData,getHouseDate}) => {
 
   return (
     <>
-      
-
       <LocalizationProvider dateAdapter={AdapterDateFns}>        
         <Box m={2} className="datePickerWrapper">
           <DatePicker

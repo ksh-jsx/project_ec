@@ -18,15 +18,11 @@ function BottomDrawer(props) {
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
-    
   };
 
   useEffect(() => {
     //console.log(datas)
   }, []);
-
-  // This is used only for the example
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return useObserver(() => (
     <div >
@@ -40,7 +36,7 @@ function BottomDrawer(props) {
       />
       <Box style={{backgroundColor:"#E7EBF0"}}>
         <SwipeableDrawer
-          container={container}
+          disableEnforceFocus
           anchor="bottom"
           open={open}
           onClose={toggleDrawer(false)}

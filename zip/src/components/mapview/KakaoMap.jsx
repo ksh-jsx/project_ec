@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
 
-
 const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
@@ -76,7 +75,9 @@ const KakaoMap = () => {
 
   return useObserver(() => (
     <>
+      
       <div id="map"></div> 
+      
     </>
   ));
 };
