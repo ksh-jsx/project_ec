@@ -12,16 +12,15 @@ const drawerBleeding = 56;
 function BottomDrawer(props) {
 
   const { counter } = useStore();
-  const { window } = props;
   const [open, setOpen] = useState(true);
-  const [datas, setDatas] = useState(counter.data);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
+
   useEffect(() => {
-    //console.log(datas)
+    
   }, []);
 
   return useObserver(() => (
@@ -52,12 +51,12 @@ function BottomDrawer(props) {
         >
           <div className='drawerBox' >
             <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}>{counter.data.length} results</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}>{counter.newData.length} results</Typography>
             
           </div>
-          <div className="cardBox">
-            {datas?.map((x,i)=>(
-              <BasicCard data={x} i={i}key={i}/>
+          <div className="cardBox" id="tmp">
+            {counter.newData?.map((x,i)=>(
+              <BasicCard data={x} i={i} key={i}/>
             ))}
           </div>
         </SwipeableDrawer>

@@ -32,7 +32,8 @@ const KakaoMap = () => {
       minLevel: 2 // 클러스터 할 최소 지도 레벨 
     });
 
-    if(navigator.geolocation){
+
+    if(navigator.geolocation){ //내위치 찾아서 이동하기
       navigator.geolocation.getCurrentPosition((position)=>{
         const myPos = new kakao.maps.LatLng(position.coords.latitude,position.coords.longitude)
 
@@ -64,13 +65,23 @@ const KakaoMap = () => {
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.Marker({
           map: counter.map,
-          position: coords
+          position: coords,
+          clickable: true 
         });
 
         clusterer.addMarker(marker)
+
+        kakao.maps.event.addListener(marker, 'click', () => {        
+          const location = document.getElementsByClassName("cardInner")[i].offsetTop-50; //클릭한 마커에 맞는 카드의 offset 가져오기
+          document.getElementsByClassName("cardBox")[0].scrollTo({top:location, behavior:'smooth'}) //이동
+
+          counter.map.setLevel(3)
+          setTimeout(() => counter.map.panTo(new kakao.maps.LatLng(result[0].y-0.001, result[0].x)), 100)
+
+          counter.handleClick(i) //카드 배경색 칠하기
+        });
       }
     })
-    
   }
 
   return useObserver(() => (

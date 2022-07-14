@@ -26,6 +26,7 @@ const MapView = ({  }) => {
     setLoading(false)    
     const ary = await getAPTLttotPblancDetail(searchData)  //청약 데이터 가져오기
     counter.setData(ary)
+    counter.setNewData(ary)
     setLoading(true)
   }
   

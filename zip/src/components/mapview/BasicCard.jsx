@@ -1,31 +1,44 @@
 /*global kakao*/
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Card from '@mui/material/Card';
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
 
-function BasicCard({data,i}) {
+function BasicCard({data,i,}) {
   
   const { counter } = useStore();
+  
+  useEffect(() => {
+    
+  }, []);
+  
+  function sleep(ms) { //sleep 함수
+    return new Promise(resolve=>setTimeout(resolve, ms));
+  }
 
   const select = (i) => {
+    counter.handleClick(i)
+
     const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(counter.data[i].HSSPLY_ADRES, function(result, status) {
+    geocoder.addressSearch(counter.newData[i].HSSPLY_ADRES, function(result, status) {
       if (status === kakao.maps.services.Status.OK){   
         const coords = new kakao.maps.LatLng((result[0].y-0.001), result[0].x);        
-
-        counter.map.panTo(coords);
-        counter.map.setLevel(3,{animate: true});
+        
+        counter.map.setLevel(3)
+        setTimeout(() => counter.map.panTo(coords), 100)
+        
       }
     })
   };
 
   useEffect(() => {    
+    console.log(counter.isListclicked[i])
   }, []);
 
   return useObserver (()=>(
-    <Card sx={{ minWidth: 275 }} onClick={()=>(select(i))}>
+    <Card sx={{ minWidth: 275 }} onClick={()=>(select(i))} className={counter.isListclicked[i] ? 'active' : 'inactive'}>
       <div className="cardInner">
+        
         <div className="cardLeft">
           <div>
             <div>

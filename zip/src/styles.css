@@ -47,7 +47,6 @@ html,body,#root {
 }
 .cardBox{
   background-color: #E7EBF0;
-  
   height:100%;
   overflow: scroll;
 }
@@ -56,6 +55,12 @@ html,body,#root {
   height: 120px;
   margin:0 auto;
   margin-bottom: 10px;
+}
+.cardBox > .active{
+  background-color: aliceblue;
+}
+.cardBox > .inactive{
+  background-color: #ffffff;
 }
 .cardInner{
   height:100px;
