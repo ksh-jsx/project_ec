@@ -1,7 +1,14 @@
+@font-face {
+  font-family: "Pretandard_m";
+  src: url("./assets/font/Pretendard-Medium.otf") format("truetype");
+}
+
 html,body,#root {
   margin: 0;
   height: 100%;
   overflow: hidden;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
 }
 
 /*맵뷰*/
@@ -135,6 +142,23 @@ html,body,#root {
   width: 100%;
   height: 100vh;
   margin: 0 auto;
+}
+.imageMarker{
+  display: flex;  
+  width: 66px;
+  height: 60px;
+  background-size: cover !important;
+  background-position: center;
+  background: url("./assets/img/marker1.png");
+}
+.imageMarker > div{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 13px;
 }
 .datePickerWrapper{
   display: flex;

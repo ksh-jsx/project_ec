@@ -32,7 +32,7 @@ function BasicCard({data,i,}) {
   };
 
   useEffect(() => {    
-    console.log(counter.isListclicked[i])
+    
   }, []);
 
   return useObserver (()=>(

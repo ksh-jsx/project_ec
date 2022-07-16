@@ -3,16 +3,14 @@ import React, { useState, useEffect } from "react";
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
 
+
 const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
-
   const { counter } = useStore();
 
   useEffect(() => {    
-        
       generateMap()
-    
   }, []);
   
   const generateMap = () => {
@@ -62,10 +60,13 @@ const KakaoMap = () => {
       if (status === kakao.maps.services.Status.OK){   
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);        
 
+        var content2 = `<div class="imageMarker"><div>${data.HOUSE_SECD_NM}</div></div>`;
+        
         // 결과값으로 받은 위치를 마커로 표시합니다
-        const marker = new kakao.maps.Marker({
+        const marker = new kakao.maps.CustomOverlay({
           map: counter.map,
           position: coords,
+          content: content2,   
           clickable: true 
         });
 

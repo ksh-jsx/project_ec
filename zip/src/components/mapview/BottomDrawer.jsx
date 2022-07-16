@@ -14,11 +14,6 @@ function BottomDrawer(props) {
   const { counter } = useStore();
   const [open, setOpen] = useState(true);
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-
   useEffect(() => {
     
   }, []);
@@ -35,11 +30,12 @@ function BottomDrawer(props) {
       />
       <Box style={{backgroundColor:"#E7EBF0"}}>
         <SwipeableDrawer
+          passiveListeners="false"
           disableEnforceFocus
           anchor="bottom"
           open={open}
-          onClose={toggleDrawer(false)}
-          onOpen={toggleDrawer(true)}
+          onClose={()=>setOpen(false)}
+          onOpen={()=>setOpen(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
           ModalProps={{
