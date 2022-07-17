@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Card from '@mui/material/Card';
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
+import Divider from '@mui/material/Divider';
 
 function BasicCard({data,i,}) {
   
@@ -11,10 +12,6 @@ function BasicCard({data,i,}) {
   useEffect(() => {
     
   }, []);
-  
-  function sleep(ms) { //sleep 함수
-    return new Promise(resolve=>setTimeout(resolve, ms));
-  }
 
   const select = (i) => {
     counter.handleClick(i)
@@ -42,14 +39,14 @@ function BasicCard({data,i,}) {
         <div className="cardLeft">
           <div>
             <div>
-              {data.HSSPLY_ADRES.split(' ')[0]} <br/>
-              {data.HSSPLY_ADRES.split(' ')[1]}
+              
             </div>
           </div>
         </div>
         <div className="cardRight">
           <div>
-            {data.HOUSE_SECD_NM}
+            {data.HOUSE_SECD_NM}&nbsp;|&nbsp;
+            {data.HSSPLY_ADRES.split(' ')[0].substr(0,2)} {data.HSSPLY_ADRES.split(' ')[1]}
           </div>
           <div>
             {data.HOUSE_NM}

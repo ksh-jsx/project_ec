@@ -8,10 +8,6 @@ const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
   const { counter } = useStore();
-
-  useEffect(() => {    
-      generateMap()
-  }, []);
   
   const generateMap = () => {
 
@@ -33,6 +29,7 @@ const KakaoMap = () => {
 
     if(navigator.geolocation){ //내위치 찾아서 이동하기
       navigator.geolocation.getCurrentPosition((position)=>{
+        
         const myPos = new kakao.maps.LatLng(position.coords.latitude,position.coords.longitude)
 
         new kakao.maps.CustomOverlay({
@@ -55,12 +52,13 @@ const KakaoMap = () => {
     const geocoder = new kakao.maps.services.Geocoder();
     
     // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(data.HSSPLY_ADRES, function(result, status) {
+    geocoder.addressSearch(data.HSSPLY_ADRES, (result, status) => {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK){   
+        
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);        
-
-        var content2 = `<div class="imageMarker"><div>${data.HOUSE_SECD_NM}</div></div>`;
+        
+        var content2 = `<div class="imageMarker" onclick="onMarkerClick(${i},${result[0].y-0.001},${result[0].x})"><div>${data.HOUSE_SECD_NM}</div></div>`;
         
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.CustomOverlay({
@@ -69,21 +67,27 @@ const KakaoMap = () => {
           content: content2,   
           clickable: true 
         });
-
+        
         clusterer.addMarker(marker)
 
-        kakao.maps.event.addListener(marker, 'click', () => {        
-          const location = document.getElementsByClassName("cardInner")[i].offsetTop-50; //클릭한 마커에 맞는 카드의 offset 가져오기
-          document.getElementsByClassName("cardBox")[0].scrollTo({top:location, behavior:'smooth'}) //이동
-
-          counter.map.setLevel(3)
-          setTimeout(() => counter.map.panTo(new kakao.maps.LatLng(result[0].y-0.001, result[0].x)), 100)
-
-          counter.handleClick(i) //카드 배경색 칠하기
-        });
       }
     })
   }
+
+  window.onMarkerClick = (i,lat,lng) =>{
+    
+    const location = document.getElementsByClassName("cardInner")[i].offsetTop-50; //클릭한 마커에 맞는 카드의 offset 가져오기
+    document.getElementsByClassName("cardBox")[0].scrollTo({top:location, behavior:'smooth'}) //스크롤 이동
+
+    counter.map.setLevel(3)
+    setTimeout(() => counter.map.panTo(new kakao.maps.LatLng(lat,lng)), 100)
+
+    counter.handleClick(i) //카드 배경색 칠하기
+  }
+
+  useEffect(() => {    
+    generateMap()
+  }, []);
 
   return useObserver(() => (
     <>

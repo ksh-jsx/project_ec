@@ -6,17 +6,23 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
+import { DoubleArrow } from "@mui/icons-material";
 
 const drawerBleeding = 56;
 
-function BottomDrawer(props) {
+function BottomDrawer() {
 
   const { counter } = useStore();
   const [open, setOpen] = useState(true);
 
-  useEffect(() => {
-    
+  useEffect(() => {    
+    document.getElementById('drawer').addEventListener('touchmove', test(), {passive:false});
+    document.getElementById('drawer').removeEventListener('touchmove', test(), {passive:false});
   }, []);
+  
+  const test = () =>{
+    console.log('add')
+  }
 
   return useObserver(() => (
     <div >
@@ -30,6 +36,7 @@ function BottomDrawer(props) {
       />
       <Box style={{backgroundColor:"#E7EBF0"}}>
         <SwipeableDrawer
+          id="drawer"
           passiveListeners="false"
           disableEnforceFocus
           anchor="bottom"
@@ -47,7 +54,7 @@ function BottomDrawer(props) {
         >
           <div className='drawerBox' >
             <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}>{counter.newData.length} results</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{counter.newData.length}</span>개의 결과</Typography>
             
           </div>
           <div className="cardBox" id="tmp">
