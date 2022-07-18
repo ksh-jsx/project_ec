@@ -4,7 +4,6 @@ import SearchBar from "../components/mapview/SearchBar";
 import KakaoMap from "../components/mapview/KakaoMap";
 import Drawer from "../components/mapview/BottomDrawer";
 import { getAPTLttotPblancDetail } from '../lib/api/openapi'
-import { getAPTLttotPblancMdl } from '../lib/api/openapi'
 import useStore from '../useStore';
 import { useObserver } from "mobx-react";
 
@@ -18,8 +17,7 @@ const MapView = ({  }) => {
   });   
 
   useEffect(() => {
-    getHouseDate()
-    
+    getHouseDate()        
   }, []);
   
   const getHouseDate = async() => {

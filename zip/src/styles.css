@@ -10,7 +10,12 @@ html,body,#root {
   font-family: "Pretandard_m";
   letter-spacing: 1px;
 }
-
+.active{
+  background-color: #C8DBFF !important;
+}
+.inactive{
+  background-color: #ffffff !important;
+}
 /*맵뷰*/
 .mapViewWrapper{
   width: 1080px;
@@ -63,12 +68,7 @@ html,body,#root {
   margin:0 auto;
   margin-bottom: 10px;
 }
-.cardBox > .active{
-  background-color: aliceblue;
-}
-.cardBox > .inactive{
-  background-color: #ffffff;
-}
+
 .cardInner{
   height:100px;
   padding: 10px 0 10px;
@@ -123,8 +123,9 @@ html,body,#root {
 .css-1u2w381-MuiModal-root-MuiDrawer-root{
   position: relative !important;  
 }
-.searchContainer{
+.mapviewContainer .searchContainer{
   width: 90%;
+  
   min-width: 350px;
   position: fixed;
   z-index: 3;
@@ -133,10 +134,21 @@ html,body,#root {
   
   transform: translateX(-50%);
 }
+.mapviewContainer .searchContainer > div{
+  height: 50px;
+}
+.mapviewContainer .searchContainer > div:last-child{
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.mapviewContainer .searchContainer > div:last-child::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .search{
-  width: calc(96% - 48px);
+  width: calc(98% - 48px);
   height: 48px;
-  margin-left: 2%;
   margin-right: 2%;
   float: left;
   border-radius: 8px;
@@ -157,10 +169,40 @@ html,body,#root {
   border-radius: 8px;
 }
 .icon > *{
-  position: relative;
+  width: 100%;
+  height: 100%;
   top:50%;
   lefT:50%;
   transform: translate(-50%,-50%);
+}
+.icon > * > *{
+  width: 1.3em !important;
+  height: 1.3em !important;
+}
+.mapviewContainer .searchContainer .categorys{
+  height: 100%;
+  width: 500px;
+  
+}
+.mapviewContainer .searchContainer .category{
+  
+  height: 22px;
+  padding: 8px;
+  margin-left: 8px;
+  margin-top: 10px;
+  float: left;
+  background: #FFF;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+.mapviewContainer .searchContainer .categoryImg{
+   height: 100%;
+   padding-right: 5px;
+}
+.mapviewContainer .searchContainer .category > span{
+  color: #6297FF;
+  font-size: 14px
 }
 .mapContainer{
   width: 100%;
@@ -200,11 +242,11 @@ html,body,#root {
 }
 
 .myPos{
-  width:15px;
-  height:15px;
-  background-color: #ff0000;
+  width:10px;
+  height:10px;
+  background-color: #E51B1C;
   border-radius: 30px;
-  border: 1px solid #ffffff;
+  border: 2px solid #ffffff;
   box-shadow : 2px 2px 10px silver
 }
 /*로그인뷰*/

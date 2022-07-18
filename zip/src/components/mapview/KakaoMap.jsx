@@ -7,6 +7,7 @@ import { useObserver } from "mobx-react";
 const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
+  let ps;
   const { counter } = useStore();
   
   const generateMap = () => {
@@ -19,13 +20,13 @@ const KakaoMap = () => {
 
     const map = new kakao.maps.Map(container, options);
     counter.setMap(map)
-
+    ps = new kakao.maps.services.Places(map
+      ); 
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
       minLevel: 2 // 클러스터 할 최소 지도 레벨 
     });
-
 
     if(navigator.geolocation){ //내위치 찾아서 이동하기
       navigator.geolocation.getCurrentPosition((position)=>{
@@ -41,6 +42,11 @@ const KakaoMap = () => {
         // 지도 중심을 이동 시킵니다
         map.setCenter(myPos);
       })
+
+      kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
+        if(counter.clickedCategoryId)
+          ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
+      });
     }
     counter.data?.map(function(x,i){       
       createDataLocation(clusterer,x,i)

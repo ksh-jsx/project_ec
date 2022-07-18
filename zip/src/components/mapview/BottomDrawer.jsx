@@ -6,7 +6,6 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
-import { DoubleArrow } from "@mui/icons-material";
 
 const drawerBleeding = 56;
 
@@ -16,13 +15,8 @@ function BottomDrawer() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {    
-    document.getElementById('drawer').addEventListener('touchmove', test(), {passive:false});
-    document.getElementById('drawer').removeEventListener('touchmove', test(), {passive:false});
+
   }, []);
-  
-  const test = () =>{
-    console.log('add')
-  }
 
   return useObserver(() => (
     <div >

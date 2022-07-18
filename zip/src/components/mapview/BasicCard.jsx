@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import Card from '@mui/material/Card';
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
-import Divider from '@mui/material/Divider';
 
 function BasicCard({data,i,}) {
   
@@ -14,7 +13,7 @@ function BasicCard({data,i,}) {
   }, []);
 
   const select = (i) => {
-    counter.handleClick(i)
+    counter.handleClick('List',i)
 
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(counter.newData[i].HSSPLY_ADRES, function(result, status) {
