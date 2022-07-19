@@ -11,11 +11,21 @@ const CategorySearch = ({id,name,i}) => {
   const ps = new kakao.maps.services.Places(counter.map); 
 
   const onCategoryClick = () =>{
-    counter.clickedCategoryId = id    
+    
+    if(counter.clickedCategoryId === id){
+      counter.handleClick('Category',null)
+      counter.clickedCategoryId = null    
+    }
+    else{
+      counter.clickedCategoryId = id    
+      counter.handleClick('Category',i)
+      ps.categorySearch(id, counter.placesSearchCB, {useMapBounds:true}); 
+    }
+    
     if(counter.categoryMarkers)
       removeMarker(counter.categoryMarkers)
-    counter.handleClick('Category',i)
-    ps.categorySearch(id, counter.placesSearchCB, {useMapBounds:true}); 
+    
+    
   }
 
   const removeMarker = () => {

@@ -43,10 +43,7 @@ const KakaoMap = () => {
         map.setCenter(myPos);
       })
 
-      kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
-        if(counter.clickedCategoryId)
-          ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
-      });
+      
     }
     counter.data?.map(function(x,i){       
       createDataLocation(clusterer,x,i)
@@ -92,7 +89,18 @@ const KakaoMap = () => {
   }
 
   useEffect(() => {    
+
     generateMap()
+
+    kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
+      if(counter.clickedCategoryId)
+        ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
+    });
+
+    kakao.maps.event.addListener(counter.map, 'dragend', function() {          
+      if(counter.clickedCategoryId)
+        ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
+    });
   }, []);
 
   return useObserver(() => (

@@ -28,7 +28,8 @@ const counter = observable({
       this.isListclicked = newArr   
     } else if(type === 'Category'){
       const newArr = Array(5).fill(false);
-      newArr[i] = true;
+      if(i !== null)
+        newArr[i] = true;
       this.isCategoryclicked = newArr   
     }
   },
