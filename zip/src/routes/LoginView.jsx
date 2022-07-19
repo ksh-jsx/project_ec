@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../assets/css/loginview.css";
 import Login from "../components/loginview/Login";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  

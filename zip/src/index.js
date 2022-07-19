@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import "./styles.css";
-import "./loading.css";
+import "./assets/css/main.css";
+import "./assets/css/loading.css";
 
 import { legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";

@@ -1,5 +1,5 @@
-/*global kakao*/
 import React, { useState, useEffect } from "react";
+import "../assets/css/mapview.css";
 import SearchBar from "../components/mapview/SearchBar";
 import KakaoMap from "../components/mapview/KakaoMap";
 import Drawer from "../components/mapview/BottomDrawer";

@@ -1,0 +1,74 @@
+/*로그인뷰*/
+.authWrapper{
+  position: relative; 
+  width:100%;
+  max-width:400px;
+  margin: 0 auto;
+}
+.authWrapper .authSpan{
+  margin-top: 20px;
+  cursor:pointer;
+  text-align: center;
+}
+.logo{
+  position: relative;  
+  left:50%;
+  transform: translateX(-50%);
+}
+
+.loginForm{
+  height:250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.loginForm > div{
+  display: flex;
+  flex-direction: column;
+}
+.loginForm input{
+  margin-top:30px;
+  height:50px;
+  border: 1px solid #bdbdbd;
+  border-radius: 20px;
+  padding-left: 15px;
+}
+.loginForm input[type=submit]{
+  height:45px;
+  font-size:20px;
+  background-color: #079FFF;
+  border: 1px solid #079FFF;
+  color: #ffffff;
+  cursor:pointer;
+}
+.loginForm{
+  height:500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.loginForm > div{
+  display: flex;
+  flex-direction: column;
+}
+
+.loginForm input[type=submit]{
+  height:45px;
+  font-size:20px;
+  background-color: #079FFF;
+  border: 1px solid #079FFF;
+  color: #ffffff;
+  cursor:pointer;
+}
+.socialWrap{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.socialWrap > *{
+  width: 45%;
+  border-radius: 20px;
+  
+  height: 30px;
+  cursor:pointer;
+}

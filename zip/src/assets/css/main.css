@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Pretandard_m";
+  src: url("../font/Pretendard-Medium.otf") format("truetype");
+}
+input:focus {outline:none;}
+html,body,#root {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
+}
+.active{
+  background-color: #C8DBFF !important;
+}
+.inactive{
+  background-color: #ffffff !important;
+}
