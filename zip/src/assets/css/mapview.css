@@ -38,70 +38,82 @@
   visibility: visible;
   right: 0;
   left: 0;
-  background-color: #E7EBF0;
+  background-color: #F8F8F8;
   box-shadow: rgba(0, 0, 0, 0.1) 0px -7px 8px;
 }
 .cardBox{
-  background-color: #E7EBF0;
+  background-color: #F8F8F8;
   height:100%;
   overflow: scroll;
 }
 .cardBox > div{
   width:95%;
-  height: 120px;
+  height: 160px;
   margin:0 auto;
   margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: #FFF;
 }
 .cardInner{
-  height:100px;
-  padding: 10px 0 10px;
+  height:100%;
+  padding: 0 15px 0 15px;
 }
 .cardInner > div{
   float: left;
-}
-.cardLeft{
-  width:30%;
-  max-width: 100px;
-  height:100%;
-}
-.cardLeft > div{
-  width: 70%;
-  height: 70%;
-  color: #ffffff;
-  font-weight: bold;
-  line-height: 2;
-  text-align: center;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #6297FF;
-  border-radius: 10px;
-}
-.cardLeft > div > div{
-  font-size: 13px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.cardRight{
-  width:60%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  display:flex;
-  flex-direction: column;
   
 }
-.cardRight > div{
-  padding-bottom:5px ;
+.cardLeft{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 0 22px 0;
 }
-.cardRight > div:first-child{
+.cardLeft .apt_place{
+  color: #8E8E8E;
   font-size: 12px;
+  font-weight: bold;
 }
-.cardRight > div:last-child{
-  font-size: 18px;
+.cardLeft .apt_name{
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  padding: 8px 0 13px 0;
+}
+.cardLeft .apt_period{
+  background-color: #F8F8F8;
+  max-width: 200px;
+  border-radius: 8px;
+  color: #8E8E8E;
+  font-size: 12px;
+  padding: 10px;
+  line-height: 150%;
+}
+.cardRight{
+ width: 30%;
+ height: calc(100% - 22px);
+ padding-bottom: 22px;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-end;
+ justify-content:space-between ;
+}
+.cardRight .like{
+  width: 25px;
+  height: 30px;
+  background-color: #E8E8E8;
+  clip-path: polygon(0 0, 0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 8px), 0 0)
+}
+.cardRight .apt_img{
+  width: 95px;
+  height: 95px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: url("../img/apt_ex.jfif");
+  background-size: cover;
 }
 .css-1u2w381-MuiModal-root-MuiDrawer-root{
   position: relative !important;  

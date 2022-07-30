@@ -13,6 +13,7 @@ const CategorySearch = ({id,name,i}) => {
   const onCategoryClick = () =>{
     
     if(counter.clickedCategoryId === id){
+      counter.removeMarker(counter.categoryMarkers)
       counter.handleClick('Category',null)
       counter.clickedCategoryId = null    
     }
@@ -22,25 +23,18 @@ const CategorySearch = ({id,name,i}) => {
       ps.categorySearch(id, counter.placesSearchCB, {useMapBounds:true}); 
     }
     
-    if(counter.categoryMarkers)
-      removeMarker(counter.categoryMarkers)
     
-    
+      
   }
 
-  const removeMarker = () => {
-    for ( var i = 0; i < counter.categoryMarkers.length; i++ ) {
-      counter.categoryMarkers[i].setMap(null);
-    }   
-    counter.categoryMarkers = [];
-  }
+ 
   
   useEffect(() => {
     
   }, []);
 
   return useObserver(() => (
-    <div id={id} onClick={()=>onCategoryClick()} className={counter.isCategoryclicked[i] ? ' category active' : 'category inactive'}>
+    <div id={id} onClick={()=>onCategoryClick()} className={counter.isCategoryclicked[i] ? ' category active_category' : 'category inactive_category'}>
       <img src={require('../../assets/img/'+id+'.png')} className="categoryImg" alt="img"/>
       <span>{name}</span>
     </div>

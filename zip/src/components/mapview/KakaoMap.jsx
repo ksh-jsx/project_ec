@@ -93,8 +93,10 @@ const KakaoMap = () => {
     generateMap()
 
     kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
-      if(counter.clickedCategoryId)
+      if(counter.clickedCategoryId){
+        counter.removeMarker(counter.categoryMarkers)
         ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
+      }
     });
 
     kakao.maps.event.addListener(counter.map, 'dragend', function() {          
@@ -103,12 +105,6 @@ const KakaoMap = () => {
     });
   }, []);
 
-  return useObserver(() => (
-    <>
-      
-      <div id="map"></div> 
-      
-    </>
-  ));
+  return useObserver(() => ( <div id="map"></div> ));
 };
 export default KakaoMap;

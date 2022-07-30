@@ -32,27 +32,27 @@ function BasicCard({data,i,}) {
   }, []);
 
   return useObserver (()=>(
-    <Card sx={{ minWidth: 275 }} onClick={()=>(select(i))} className={counter.isListclicked[i] ? 'active' : 'inactive'}>
+    <div onClick={()=>(select(i))} className={counter.isListclicked[i] ? 'active' : 'inactive'}>
       <div className="cardInner">
-        
         <div className="cardLeft">
-          <div>
-            <div>
-              
-            </div>
+          <div className="apt_place">
+              {data.HOUSE_SECD_NM}&nbsp;|&nbsp;
+              {data.HSSPLY_ADRES.split(' ')[0].substr(0,2)} {data.HSSPLY_ADRES.split(' ')[1]}
+          </div>
+          <div className="apt_name">
+            {data.HOUSE_NM}
+          </div>
+          <div className="apt_period">
+            <div>청약 기간&nbsp;&nbsp;|&nbsp;&nbsp;{data.RCEPT_BGNDE.replace(/-/g,'.').substr(2)} ~ {data.RCEPT_ENDDE.replace(/-/g,'.').substr(2)}</div>
+            <div>청약 발표&nbsp;&nbsp;|&nbsp;&nbsp;{data.PRZWNER_PRESNATN_DE.replace(/-/g,'.').substr(2)}</div>
           </div>
         </div>
         <div className="cardRight">
-          <div>
-            {data.HOUSE_SECD_NM}&nbsp;|&nbsp;
-            {data.HSSPLY_ADRES.split(' ')[0].substr(0,2)} {data.HSSPLY_ADRES.split(' ')[1]}
-          </div>
-          <div>
-            {data.HOUSE_NM}
-          </div>
+          <div className="like"/>
+          <div className="apt_img"/>
         </div>
       </div>
-    </Card>
+    </div>
   ));
 }
 export default BasicCard;

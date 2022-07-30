@@ -26,6 +26,7 @@ const MapView = ({  }) => {
     counter.setData(ary)
     counter.setNewData(ary)
     setLoading(true)
+    console.log(ary)
   }
   
   return useObserver(() => (

@@ -47,6 +47,12 @@ const counter = observable({
       counter.categoryMarkers = markers      
     } 
   },
+  removeMarker(){
+    for ( var i = 0; i < this.categoryMarkers.length; i++ ) {
+      this.categoryMarkers[i].setMap(null);
+    }   
+    this.categoryMarkers = [];
+  },
 });
 
 export { counter };
