@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react";
 import useStore from '../../useStore';
-import tmp from '../../assets/img/CS2.png'
 
 const CategorySearch = ({id,name,i}) => {
   
@@ -22,12 +21,7 @@ const CategorySearch = ({id,name,i}) => {
       counter.handleClick('Category',i)
       ps.categorySearch(id, counter.placesSearchCB, {useMapBounds:true}); 
     }
-    
-    
-      
   }
-
- 
   
   useEffect(() => {
     

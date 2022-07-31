@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/loginview.css";
 import Login from "../components/loginview/Login";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  
-  faGoogle,
-} from "@fortawesome/free-brands-svg-icons";
+import Social from "../components/loginview/Social";
 
 const LoginView = ({  }) => {
   
@@ -30,15 +27,23 @@ const LoginView = ({  }) => {
   return (
     <div className="authWrapper">
      {newAccount ? (
-        <div>loading...</div>
+        <div>대충 회원가입 뷰 </div>
       ):(
-        <div>
-          <Login/>
-          <div onClick={toggleAccount} className="authSpan">회원가입</div>
-          <div className="socialWrap">
-            <button onClick={onSocialClick} name="google">구글로 로그인 <FontAwesomeIcon icon={faGoogle} /></button>
+        <>
+          <div className="logoContainer">
+            <img src={require('../assets/img/logo_small.png')} className="logo"/>
           </div>
-        </div>
+          <div className="loginContainer">
+            <Login/>
+          </div>
+          <div className="socialContainer">
+            <Social/>
+          </div>
+          <div className="etcContainer">
+            <span>아이디 찾기</span>
+            <span onClick={toggleAccount}>회원가입</span>
+          </div>
+        </>
       )}
     </div>
   );

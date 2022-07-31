@@ -1,14 +1,16 @@
 @font-face {
   font-family: "Pretandard_m";
-  src: url("../font/Pretendard-Medium.otf") format("truetype");
+  src: url("../font/Pretendard-Regular.otf") format("truetype");
 }
 input:focus {outline:none;}
+input::placeholder {font-family: "Pretandard_m";}
 html,body,#root {
   margin: 0;
   height: 100%;
   overflow: hidden;
   font-family: "Pretandard_m";
   letter-spacing: 1px;
+  background-color: #FFF;
 }
 .active{
   box-shadow: rgb(99, 99, 99, 0.4) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;

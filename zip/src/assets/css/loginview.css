@@ -2,73 +2,120 @@
 .authWrapper{
   position: relative; 
   width:100%;
+  height: 100%;
   max-width:400px;
   margin: 0 auto;
 }
-.authWrapper .authSpan{
-  margin-top: 20px;
-  cursor:pointer;
-  text-align: center;
+
+/*.logoContainer*/
+.logoContainer{
+  height: 30%;
 }
 .logo{
-  position: relative;  
-  left:50%;
-  transform: translateX(-50%);
+  width: 100%;
+  max-width: 75px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
-.loginForm{
-  height:250px;
+/*.loginContainer*/
+.loginContainer{
+  width: calc(100% - 20px);
+  height: calc(30% - 20px);
+  max-height: 185px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  padding: 0 10px 5px 10px;
+}
+.loginForm{
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .loginForm > div{
   display: flex;
   flex-direction: column;
 }
 .loginForm input{
-  margin-top:30px;
+  margin-bottom:15px;
   height:50px;
-  border: 1px solid #bdbdbd;
-  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
+  border-radius: 8px;
   padding-left: 15px;
+  font-size: 16px;
 }
 .loginForm input[type=submit]{
-  height:45px;
   font-size:20px;
   background-color: #079FFF;
   border: 1px solid #079FFF;
   color: #ffffff;
   cursor:pointer;
-}
-.loginForm{
-  height:500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.loginForm > div{
-  display: flex;
-  flex-direction: column;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
+  margin-bottom: 0
 }
 
-.loginForm input[type=submit]{
-  height:45px;
-  font-size:20px;
-  background-color: #079FFF;
-  border: 1px solid #079FFF;
-  color: #ffffff;
+/*.etcContainer*/
+.etcContainer{
+  margin-top: 10px;
+  margin-bottom: 10px;
   cursor:pointer;
-}
-.socialWrap{
-  margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.socialWrap > *{
-  width: 45%;
-  border-radius: 20px;
-  
-  height: 30px;
+.etcContainer > span{
+  font-size: 13px;
+  color: #8E8E8E;
+}
+
+/*.socialContainer*/
+.socialContainer{
+  width: calc(100% - 20px);
+  padding: 0 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.socialContainer > button{
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  height: 50px;
   cursor:pointer;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 0;
+  margin: 10px 0 10px 0;
+}
+button.kakao{
+  background-color: #FEE500;
+}
+button.naver{
+  background-color: #06BE34;
+  color: #FFF;
+}
+button.google{
+  background-color: #FFF;
+}
+.socialContainer > button > img{
+  float: left;
+  position: absolute;
+  left: 45px;
+  transform: translate(-50%,-50%);
+  margin-top: 10px;
+  z-index: 1;
+}
+button.kakao > img{
+  width: 31px
+}
+button.naver > img{
+  width: 35px
+}
+button.google > img{
+  width: 18px;
 }

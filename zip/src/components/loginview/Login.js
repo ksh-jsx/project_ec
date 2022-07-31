@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Login = () => {
 
-  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -11,7 +11,7 @@ const Login = () => {
       target: { name, value },
     } = event;
     if (name === "email") {
-      setEmail(value);
+      setId(value);
     } else if (name === "password") {
       setPassword(value);
     }
@@ -23,32 +23,30 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit} className="loginForm">
-        <div>
-          <input
-            name="email"
-            type="email"
-            placeholder="이메일"
-            required
-            value={email}
-            onChange={onChange}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="비밀번호"
-            required
-            value={password}
-            onChange={onChange}
-          />
-        </div>
+    <form onSubmit={onSubmit} className="loginForm">
+      <div>
         <input
-          type="submit"
-          value="로그인"
+          name="id"
+          type="id"
+          placeholder="아이디"
+          required
+          value={id}
+          onChange={onChange}
         />
-      </form>
-    </div>
+        <input
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          required
+          value={password}
+          onChange={onChange}
+        />
+      </div>
+      <input
+        type="submit"
+        value="로그인"
+      />
+    </form>    
   );
 };
 export default Login;
