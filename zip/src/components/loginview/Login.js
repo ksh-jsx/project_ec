@@ -10,7 +10,7 @@ const Login = () => {
     const {
       target: { name, value },
     } = event;
-    if (name === "email") {
+    if (name === "id") {
       setId(value);
     } else if (name === "password") {
       setPassword(value);
@@ -32,6 +32,7 @@ const Login = () => {
           required
           value={id}
           onChange={onChange}
+          autoComplete="off"
         />
         <input
           name="password"

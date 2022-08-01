@@ -12,16 +12,19 @@ html,body,#root {
   letter-spacing: 1px;
   background-color: #FFF;
 }
-.active{
-  box-shadow: rgb(99, 99, 99, 0.4) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-}
-.inactive{
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
 
-.active_category{
-  background-color: #EFF5FF;
-}
-.inactive_category{
-  background-color: #FFF;
+.toast {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  padding: 11px;
+  min-width: 200px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background: #6297FF;
+  opacity: 0.8;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+  text-align: center;
 }

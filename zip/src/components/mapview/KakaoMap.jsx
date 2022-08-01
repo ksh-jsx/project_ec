@@ -3,6 +3,33 @@ import React, { useState, useEffect } from "react";
 import useStore from '../../useStore';
 import { useObserver } from "mobx-react";
 
+const clustererStyle = [
+{
+  width : '40px', height : '40px',
+  background: '#C0D6FF',
+  borderRadius: '20px',
+  color: '#000',
+  textAlign: 'center',
+  lineHeight: '41px'
+},
+{
+  width : '50px', height : '50px',
+  background: '#91B6FF',
+  borderRadius: '25px',
+  color: '#000',
+  textAlign: 'center',
+  lineHeight: '51px'
+},
+{
+  width : '60px', height : '60px',
+  background: '#6297FF',
+  borderRadius: '30px',
+  color: '#000',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  lineHeight: '61px'
+}
+]
 
 const KakaoMap = () => {
   
@@ -25,7 +52,8 @@ const KakaoMap = () => {
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-      minLevel: 2 // 클러스터 할 최소 지도 레벨 
+      minLevel: 8, // 클러스터 할 최소 지도 레벨 
+      styles: clustererStyle,
     });
 
     if(navigator.geolocation){ //내위치 찾아서 이동하기
@@ -89,8 +117,8 @@ const KakaoMap = () => {
   }
 
   useEffect(() => {    
-
-    generateMap()
+    
+    generateMap();
 
     kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
       if(counter.clickedCategoryId){
@@ -103,6 +131,7 @@ const KakaoMap = () => {
       if(counter.clickedCategoryId)
         ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
     });
+
   }, []);
 
   return useObserver(() => ( <div id="map"></div> ));
