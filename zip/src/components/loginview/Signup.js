@@ -33,9 +33,12 @@ const Signup = () => {
             alert('비밀번호를 확인해주세요')
         }
         else{
-            console.log('문제없음')
+            
+            if(window.confirm('이대로 회원가입 하시겠습니까?'))
+                console.log('문제없음')
+                //signup(values)
         }
-        //signup(values)
+        
     }
 
     return (
