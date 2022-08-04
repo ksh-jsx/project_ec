@@ -20,6 +20,46 @@
   transform: translate(-50%,-50%);
 }
 
+/*.SignupContainer*/
+.SignupContainer{
+  width: calc(100% - 20px);
+  height: calc(60% - 20px);
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 10px 10px;
+}
+.signupForm{
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.signupForm > div{
+  display: flex;
+  flex-direction: column;
+}
+.signupForm input{
+  margin-bottom:15px;
+  height:50px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
+  border-radius: 8px;
+  padding-left: 15px;
+  font-size: 16px;
+}
+.signupForm input[type=submit]{
+  font-size:20px;
+  background-color: #079FFF;
+  border: 1px solid #079FFF;
+  color: #ffffff;
+  cursor:pointer;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
+  margin-bottom: 0
+}
+
 /*.loginContainer*/
 .loginContainer{
   width: calc(100% - 20px);

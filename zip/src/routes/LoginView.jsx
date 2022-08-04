@@ -27,25 +27,37 @@ const LoginView = ({  }) => {
 
   return (
     <div className="authWrapper">
-     {newAccount ? (
-        <Signup/>
+      <div className="logoContainer">
+        <img src={require('../assets/img/logo_small.png')} className="logo"/>
+      </div>
+      {newAccount ? (
+        <div className="SignupContainer"> 
+          <Signup/>
+        </div>
       ):(
         <>
-          <div className="logoContainer">
-            <img src={require('../assets/img/logo_small.png')} className="logo"/>
-          </div>
           <div className="loginContainer">
             <Login/>
           </div>
           <div className="socialContainer">
             <Social/>
           </div>
-          <div className="etcContainer">
-            <span>아이디 찾기</span>
-            <span onClick={toggleAccount}>회원가입</span>
-          </div>
+          
         </>
       )}
+        <div className="etcContainer">
+          {newAccount ? (
+            <>
+              <span onClick={toggleAccount}>로그인</span>
+            </>
+          ) : (
+            <>
+              <span>아이디 찾기</span>
+              <span onClick={toggleAccount}>회원가입</span>
+            </>
+          )}
+          
+        </div>
     </div>
   );
 };

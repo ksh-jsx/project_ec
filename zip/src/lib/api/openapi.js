@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import axios from "axios";
 
 const Address = "https://api.odcloud.kr/api";
@@ -34,3 +35,38 @@ export const getAPTLttotPblancMdl = async(data) => {
       throw err;
    }
 }
+
+export const signup = async(data) => {
+   try {     
+      axios.post('http://localhost:3000/axios',{
+            name : data.name,
+            id : data.id,
+            pwd : data.pwd,
+      }).then((res)=>{
+         console.log('로그인 성공')
+      }).catch(error => {
+         console.log(error.message);            
+      });
+        
+      //return
+   } catch (err) {
+     
+   }
+}
+
+export const signin = async(id,pwd) => {
+   try {     
+      console.log(id,pwd)
+      
+      const res = await axios.get(``)
+      
+      console.log(res)
+
+      //return res
+   } catch (err) {
+      console.log(err);
+      throw err;
+   }
+}
+
+
