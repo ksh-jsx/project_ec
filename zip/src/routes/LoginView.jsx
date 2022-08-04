@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/loginview.css";
 import Login from "../components/loginview/Login";
+import Signup from "../components/loginview/Signup";
 import Social from "../components/loginview/Social";
 
 const LoginView = ({  }) => {
@@ -27,7 +28,7 @@ const LoginView = ({  }) => {
   return (
     <div className="authWrapper">
      {newAccount ? (
-        <div>대충 회원가입 뷰 </div>
+        <Signup/>
       ):(
         <>
           <div className="logoContainer">
