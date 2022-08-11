@@ -1,15 +1,16 @@
 /*global kakao*/
 import React, { useState,useEffect } from "react";
-import useStore from '../../useStore';
-import { useObserver } from "mobx-react";
 import Toast from "./Toast";
+import { useDispatch,useSelector } from 'react-redux';
 
 function BasicCard({data,i,}) {
   
-  const { counter } = useStore();
   const [likeStatus, setLikeStatus] = useState(data.like);
   const [ToastStatus, setToastStatus] = useState(false);
   
+  const dispatch = useDispatch();  
+  const redux = useSelector((state) => state);
+
   useEffect(() => {
     if (ToastStatus) {
       setTimeout(() => setToastStatus(false), 500);
@@ -18,15 +19,15 @@ function BasicCard({data,i,}) {
   }, [ToastStatus]);
 
   const select = (i) => {
-    counter.handleClick('List',i)
+    dispatch({type:'HANDLE_MAP_CLICK',kind:'List',i:i})
 
     const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(counter.newData[i].HSSPLY_ADRES, function(result, status) {
+    geocoder.addressSearch(redux.searched_data[i].HSSPLY_ADRES, function(result, status) {
       if (status === kakao.maps.services.Status.OK){   
         const coords = new kakao.maps.LatLng((result[0].y-0.001), result[0].x);        
         
-        counter.map.setLevel(3)
-        setTimeout(() => counter.map.panTo(coords), 100) 
+        redux.kakaoMap.setLevel(3)
+        setTimeout(() => redux.kakaoMap.panTo(coords), 100) 
       }
       else{
         setToastStatus(true);
@@ -42,8 +43,8 @@ function BasicCard({data,i,}) {
     
   }, []);
 
-  return useObserver (()=>(
-    <div onClick={()=>(select(i))} className={counter.isListclicked[i] ? "active" : "inactive"}>
+  return (
+    <div onClick={()=>(select(i))} className={redux.map_clicked_data_list[i] ? "active" : "inactive"}>
       {ToastStatus && <Toast msg="등록된 위치 없음" />}
       <div className="cardInner">
         <div className="cardLeft">
@@ -66,6 +67,6 @@ function BasicCard({data,i,}) {
         </div>
       </div>
     </div>
-  ));
+  );
 }
 export default BasicCard;

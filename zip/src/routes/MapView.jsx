@@ -4,12 +4,12 @@ import SearchBar from "../components/mapview/SearchBar";
 import KakaoMap from "../components/mapview/KakaoMap";
 import Drawer from "../components/mapview/BottomDrawer";
 import { getAPTLttotPblancDetail } from '../lib/api/openapi'
-import useStore from '../useStore';
-import { useObserver } from "mobx-react";
+import { useDispatch } from 'react-redux';
 
 const MapView = ({  }) => {
   
-  const { counter } = useStore();
+  const dispatch = useDispatch();  
+
   const [loading, setLoading] = useState(false); 
   const [searchData, setSearchData] = useState({
     startmonth: '202005',
@@ -23,13 +23,14 @@ const MapView = ({  }) => {
   const getHouseDate = async() => {
     setLoading(false)    
     const ary = await getAPTLttotPblancDetail(searchData)  //청약 데이터 가져오기
-    counter.setData(ary)
-    counter.setNewData(ary)
+    
+    dispatch({type:'MAP',initData:ary})
+
     setLoading(true)
-    console.log(ary)
+    
   }
   
-  return useObserver(() => (
+  return (
     <div className="mapViewWrapper full">
       {loading ? ( 
         <div className="mapviewContainer">
@@ -49,6 +50,6 @@ const MapView = ({  }) => {
         </div>
       )}
     </div>
-  ));
+  );
 };
 export default MapView;
