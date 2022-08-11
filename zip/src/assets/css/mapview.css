@@ -29,6 +29,9 @@
   top: 8px;
   left: calc(50% - 15px);
 }
+.MuiDrawer-root>.MuiPaper-root{
+  height:calc(50% - 56px) !important;
+}
 .drawerBox{
   background-color:#fff;
   position: absolute;

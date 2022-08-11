@@ -2,36 +2,56 @@
 import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react";
 import useStore from '../../useStore';
+import { useDispatch,useSelector } from 'react-redux';
 
 const CategorySearch = ({id,name,i}) => {
-  
-  const { counter } = useStore();  
+    
+  const dispatch = useDispatch();  
 
-  const ps = new kakao.maps.services.Places(counter.map); 
+  const clickedCategoryId = useSelector((state) => state.clickedCategoryId);
+  const map_clicked_data_category = useSelector((state) => state.map_clicked_data_category);
+  const kakaoMap = useSelector((state) => state.kakaoMap);
+  const ps = new kakao.maps.services.Places(kakaoMap); 
+
+  const placesSearchCB = (data, status) => {
+    
+    if (status === kakao.maps.services.Status.OK) { //검색 완료      
+      var markers = []
+      for ( let i=0; i<data.length; i++ ) {  
+        const marker = new kakao.maps.Marker({
+          position: new kakao.maps.LatLng(data[i].y, data[i].x),
+          map:kakaoMap,
+        });
+        markers.push(marker)        
+      }
+      dispatch({type:'SET_CATEGORY_MARKERS',categoryMarkers:markers})  
+    } 
+  }
 
   const onCategoryClick = () =>{
-    
-    if(counter.clickedCategoryId === id){
-      counter.removeMarker(counter.categoryMarkers)
-      counter.handleClick('Category',null)
-      counter.clickedCategoryId = null    
+    if(clickedCategoryId)
+      dispatch({type:'DELETE_CATEGORY_MARKERS'})  
+    if(clickedCategoryId === id){
+      dispatch({type:'HANDLE_MAP_CLICK',kind:'Category',i:null})
+      dispatch({type:'SET_CATEGORY_ID',clickedCategoryId:null})
     }
     else{
-      counter.clickedCategoryId = id    
-      counter.handleClick('Category',i)
-      ps.categorySearch(id, counter.placesSearchCB, {useMapBounds:true}); 
+      
+      dispatch({type:'SET_CATEGORY_ID',clickedCategoryId:id})
+      dispatch({type:'HANDLE_MAP_CLICK',kind:'Category',i:null})
+      dispatch({type:'HANDLE_MAP_CLICK',kind:'Category',i:i})
+      ps.categorySearch(id, placesSearchCB, {useMapBounds:true}); 
     }
   }
   
-  useEffect(() => {
-    
+  useEffect(() => {    
   }, []);
 
-  return useObserver(() => (
-    <div id={id} onClick={()=>onCategoryClick()} className={counter.isCategoryclicked[i] ? ' category active_category' : 'category inactive_category'}>
+  return (
+    <div id={id} onClick={()=>onCategoryClick()} className={map_clicked_data_category[i] ? ' category active_category' : 'category inactive_category'}>
       <img src={require('../../assets/img/'+id+'.png')} className="categoryImg" alt="img"/>
       <span>{name}</span>
     </div>
-  ));
+  );
 };
 export default CategorySearch;

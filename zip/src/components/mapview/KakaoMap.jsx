@@ -1,7 +1,6 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
-import useStore from '../../useStore';
-import { useObserver } from "mobx-react";
+import { useDispatch,useSelector } from 'react-redux';
 
 const clustererStyle = [
 {
@@ -35,8 +34,9 @@ const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
   let ps;
-  const { counter } = useStore();
-  
+  const dispatch = useDispatch();  
+  const redux = useSelector((state) => state);
+
   const generateMap = () => {
 
     const container = document.getElementById('map');
@@ -46,9 +46,19 @@ const KakaoMap = () => {
     };
 
     const map = new kakao.maps.Map(container, options);
-    counter.setMap(map)
-    ps = new kakao.maps.services.Places(map
-      ); 
+    dispatch({type:'SET_MAP',kakaoMap:map})
+    ps = new kakao.maps.services.Places(map); 
+
+    kakao.maps.event.addListener(map, 'zoom_changed', ()=> {              
+      dispatch({type:'MAPEVENT',ps:ps})  
+
+    });
+
+    kakao.maps.event.addListener(map, 'dragend', function() {          
+      dispatch({type:'MAPEVENT',ps:ps})  
+    });
+
+    
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
@@ -70,12 +80,11 @@ const KakaoMap = () => {
         // 지도 중심을 이동 시킵니다
         map.setCenter(myPos);
       })
-
-      
     }
-    counter.data?.map(function(x,i){       
+    redux.housing_subscription_data?.map(function(x,i){       
       createDataLocation(clusterer,x,i)
     })
+
   }
 
   const createDataLocation = (clusterer,data,i) =>{
@@ -93,7 +102,7 @@ const KakaoMap = () => {
         
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.CustomOverlay({
-          map: counter.map,
+          map: redux.kakaoMap,
           position: coords,
           content: content2,   
           clickable: true 
@@ -110,30 +119,32 @@ const KakaoMap = () => {
     const location = document.getElementsByClassName("cardInner")[i].offsetTop-50; //클릭한 마커에 맞는 카드의 offset 가져오기
     document.getElementsByClassName("cardBox")[0].scrollTo({top:location, behavior:'smooth'}) //스크롤 이동
 
-    counter.map.setLevel(3)
-    setTimeout(() => counter.map.panTo(new kakao.maps.LatLng(lat,lng)), 100)
+    redux.kakaoMap.setLevel(3)
+    setTimeout(() => redux.kakaoMap.panTo(new kakao.maps.LatLng(lat,lng)), 100)
 
-    counter.handleClick(i) //카드 배경색 칠하기
+    dispatch({type:'HANDLE_MAP_CLICK',kind:'List',i:i})
+  }
+
+  const placesSearchCB = (data, status) => {    
+    if (status === kakao.maps.services.Status.OK) { //검색 완료      
+      var markers = []
+      for ( let i=0; i<data.length; i++ ) {  
+        const marker = new kakao.maps.Marker({
+          position: new kakao.maps.LatLng(data[i].y, data[i].x),
+          map:redux.kakaoMap,
+        });
+        markers.push(marker)        
+      }
+      dispatch({type:'SET_CATEGORY_MARKERS',categoryMarkers:markers})  
+    } 
   }
 
   useEffect(() => {    
     
-    generateMap();
-
-    kakao.maps.event.addListener(counter.map, 'zoom_changed', ()=> {        
-      if(counter.clickedCategoryId){
-        counter.removeMarker(counter.categoryMarkers)
-        ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
-      }
-    });
-
-    kakao.maps.event.addListener(counter.map, 'dragend', function() {          
-      if(counter.clickedCategoryId)
-        ps.categorySearch(counter.clickedCategoryId, counter.placesSearchCB, {useMapBounds:true}); 
-    });
+    generateMap()
 
   }, []);
 
-  return useObserver(() => ( <div id="map"></div> ));
+  return ( <><div id="map"/></> );
 };
 export default KakaoMap;

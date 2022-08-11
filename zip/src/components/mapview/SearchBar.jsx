@@ -3,19 +3,22 @@ import { useObserver } from "mobx-react";
 import CategorySearch from "./CategorySearch";
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
-import useStore from '../../useStore';
+import { useDispatch,useSelector } from 'react-redux';
 
 const SearchBar = () => {
 
   const categoryData = [{id:'CS2',name:'편의점'},{id:'SW8',name:'지하철'},{id:'SC4',name:'학교'},{id:'BK9',name:'은행'},{id:'CE7',name:'카페'} ]
-  const { counter } = useStore();
-  const [inputData, setInputData] = useState('');
 
+  const dispatch = useDispatch();  
+  const redux_data = useSelector((state) => state.housing_subscription_data);
+
+  const [inputData, setInputData] = useState('');
+  
   const handleChange  = (e) => {
     setInputData(e.target.value)
-    const newDatas = counter.data.filter(x=>x.HOUSE_NM.indexOf(e.target.value) !== -1)
+    const newDatas = redux_data.filter(x=>x.HOUSE_NM.indexOf(e.target.value) !== -1)
 
-    counter.setNewData(newDatas)
+    dispatch({type:'SEARCH',searched_data:newDatas})
   }
   
   const onClickIcon = () =>{
@@ -27,7 +30,7 @@ const SearchBar = () => {
     
   }, []);
   
-  return useObserver(() => (
+  return (
     <>
     <div>
       <div className="search">
@@ -52,6 +55,6 @@ const SearchBar = () => {
       </div>
     </div>
     </>
-  ));
+  );
 };
 export default SearchBar;

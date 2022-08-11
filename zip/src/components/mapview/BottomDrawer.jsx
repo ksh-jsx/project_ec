@@ -5,20 +5,21 @@ import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
 import useStore from '../../useStore';
-import { useObserver } from "mobx-react";
+import { useSelector } from 'react-redux';
 
 const drawerBleeding = 56;
 
 function BottomDrawer() {
 
-  const { counter } = useStore();
   const [open, setOpen] = useState(true);
+  const redux_data = useSelector((state) => state.searched_data);
+  const temp = useSelector((state) => state.clickedCategoryId);
 
   useEffect(() => {    
 
   }, []);
 
-  return useObserver(() => (
+  return (
     <div >
       <Global
         styles={{
@@ -48,18 +49,18 @@ function BottomDrawer() {
         >
           <div className='drawerBox' >
             <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{counter.newData.length}</span>개의 결과</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{redux_data.length}</span>개의 결과 {temp}</Typography>
             
           </div>
           <div className="cardBox" id="tmp">
-            {counter.newData?.map((x,i)=>(
+            {redux_data?.map((x,i)=>(
               <BasicCard data={x} i={i} key={i}/>
             ))}
           </div>
         </SwipeableDrawer>
       </Box>
     </div>
-  ));
+  );
 }
 
 
