@@ -33,7 +33,6 @@ const clustererStyle = [
 const KakaoMap = () => {
   
   const myPosContent = '<div class="myPos"></div>'
-  let ps;
   const dispatch = useDispatch();  
   const redux = useSelector((state) => state);
 
@@ -47,7 +46,7 @@ const KakaoMap = () => {
 
     const map = new kakao.maps.Map(container, options);
     dispatch({type:'SET_MAP',kakaoMap:map})
-    ps = new kakao.maps.services.Places(map); 
+    const ps = new kakao.maps.services.Places(map); 
 
     kakao.maps.event.addListener(map, 'zoom_changed', ()=> {              
       dispatch({type:'MAPEVENT',ps:ps})  

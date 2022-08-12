@@ -1,7 +1,5 @@
 /*global kakao*/
 import React, { useState, useEffect } from "react";
-import { useObserver } from "mobx-react";
-import useStore from '../../useStore';
 import { useDispatch,useSelector } from 'react-redux';
 
 const CategorySearch = ({id,name,i}) => {
@@ -40,7 +38,7 @@ const CategorySearch = ({id,name,i}) => {
       dispatch({type:'SET_CATEGORY_ID',clickedCategoryId:id})
       dispatch({type:'HANDLE_MAP_CLICK',kind:'Category',i:null})
       dispatch({type:'HANDLE_MAP_CLICK',kind:'Category',i:i})
-      ps.categorySearch(id, placesSearchCB, {useMapBounds:true}); 
+      dispatch({type:'MAPEVENT',ps:ps})  
     }
   }
   

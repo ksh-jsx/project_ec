@@ -6,7 +6,7 @@ const initState = {
   current_page:'HOME',
   housing_subscription_data:null,
   searched_data:null,
-  kakaoMap:null,
+  kakaoMap:null,  
   categoryMarkers:null,
   clickedCategoryId:null,
   map_clicked_data_list:null,
@@ -57,31 +57,31 @@ const reducer = (state=initState, action) => {
     return {...state,categoryMarkers:action.categoryMarkers}
   }
   if(action.type === 'DELETE_CATEGORY_MARKERS'){
-    for ( var i = 0; i < state.categoryMarkers.length; i++ ) {
+    for ( var i = 0; i < state.categoryMarkers?.length; i++ ) {
       state.categoryMarkers[i].setMap(null);
     }  
     return {...state,categoryMarkers:[]}
   }
 
   if(action.type === 'MAPEVENT'){
+    let markers = []
     if(state.clickedCategoryId){
-      for ( let i = 0; i < state.categoryMarkers.length; i++ ) {
+      for ( let i = 0; i < state.categoryMarkers?.length; i++ ) {
         state.categoryMarkers[i].setMap(null);
       }  
       action.ps.categorySearch(state.clickedCategoryId, (data,status)=>{
+        
         if (status === kakao.maps.services.Status.OK) { //검색 완료      
-          var markers = []
-          for ( let i=0; i<data.length; i++ ) {  
+          for ( i=0; i<data.length; i++ ) {  
             const marker = new kakao.maps.Marker({
               position: new kakao.maps.LatLng(data[i].y, data[i].x),
               map:state.kakaoMap,
             });
             markers.push(marker)        
-          }
-          return {...state,categoryMarkers:action.categoryMarkers}
+          }          
         } 
-      }, 
-      {useMapBounds:true}); 
+      }, {useMapBounds:true}); 
+      return {...state,categoryMarkers:markers}
     }
   }
   return state;

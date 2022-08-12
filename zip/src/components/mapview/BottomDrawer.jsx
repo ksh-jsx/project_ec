@@ -4,16 +4,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
-import useStore from '../../useStore';
 import { useSelector } from 'react-redux';
 
-const drawerBleeding = 136;
+const drawerBleeding = 56;
 
 function BottomDrawer() {
 
   const [open, setOpen] = useState(true);
   const redux_data = useSelector((state) => state.searched_data);
-  const temp = useSelector((state) => state.clickedCategoryId);
 
   useEffect(() => {    
 
@@ -24,7 +22,7 @@ function BottomDrawer() {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(60% - ${drawerBleeding}px)`,
+            height: `calc(40% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
@@ -32,7 +30,6 @@ function BottomDrawer() {
       <Box style={{backgroundColor:"#E7EBF0"}}>
         <SwipeableDrawer
           id="drawer"
-          passiveListeners="false"
           disableEnforceFocus
           anchor="bottom"
           open={open}
@@ -45,11 +42,10 @@ function BottomDrawer() {
           }} 
           hideBackdrop={true}
           hysteresis={.3}
-          
         >
           <div className='drawerBox' >
             <span className='puller'/>
-            <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{redux_data.length}</span>개의 결과 {temp}</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{redux_data.length}</span>개의 결과</Typography>
             
           </div>
           <div className="cardBox" id="tmp">
