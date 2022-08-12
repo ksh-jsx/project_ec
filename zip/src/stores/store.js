@@ -65,7 +65,7 @@ const reducer = (state=initState, action) => {
 
   if(action.type === 'MAPEVENT'){
     if(state.clickedCategoryId){
-      for ( var i = 0; i < state.categoryMarkers.length; i++ ) {
+      for ( let i = 0; i < state.categoryMarkers.length; i++ ) {
         state.categoryMarkers[i].setMap(null);
       }  
       action.ps.categorySearch(state.clickedCategoryId, (data,status)=>{

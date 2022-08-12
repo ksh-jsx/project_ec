@@ -31,7 +31,7 @@ const MapView = ({  }) => {
   }
   
   return (
-    <div className="mapViewWrapper full">
+    <div className="mapViewWrapper">
       {loading ? ( 
         <div className="mapviewContainer">
           <div className="searchContainer">

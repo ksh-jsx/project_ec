@@ -14,10 +14,10 @@ function App() {
     <>
       {init ? (
         <>
-        <AppRouter
-          userObj={userObj}
-        />
-        <Footer/>
+          <AppRouter
+            userObj={userObj}
+          />
+          
         </>
       ) : (
         "Initializing..."

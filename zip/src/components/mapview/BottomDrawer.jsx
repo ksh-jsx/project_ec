@@ -7,7 +7,7 @@ import BasicCard from "./BasicCard";
 import useStore from '../../useStore';
 import { useSelector } from 'react-redux';
 
-const drawerBleeding = 56;
+const drawerBleeding = 136;
 
 function BottomDrawer() {
 
@@ -24,7 +24,7 @@ function BottomDrawer() {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(40% - ${drawerBleeding}px)`,
+            height: `calc(60% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
@@ -44,7 +44,7 @@ function BottomDrawer() {
             keepMounted: true,
           }} 
           hideBackdrop={true}
-          hysteresis={0.3}
+          hysteresis={.3}
           
         >
           <div className='drawerBox' >
