@@ -33,7 +33,7 @@ const MapView = ({  }) => {
   return (
     <div className="mapViewWrapper">
       {loading ? ( 
-        <div className="mapviewContainer">
+        <div>
           <div className="searchContainer">
             <SearchBar /> 
           </div>

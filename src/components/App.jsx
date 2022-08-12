@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "./Router";
-import Footer from "./Footer";
+
 function App() {
 
   const [init, setInit] = useState(false);
@@ -13,12 +13,9 @@ function App() {
   return (
     <>
       {init ? (
-        <>
-          <AppRouter
-            userObj={userObj}
-          />
-          
-        </>
+        <AppRouter
+          userObj={userObj}
+        />
       ) : (
         "Initializing..."
       )}

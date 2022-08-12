@@ -6,7 +6,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import BasicCard from "./BasicCard";
 import { useSelector } from 'react-redux';
 
-const drawerBleeding = 56;
+const drawerBleeding = 120;
 
 function BottomDrawer() {
 
@@ -22,7 +22,7 @@ function BottomDrawer() {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(40% - ${drawerBleeding}px)`,
+            height: `50%`,
             overflow: 'visible',
           },
         }}
@@ -48,7 +48,7 @@ function BottomDrawer() {
             <Typography sx={{ p: 2, color: 'text.secondary' }}><span style={{fontWeight:'bold'}}>{redux_data.length}</span>개의 결과</Typography>
             
           </div>
-          <div className="cardBox" id="tmp">
+          <div className="cardBox">
             {redux_data?.map((x,i)=>(
               <BasicCard data={x} i={i} key={i}/>
             ))}

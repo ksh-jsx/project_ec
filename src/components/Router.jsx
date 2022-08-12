@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { HashRouter as Router, Route,Routes  } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../routes/Home";
 import MapView from "../routes/MapView";
 import LoginView from "../routes/LoginView";
-
+import Footer from "./Footer";
 
 const AppRouter = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/view" element={<MapView/>}/>
-        <Route exact path="/login" element={<LoginView/>}/>
-      </Routes>
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/map" element={<MapView/>}/>
+          <Route exact path="/login" element={<LoginView/>}/>
+        </Routes>
+      </div>
+      <Footer/>
   </Router>
   );
 };

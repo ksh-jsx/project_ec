@@ -12,7 +12,9 @@ html,body,#root {
   letter-spacing: 1px;
   background-color: #FFF;
 }
-
+#root > div:first-child{
+  height: calc(100% - 88px);
+}
 .toast {
   position: absolute;
   top: -50%;
@@ -41,7 +43,7 @@ html,body,#root {
   display: flex;
   justify-content:space-around
 }
-.footer > div{
+.footer > a{
   padding-top: 10px;
   width: 40px;
 }
