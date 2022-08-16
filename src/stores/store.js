@@ -13,7 +13,6 @@ const initState = {
   map_clicked_data_category:Array(5).fill(false),
 }
 
-
 const reducer = (state=initState, action) => {
 
   if(action.type === 'MAP'){
@@ -37,6 +36,10 @@ const reducer = (state=initState, action) => {
   }
   if(action.type === 'SEARCH'){
     return {...state, mode:'SEARCH_COMPLETE',searched_data:action.searched_data}
+  }
+  if(action.type === 'SORT'){
+    const newData = state.housing_subscription_data.reverse()
+    return {...state, housing_subscription_data:newData}
   }
   if(action.type === 'HANDLE_MAP_CLICK'){
     if(action.kind ==='List'){

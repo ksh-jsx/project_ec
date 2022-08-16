@@ -12,6 +12,7 @@ html,body,#root {
   letter-spacing: 1px;
   background-color: #FFF;
 }
+button{border:0;background-color: rgba(255,255,255,0);}
 #root > div:first-child{
   height: calc(100% - 88px);
 }

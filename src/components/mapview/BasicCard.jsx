@@ -53,7 +53,11 @@ function BasicCard({data,i,}) {
               {data.HSSPLY_ADRES.split(' ')[0].substr(0,2)} {data.HSSPLY_ADRES.split(' ')[1]}
           </div>
           <div className="apt_name">
-            {data.HOUSE_NM}
+            <span>{data.HOUSE_NM}</span>
+            <span className="like_count">
+              <span>254</span>
+              <span/>
+            </span>
           </div>
           <div className="apt_period">
             

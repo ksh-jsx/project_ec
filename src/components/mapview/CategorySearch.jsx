@@ -11,21 +11,6 @@ const CategorySearch = ({id,name,i}) => {
   const kakaoMap = useSelector((state) => state.kakaoMap);
   const ps = new kakao.maps.services.Places(kakaoMap); 
 
-  const placesSearchCB = (data, status) => {
-    
-    if (status === kakao.maps.services.Status.OK) { //검색 완료      
-      var markers = []
-      for ( let i=0; i<data.length; i++ ) {  
-        const marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(data[i].y, data[i].x),
-          map:kakaoMap,
-        });
-        markers.push(marker)        
-      }
-      dispatch({type:'SET_CATEGORY_MARKERS',categoryMarkers:markers})  
-    } 
-  }
-
   const onCategoryClick = () =>{
     if(clickedCategoryId)
       dispatch({type:'DELETE_CATEGORY_MARKERS'})  

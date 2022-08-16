@@ -40,7 +40,7 @@ const MapView = ({  }) => {
           <div className="mapContainer">
             <KakaoMap /> 
           </div>
-          <div className="drawerContainer">
+          <div className="drawerContainer">            
             <Drawer/>
           </div>
         </div> 
