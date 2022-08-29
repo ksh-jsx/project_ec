@@ -2,18 +2,30 @@
   font-family: "Pretandard_m";
   src: url("../font/Pretendard-Regular.otf") format("truetype");
 }
-input:focus {outline:none;}
-input::placeholder {font-family: "Pretandard_m";}
-html,body,#root {
+input:focus {
+  outline: none;
+}
+input::placeholder {
+  font-family: "Pretandard_m";
+}
+html,
+body,
+#root {
   margin: 0;
   height: 100%;
   overflow: hidden;
   font-family: "Pretandard_m";
   letter-spacing: 1px;
-  background-color: #FFF;
+  background-color: #f8f8f8;
 }
-button{border:0;background-color: rgba(255,255,255,0);}
-#root > div:first-child{
+button {
+  border: 0;
+  background-color: rgba(255, 255, 255, 0);
+}
+a {
+  text-decoration: none;
+}
+#root > div:first-child {
   height: calc(100% - 88px);
 }
 .toast {
@@ -21,10 +33,10 @@ button{border:0;background-color: rgba(255,255,255,0);}
   top: -50%;
   left: 50%;
   padding: 11px;
-  min-width: 200px;
+  min-width: 220px;
   transform: translate(-50%, -50%);
   z-index: 3;
-  background: #6297FF;
+  background: #6297ff;
   opacity: 0.8;
   color: #fff;
   border-radius: 8px;
@@ -36,18 +48,18 @@ button{border:0;background-color: rgba(255,255,255,0);}
   width: 100%;
   height: 88px;
   border-radius: 24px 24px 0 0;
-  background-color: #FFF;
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.05) 0px -7px 8px;
   position: fixed;
   bottom: 0;
   z-index: 9999;
   display: flex;
-  justify-content:space-around
+  justify-content: space-around;
 }
-.footer > a{
+.footer > a {
   padding-top: 10px;
   width: 40px;
 }
-.footer img{
+.footer img {
   width: 100%;
 }

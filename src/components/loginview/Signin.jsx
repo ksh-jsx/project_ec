@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { signin } from '../../lib/api/openapi'
+import { signin } from "../../lib/api/openapi";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-
+const Signin = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,11 +20,17 @@ const Login = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    signin(id,password)
+    try {
+      const res = await signin(id, password);
+    } catch (e) {
+      alert("error!");
+    } finally {
+      //sessionStorage.setItem('user',res) 자동로그인 하기 위해...
+    }
   };
 
   return (
-    <form onSubmit={onSubmit} className="loginForm">
+    <form onSubmit={onSubmit} className="signinForm">
       <div>
         <input
           name="id"
@@ -44,11 +50,20 @@ const Login = () => {
           onChange={onChange}
         />
       </div>
-      <input
-        type="submit"
-        value="로그인"
-      />
-    </form>    
+      <div className="radioContainer">
+        <label htmlFor="radioForAutoSignin">자동으로 로그인하기</label>
+        <input
+          type="radio"
+          id="radioForAutoSignin"
+          name="rr"
+          className="signinRadio"
+        />
+      </div>
+      <input type="submit" value="로그인" className="SigninBtn" />
+      <Link to="/signup">
+        <input type="button" value="회원가입 하기" className="SigninBtn" />
+      </Link>
+    </form>
   );
 };
-export default Login;
+export default Signin;

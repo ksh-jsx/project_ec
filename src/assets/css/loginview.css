@@ -1,158 +1,222 @@
 /*로그인뷰*/
-.authWrapper{
-  position: relative; 
-  width:100%;
+.authWrapper {
+  position: relative;
+  width: calc(100% - 30px);
+  padding: 0 15px 5px 15px;
   height: 100%;
-  max-width:400px;
+  max-width: 400px;
   margin: 0 auto;
 }
-
-/*.logoContainer*/
-.logoContainer{
-  height: 30%;
+.authWrapper > div {
+  width: calc(100% - 30px);
 }
-.logo{
+.authWrapper input:not(.signinRadio):not(.pwd1):not(.pwd2),
+.authWrapper button,
+.authWrapper .passwordForm {
+  margin: 5px 0;
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
+  border-radius: 8px;
+  padding-left: 15px;
+  font-size: 16px;
+  color: #858585;
+  font-family: "Pretandard_m";
+  letter-spacing: 1px;
+}
+.authWrapper input::placeholder {
+  color: #c2c2c2;
+}
+.authWrapper input[type="button"],
+.authWrapper input[type="submit"],
+.authWrapper button {
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.authWrapper input[type="submit"] {
+  background-color: #6297ff;
+  border: 1px solid #6297ff;
+  width: 100%;
+}
+.authWrapper input[type="button"] {
+  background-color: #c0d6ff;
+  border: 1px solid #c0d6ff;
+  width: 100%;
+}
+/*.logoContainer*/
+.logoContainer {
+  margin-top: 100px;
+}
+.logo {
   width: 100%;
   max-width: 75px;
-  position: relative;
-  top: 50%;
+  position: fixed;
+  top: 25%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 /*.SignupContainer*/
-.SignupContainer{
-  width: calc(100% - 20px);
+.signupDescription {
+  position: absolute;
+  height: 40%;
+  display: flex;
+  align-items: center;
+}
+.signupDescription > span {
+  color: #858585;
+  font-size: 20px;
+}
+.signupContainer {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  padding: 0 10px 10px 10px;
 }
-.signupForm{
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.signupForm > div{
-  display: flex;
-  flex-direction: column;
-}
-.signupForm input{
-  margin-bottom:15px;
-  height:50px;
-  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border: 0;
-  border-radius: 8px;
-  padding-left: 15px;
-  font-size: 16px;
-}
-.signupForm input[type=submit]{
-  font-size:20px;
-  background-color: #079FFF;
-  border: 1px solid #079FFF;
-  color: #ffffff;
-  cursor:pointer;
-  font-family: "Pretandard_m";
-  letter-spacing: 1px;
-  margin-bottom: 0
-}
-
-/*.loginContainer*/
-.loginContainer{
-  width: calc(100% - 20px);
-  height: calc(30% - 20px);
-  max-height: 185px;
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px 5px 10px;
-}
-.loginForm{
-  height:100%;
+.signupForm {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.loginForm > div{
+.signupForm > div {
   display: flex;
   flex-direction: column;
 }
-.loginForm input{
-  margin-bottom:15px;
-  height:50px;
-  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border: 0;
-  border-radius: 8px;
-  padding-left: 15px;
-  font-size: 16px;
+.passwordForm {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
 }
-.loginForm input[type=submit]{
-  font-size:20px;
-  background-color: #079FFF;
-  border: 1px solid #079FFF;
-  color: #ffffff;
-  cursor:pointer;
-  font-family: "Pretandard_m";
-  letter-spacing: 1px;
-  margin-bottom: 0
+.passwordForm input {
+  border: 0;
+  width: calc(100% - 54px);
+}
+.passwordVisibiliyBtn {
+  width: 24px;
+  padding: 0 15px;
+  position: relative;
+  top: 10px;
+}
+.passwordVisibiliyBtn > img {
+  width: 100%;
+}
+
+/*.signinContainer*/
+.signinContainer {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+}
+.signinForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.signinForm > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.radioContainer {
+  flex-direction: row-reverse !important;
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+.radioContainer input[type="radio"] {
+  width: 12px;
+  position: relative;
+  top: -1.5px;
+}
+.radioContainer label {
+  color: #858585;
+  font-size: 12px;
+  padding-left: 1px;
 }
 
 /*.etcContainer*/
-.etcContainer{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  cursor:pointer;
+.etcContainer {
+  margin-top: 20px;
+  cursor: pointer;
   display: flex;
   justify-content: space-around;
 }
-.etcContainer > span{
-  font-size: 13px;
-  color: #8E8E8E;
+.etcContainer span {
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
 }
 
 /*.socialContainer*/
-.socialContainer{
-  width: calc(100% - 20px);
-  padding: 0 10px 0 10px;
+.socialContainer {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.socialContainer > button{
-  width: 100%;
-  border-radius: 8px;
-  font-size: 16px;
-  height: 50px;
-  cursor:pointer;
-  font-family: "Pretandard_m";
-  letter-spacing: 1px;
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-  border: 0;
-  margin: 10px 0 10px 0;
+button.kakao {
+  background-color: #fee500;
+  color: #000 !important;
 }
-button.kakao{
-  background-color: #FEE500;
+button.naver {
+  background-color: #06be34;
+  color: #fff !important;
 }
-button.naver{
-  background-color: #06BE34;
-  color: #FFF;
+button.google {
+  background-color: #fff;
+  color: #000 !important;
 }
-button.google{
-  background-color: #FFF;
-}
-.socialContainer > button > img{
+.socialContainer > button > img {
   float: left;
   position: absolute;
   left: 45px;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   margin-top: 10px;
   z-index: 1;
 }
-button.kakao > img{
-  width: 31px
+button.kakao > img {
+  width: 31px;
 }
-button.naver > img{
-  width: 35px
+button.naver > img {
+  width: 35px;
 }
-button.google > img{
+button.google > img {
   width: 18px;
+}
+.signupForm .validation {
+  font-size: 12px;
+  padding: 5px 0px 7px 15px;
+}
+.validation > span {
+  position: relative;
+  top: -1.5px;
+}
+.signupForm .validation:before {
+  content: " ";
+  background-size: 12px 12px;
+  width: 18px;
+  height: 12px;
+  display: inline-block;
+}
+.signupForm #suc {
+  color: #51d486;
+}
+.signupForm #suc:before {
+  background: url("../img/success.png") no-repeat center;
+  background-size: 12px 12px;
+}
+.signupForm #err {
+  color: #ff6651;
+}
+.signupForm #err:before {
+  background: url("../img/error.png") no-repeat center;
+  background-size: 12px 12px;
 }
