@@ -10,6 +10,10 @@
 .authWrapper > div {
   width: calc(100% - 30px);
 }
+.authWrapper input {
+  color: #858585;
+  font-size: 16px;
+}
 .authWrapper input:not(.signinRadio):not(.pwd1):not(.pwd2),
 .authWrapper button,
 .authWrapper .passwordForm {
@@ -20,14 +24,13 @@
   border: 0;
   border-radius: 8px;
   padding-left: 15px;
-  font-size: 16px;
-  color: #858585;
   font-family: "Pretandard_m";
   letter-spacing: 1px;
 }
 .authWrapper input::placeholder {
   color: #c2c2c2;
 }
+
 .authWrapper input[type="button"],
 .authWrapper input[type="submit"],
 .authWrapper button {
@@ -194,6 +197,7 @@ button.google > img {
 .signupForm .validation {
   font-size: 12px;
   padding: 5px 0px 7px 15px;
+  float: left;
 }
 .validation > span {
   position: relative;
@@ -208,6 +212,7 @@ button.google > img {
 }
 .signupForm #suc {
   color: #51d486;
+  max-width: 200px;
 }
 .signupForm #suc:before {
   background: url("../img/success.png") no-repeat center;
@@ -219,4 +224,43 @@ button.google > img {
 .signupForm #err:before {
   background: url("../img/error.png") no-repeat center;
   background-size: 12px 12px;
+}
+.securityGrade {
+  float: right;
+  width: calc(100% - 200px);
+  padding: 5px 15px 0 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.securityGrade > span {
+  float: right;
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  margin: 0 1px;
+  border-radius: 10px;
+
+  position: relative;
+  top: 1px;
+}
+.securityGrade > span:last-child {
+  width: 25px;
+  background-color: #fff !important;
+  top: 0px;
+}
+#high {
+  color: #ade9ba;
+  background-color: #ade9ba;
+}
+#mid {
+  color: #ffe456;
+  background-color: #ffe456;
+}
+#low {
+  color: #ffafaf;
+  background-color: #ffafaf;
+}
+#gray {
+  color: #ebebeb;
+  background-color: #ebebeb;
 }

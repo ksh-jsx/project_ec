@@ -23,6 +23,7 @@ const Signup = () => {
     emailErrorWord: "",
     pwd: null,
     pwdErrorWord: "",
+    pwdSecurity: "",
     pwd_confrim: null,
     pwd_confrimErrorWord: "",
   });
@@ -35,23 +36,17 @@ const Signup = () => {
     }
   }, [ToastStatus]);
 
-  let timer;
   const onChange = (prop) => (e) => {
-    /*
-    if (prop !== "name")
-      e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, "");
-    else e.target.value = e.target.value.replace(/[^ㄱ-ㅎ가-힣]/gi, "");*/
     setValues({ ...values, [prop]: e.target.value });
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      validation(prop, e.target.value);
-    }, 500);
+
+    validation(prop, e.target.value);
   };
 
   const validation = (prop, value) => {
     const Eng = /[a-zA-Z]/;
     const Kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
     const Num = /[0-9]/;
+    const Speical = /[~!@#$%^&*()_+|<>?:{}]/;
     if (prop === "name") {
       if (Eng.test(value) || Num.test(value)) {
         setInvalids({
@@ -64,11 +59,11 @@ const Signup = () => {
       }
     }
     if (prop === "email") {
-      if (Kor.test(value)) {
+      if (Kor.test(value) || value.length < 4) {
         setInvalids({
           ...invalids,
           [prop]: true,
-          emailErrorWord: "영어만 입력해주세요",
+          emailErrorWord: "영문 대소문자 포함 8자 이상 입력해 주세요",
         });
       } else if (IDLIST.indexOf(value) !== -1) {
         setInvalids({
@@ -76,36 +71,30 @@ const Signup = () => {
           [prop]: true,
           emailErrorWord: "이미 사용중인 아이디예요",
         });
-      } else if (value.length < 4) {
-        setInvalids({
-          ...invalids,
-          [prop]: true,
-          emailErrorWord: "영문 대소문자 포함 4자 이상 입력해 주세요",
-        });
       } else {
         setInvalids({ ...invalids, [prop]: false });
       }
     }
     if (prop === "pwd") {
-      if (Kor.test(value)) {
-        setInvalids({
-          ...invalids,
-          [prop]: true,
-          pwdErrorWord: "영어만 입력해주세요",
-        });
-      } else if (value.length < 8) {
+      if (Kor.test(value) || value.length < 8) {
         setInvalids({
           ...invalids,
           [prop]: true,
           pwdErrorWord: "영문 대소문자 포함 8자 이상 입력해 주세요",
         });
       } else {
-        setInvalids({ ...invalids, [prop]: false });
+        setInvalids({ ...invalids });
+        //보안 등급 설정
+        if (Eng.test(value) && Num.test(value) && Speical.test(value)) {
+          setInvalids({ ...invalids, [prop]: false, pwdSecurity: "high" });
+        } else if (Eng.test(value) && Num.test(value)) {
+          setInvalids({ ...invalids, [prop]: false, pwdSecurity: "mid" });
+        } else if (Eng.test(value)) {
+          setInvalids({ ...invalids, [prop]: false, pwdSecurity: "low" });
+        }
       }
     }
     if (prop === "pwd_confrim") {
-      console.log(values.pwd);
-      console.log(values.pwd_confrim);
       if (Kor.test(value)) {
         setInvalids({
           ...invalids,
@@ -142,6 +131,20 @@ const Signup = () => {
     });
   };
 
+  const validationComponents = (prop, suc, err) => {
+    return invalids[prop] && values[prop] ? (
+      <div className="validation" id="err">
+        <span>{err}</span>
+      </div>
+    ) : values[prop] && suc ? (
+      <div className="validation" id="suc">
+        <span>{suc}</span>
+      </div>
+    ) : (
+      <></>
+    );
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (
@@ -171,13 +174,7 @@ const Signup = () => {
           minLength={2}
           maxLength={8}
         />
-        {invalids.name ? (
-          <div className="validation" id="err">
-            <span>{invalids.nameErrorWord}</span>
-          </div>
-        ) : (
-          <></>
-        )}
+        {validationComponents("name", "", invalids.nameErrorWord)}
         <input
           type="text"
           name="email"
@@ -187,16 +184,10 @@ const Signup = () => {
           autoComplete="off"
           maxLength={16}
         />
-        {invalids.email && values.email ? (
-          <div className="validation" id="err">
-            <span>{invalids.emailErrorWord}</span>
-          </div>
-        ) : values.email ? (
-          <div className="validation" id="suc">
-            <span>사용할 수 있는 아이디예요</span>
-          </div>
-        ) : (
-          <></>
+        {validationComponents(
+          "email",
+          "사용할 수 있는 아이디예요",
+          invalids.emailErrorWord
         )}
         <div className="passwordForm">
           <input
@@ -207,7 +198,6 @@ const Signup = () => {
             onChange={onChange("pwd")}
             placeholder="비밀번호"
           />
-
           <div
             onClick={() => handlePasswordType(1)}
             className="passwordVisibiliyBtn"
@@ -222,17 +212,41 @@ const Signup = () => {
             />
           </div>
         </div>
-        {invalids.pwd && values.pwd ? (
-          <div className="validation" id="err">
-            <span>{invalids.pwdErrorWord}</span>
-          </div>
-        ) : values.pwd ? (
-          <div className="validation" id="suc">
-            <span>사용할 수 있는 비밀번호예요</span>
-          </div>
-        ) : (
-          <></>
-        )}
+        <div>
+          {validationComponents(
+            "pwd",
+            "사용할 수 있는 비밀번호예요",
+            invalids.pwdErrorWord
+          )}
+          {!invalids.pwd && values.pwd ? (
+            <div className="securityGrade">
+              {invalids.pwdSecurity === "high" ? (
+                <>
+                  <span id="high" />
+                  <span id="high" />
+                  <span id="high" />
+                </>
+              ) : invalids.pwdSecurity === "mid" ? (
+                <>
+                  <span id="gray" />
+                  <span id="mid" />
+                  <span id="mid" />
+                </>
+              ) : (
+                <>
+                  <span id="gray" />
+                  <span id="gray" />
+                  <span id="low" />
+                </>
+              )}
+
+              <span id={invalids.pwdSecurity}>보안</span>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+
         <div className="passwordForm">
           <input
             type={pwdVible.pwd_type2}
@@ -256,16 +270,10 @@ const Signup = () => {
             />
           </div>
         </div>
-        {invalids.pwd_confrim && values.pwd_confrim ? (
-          <div className="validation" id="err">
-            <span>{invalids.pwd_confrimErrorWord}</span>
-          </div>
-        ) : values.pwd_confrim ? (
-          <div className="validation" id="suc">
-            <span>비밀번호가 일치합니다</span>
-          </div>
-        ) : (
-          <></>
+        {validationComponents(
+          "pwd_confrim",
+          "비밀번호가 일치합니다",
+          invalids.pwd_confrimErrorWord
         )}
         <input type="submit" value="회원가입" style={{ marginTop: "50px" }} />
       </div>
