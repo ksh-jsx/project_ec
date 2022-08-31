@@ -29,8 +29,8 @@ a {
   height: calc(100% - 88px);
 }
 .toast {
-  position: absolute;
-  top: -50%;
+  position: fixed;
+  top: 25%;
   left: 50%;
   padding: 11px;
   min-width: 220px;

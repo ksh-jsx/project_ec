@@ -1,65 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { Global } from '@emotion/react';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { Global } from "@emotion/react";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import BasicCard from "./BasicCard";
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 const drawerBleeding = 120;
 
 function BottomDrawer() {
-
   const [open, setOpen] = useState(true);
   const [sort, setSort] = useState(true);
 
   const redux_data = useSelector((state) => state.searched_data);
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
-  const onSortBtnClick = () =>{    
-    setSort((prev)=>!prev)
-    dispatch({type:'SORT'})  
-  }
+  const onSortBtnClick = () => {
+    setSort((prev) => !prev);
+    dispatch({ type: "SORT" });
+  };
 
-  useEffect(() => {    
-
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <div >
+    <div>
       <Global
         styles={{
-          '.MuiDrawer-root > .MuiPaper-root': {
+          ".MuiDrawer-root > .MuiPaper-root": {
             height: `50%`,
-            overflow: 'visible',
+            overflow: "visible",
           },
         }}
-      />      
-      <div style={{backgroundColor:"#E7EBF0"}}>
+      />
+      <div style={{ backgroundColor: "#E7EBF0" }}>
         <SwipeableDrawer
           id="drawer"
           disableEnforceFocus
           anchor="bottom"
           open={open}
-          onClose={()=>setOpen(false)}
-          onOpen={()=>setOpen(true)}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
           ModalProps={{
             keepMounted: true,
-          }} 
+          }}
           hideBackdrop={true}
-          hysteresis={.3}
-        >          
-          <div className="drawerBox" >
-            <span className="puller"/>
+          hysteresis={0.3}
+        >
+          <div className="drawerBox">
+            <span className="puller" />
             <div className="drawerBoxSort">
-              <button onClick={()=>onSortBtnClick()}>
-                <img src={ sort ? require('../../assets/img/sort_d.png') : require('../../assets/img/sort_u.png')}/><span> 접수시작일</span>
+              <button onClick={() => onSortBtnClick()}>
+                <img
+                  src={
+                    sort
+                      ? require("../../assets/img/sort_d.png")
+                      : require("../../assets/img/sort_u.png")
+                  }
+                  alt="sort"
+                />
+                <span> 접수시작일</span>
               </button>
             </div>
           </div>
           <div className="cardBox">
-            {redux_data?.map((x,i)=>(
-              <BasicCard data={x} i={i} key={i}/>
+            {redux_data?.map((x, i) => (
+              <BasicCard data={x} i={i} key={i} />
             ))}
           </div>
         </SwipeableDrawer>
@@ -67,6 +72,5 @@ function BottomDrawer() {
     </div>
   );
 }
-
 
 export default BottomDrawer;

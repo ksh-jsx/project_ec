@@ -12,13 +12,11 @@ function BasicCard({ data, i }) {
 
   useEffect(() => {
     if (ToastStatus) {
-      setTimeout(() => setToastStatus(false), 800);
+      setTimeout(() => setToastStatus(false), 1000);
     }
   }, [ToastStatus]);
 
   const select = (i) => {
-    dispatch({ type: "HANDLE_MAP_CLICK", kind: "List", i: i });
-
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(
       redux.searched_data[i].HSSPLY_ADRES,
@@ -36,6 +34,7 @@ function BasicCard({ data, i }) {
         }
       }
     );
+    dispatch({ type: "CLICK_HOUSE_DATA", id: data.HOUSE_MANAGE_NO });
   };
 
   const onClickLike = () => {};
@@ -43,10 +42,7 @@ function BasicCard({ data, i }) {
   useEffect(() => {}, []);
 
   return (
-    <div
-      onClick={() => select(i)}
-      className={redux.map_clicked_data_list[i] ? "active" : "inactive"}
-    >
+    <div onClick={() => select(i)}>
       {ToastStatus && <Toast msg="등록된 위치 없음" />}
       <div className="cardInner">
         <div className="cardLeft">

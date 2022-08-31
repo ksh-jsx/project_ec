@@ -14,7 +14,7 @@ const Signup = () => {
     pwd_visible1: false,
     pwd_type1: "password",
     pwd_visible2: false,
-    pwd_type3: "password",
+    pwd_type2: "password",
   });
   const [invalids, setInvalids] = useState({
     name: null,
@@ -32,7 +32,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (ToastStatus) {
-      setTimeout(() => setToastStatus(false), 800);
+      setTimeout(() => setToastStatus(false), 1000);
     }
   }, [ToastStatus]);
 
@@ -148,6 +148,7 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (
+      invalids.name === false &&
       invalids.email === false &&
       invalids.pwd === false &&
       invalids.pwd_confrim === false
@@ -156,6 +157,7 @@ const Signup = () => {
         console.log("문제없음");
       //signup(values)
     } else {
+      console.log("문제있음");
       setToastStatus(true);
     }
   };
