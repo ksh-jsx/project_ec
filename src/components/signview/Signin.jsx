@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Signin = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const onChange = (event) => {
     const {

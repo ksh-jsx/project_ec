@@ -1,0 +1,114 @@
+img {
+  width: 100%;
+}
+.SurveyViewWrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.SurveyViewWrapper .header {
+  width: calc(100% - 30px);
+  padding: 0 15px;
+  font-size: 20px;
+  color: #858585;
+  margin-top: 120px;
+}
+.SurveyViewWrapper .progressBar {
+  width: calc(100% - 30px);
+  height: 5px;
+  margin: 30px 15px;
+  background-color: #ebebeb;
+  border-radius: 30px;
+}
+.SurveyViewWrapper .innerProgressBar {
+  height: 100%;
+  background-color: #6297ff;
+  border-radius: 30px;
+}
+.SurveyViewWrapper .slick-arrow {
+  position: fixed;
+  bottom: 50px;
+  width: 24px;
+}
+.SurveyViewWrapper .slick-arrow.slick-prev {
+  left: 30px;
+}
+.SurveyViewWrapper .slick-arrow.slick-next {
+  right: 30px;
+}
+.SurveyViewWrapper .slick-slider {
+  height: calc(100% - 235px);
+}
+.SurveyViewWrapper .slick-list {
+  height: 100%;
+}
+.SurveyViewWrapper .content {
+  width: calc(100% - 30px) !important;
+  padding: 15px;
+}
+.SurveyViewWrapper .title {
+  font-size: 20px;
+  line-height: 130%;
+}
+.SurveyViewWrapper .title::before {
+  content: "Q. \A";
+  font-weight: bold;
+  white-space: pre;
+}
+.SurveyViewWrapper .title > div:first-child {
+  font-weight: bold;
+}
+.SurveyViewWrapper .title > span {
+  font-weight: 600;
+  color: #6297ff;
+}
+.SurveyViewWrapper .article {
+  margin-top: 40px;
+  width: 100%;
+  height: 50px;
+}
+.SurveyViewWrapper .article > button,
+.SurveyViewWrapper .article > input {
+  height: 48px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 15px 0px;
+  border: 0;
+  border-radius: 8px;
+}
+.SurveyViewWrapper .article > button {
+  width: 44%;
+  margin: 8px 3%;
+  color: #858585;
+}
+.SurveyViewWrapper .article > input {
+  width: calc(100% - 10px);
+  margin: 8px 0;
+  padding-left: 10px;
+}
+.SurveyViewWrapper .article > div {
+  width: 98%;
+  height: 270px;
+  margin: 15px 1%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 3px 15px 0px;
+  border: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.SurveyViewWrapper .article > div > div {
+  width: 100%;
+}
+.SurveyViewWrapper .article > div > div > div {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.SurveyViewWrapper .article > div:first-child {
+  height: 48px;
+  font-size: 16px;
+  color: #858585;
+  justify-content: center;
+}

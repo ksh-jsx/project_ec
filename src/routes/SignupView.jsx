@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../assets/css/loginview.css";
-import Signup from "../components/loginview/Signup";
+import "../assets/css/signview.css";
+import Signup from "../components/signview/Signup";
 import { Link } from "react-router-dom";
+
 const SignupView = ({}) => {
   useEffect(() => {}, []);
 

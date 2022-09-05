@@ -24,13 +24,8 @@
   border: 0;
   border-radius: 8px;
   padding-left: 15px;
-  font-family: "Pretandard_m";
   letter-spacing: 1px;
 }
-.authWrapper input::placeholder {
-  color: #c2c2c2;
-}
-
 .authWrapper input[type="button"],
 .authWrapper input[type="submit"],
 .authWrapper button {

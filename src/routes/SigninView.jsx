@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../assets/css/loginview.css";
-import Signin from "../components/loginview/Signin";
-import Social from "../components/loginview/Social";
+import "../assets/css/signview.css";
+import Signin from "../components/signview/Signin";
+import Social from "../components/signview/Social";
 
 const SigninView = ({}) => {
   const [isSocialLogin, setIsSocialLogin] = useState(true);
-
-  const onSocialClick = async (event) => {
-    const {
-      target: { name },
-    } = event;
-
-    if (name === "google") {
-    } else if ((name = "???")) {
-    }
-  };
 
   const toggleAccount = () => setIsSocialLogin((prev) => !prev);
 
