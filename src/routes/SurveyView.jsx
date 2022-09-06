@@ -11,31 +11,19 @@ function SurveyView() {
   const sliderSetting = {
     dots: false,
     infinite: false,
+
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: (
-      <div>
-        <img
-          src={require("../assets/img/next.png")}
-          alt=""
-          onClick={() =>
-            cooltime
-              ? {}
-              : setGauge((prev) => (data.length === prev ? prev : prev + 1))
-          }
-        />
-      </div>
-    ),
+    afterChange: (current) => setGauge(current + 1),
     prevArrow: (
       <div>
-        <img
-          src={require("../assets/img/prev.png")}
-          alt=""
-          onClick={() =>
-            cooltime ? {} : setGauge((prev) => (prev === 1 ? 1 : prev - 1))
-          }
-        />
+        <img src={require("../assets/img/prev.png")} alt="" />
+      </div>
+    ),
+    nextArrow: (
+      <div>
+        <img src={require("../assets/img/next.png")} alt="" />
       </div>
     ),
   };
@@ -55,6 +43,7 @@ function SurveyView() {
     //sleep 함수
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
+
   const setProgressBar = async () => {
     setCooltime(true);
     const currentWidth = (gauge * 100) / 6;
@@ -79,6 +68,7 @@ function SurveyView() {
 
   useEffect(() => {
     setProgressBar();
+    //console.log(gauge);
   }, [gauge]);
 
   return (
@@ -91,8 +81,14 @@ function SurveyView() {
       </div>
       <Slider {...sliderSetting}>
         {data.map((data, i) => (
-          <div className="content">
-            <Survey Q={data.Q} input={data.input} key={i} />
+          <div className="content" key={"key" + i}>
+            <Survey
+              Q={data}
+              input={data.input}
+              i={i}
+              selectedValues={selectedValues}
+              setSelectedValues={setSelectedValues}
+            />
           </div>
         ))}
       </Slider>

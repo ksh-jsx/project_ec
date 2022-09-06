@@ -2,6 +2,7 @@ img {
   width: 100%;
 }
 .SurveyViewWrapper {
+  position: absolute;
   width: 100%;
   height: 100%;
   max-width: 400px;
@@ -9,10 +10,11 @@ img {
 }
 .SurveyViewWrapper .header {
   width: calc(100% - 30px);
+  height: 50px;
   padding: 0 15px;
   font-size: 20px;
   color: #858585;
-  margin-top: 120px;
+  padding-top: 15vh;
 }
 .SurveyViewWrapper .progressBar {
   width: calc(100% - 30px);
@@ -28,7 +30,7 @@ img {
 }
 .SurveyViewWrapper .slick-arrow {
   position: fixed;
-  bottom: 50px;
+  bottom: 30px;
   width: 24px;
 }
 .SurveyViewWrapper .slick-arrow.slick-prev {
@@ -38,17 +40,20 @@ img {
   right: 30px;
 }
 .SurveyViewWrapper .slick-slider {
-  height: calc(100% - 235px);
+  height: calc(85vh - 180px);
 }
-.SurveyViewWrapper .slick-list {
+.SurveyViewWrapper .slick-list,
+.slick-track,
+.slick-slide {
   height: 100%;
 }
 .SurveyViewWrapper .content {
   width: calc(100% - 30px) !important;
-  padding: 15px;
+  padding: 0 15px;
 }
 .SurveyViewWrapper .title {
   font-size: 20px;
+  height: 15vh;
   line-height: 130%;
 }
 .SurveyViewWrapper .title::before {
@@ -64,16 +69,14 @@ img {
   color: #6297ff;
 }
 .SurveyViewWrapper .article {
-  margin-top: 40px;
   width: 100%;
-  height: 50px;
 }
 .SurveyViewWrapper .article > button,
 .SurveyViewWrapper .article > input {
   height: 48px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 15px 0px;
-  border: 0;
   border-radius: 8px;
+  background-color: #fff;
 }
 .SurveyViewWrapper .article > button {
   width: 44%;
@@ -84,6 +87,9 @@ img {
   width: calc(100% - 10px);
   margin: 8px 0;
   padding-left: 10px;
+  border: 0;
+  font-size: 16px;
+  color: #858585;
 }
 .SurveyViewWrapper .article > div {
   width: 98%;
@@ -99,11 +105,20 @@ img {
 }
 .SurveyViewWrapper .article > div > div {
   width: 100%;
+  height: 25px;
 }
-.SurveyViewWrapper .article > div > div > div {
-  width: 50%;
+.SurveyViewWrapper .article > div > div > button {
+  width: calc(50% - 18px);
+  height: 100%;
+  margin: 0 8px;
   float: left;
-  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #c2c2c2;
+  color: #858585;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .SurveyViewWrapper .article > div:first-child {
@@ -111,4 +126,41 @@ img {
   font-size: 16px;
   color: #858585;
   justify-content: center;
+}
+.SurveyViewWrapper .submit {
+  position: absolute;
+  width: calc(100vw - 30px);
+  bottom: 20px;
+}
+.SurveyViewWrapper .submit > button {
+  margin: 5px 0;
+  width: 100%;
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  background-color: #6297ff;
+  color: #fff;
+  font-size: 16px;
+}
+.SurveyViewWrapper .on {
+  border: 1px solid #6297ff !important;
+  color: #6297ff !important;
+}
+/*media*/
+@media (max-height: 750px) {
+  .SurveyViewWrapper .header {
+    padding-top: 5vh;
+  }
+  .SurveyViewWrapper .progressBar {
+    margin: 20px 15px;
+  }
+  .SurveyViewWrapper .slick-slider {
+    height: calc(95vh - 150px);
+  }
+  .SurveyViewWrapper .slick-arrow {
+    bottom: 15px;
+  }
 }
