@@ -2,6 +2,7 @@
 import { legacy_createStore as createStore } from "redux";
 
 const initState = {
+  inLogin:false,
   mode: "WELCOME",
   current_page: "HOME",
   house_data: null,

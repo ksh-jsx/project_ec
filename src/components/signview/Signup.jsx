@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../Toast";
+import { getIds, signup } from "../../lib/api/openapi"
 
-const IDLIST = ["aaa", "sss", "shkim787"];
+const IDLIST = ["aaa", "sss", "shkim789"];
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -42,7 +43,7 @@ const Signup = () => {
     validation(prop, e.target.value);
   };
 
-  const validation = (prop, value) => {
+  const validation = async (prop, value) => {
     const Eng = /[a-zA-Z]/;
     const Kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
     const Num = /[0-9]/;
@@ -59,13 +60,16 @@ const Signup = () => {
       }
     }
     if (prop === "email") {
-      if (Kor.test(value) || value.length < 4) {
+
+      const res = await getIds(value) 
+      console.log(res)
+      if (Kor.test(value) || value.length < 6) {
         setInvalids({
           ...invalids,
           [prop]: true,
-          emailErrorWord: "영문 대소문자 포함 8자 이상 입력해 주세요",
+          emailErrorWord: "영문 대소문자 포함 6자 이상 입력해 주세요",
         });
-      } else if (IDLIST.indexOf(value) !== -1) {
+      } else if (!res) {
         setInvalids({
           ...invalids,
           [prop]: true,
@@ -154,8 +158,7 @@ const Signup = () => {
       invalids.pwd_confrim === false
     ) {
       if (window.confirm("이대로 회원가입 하시겠습니까?"))
-        console.log("문제없음");
-      //signup(values)
+        signup(values)
     } else {
       console.log("문제있음");
       setToastStatus(true);

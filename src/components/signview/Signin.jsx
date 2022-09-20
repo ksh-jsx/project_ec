@@ -20,7 +20,7 @@ const Signin = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await signin(id, password);
+      await signin(id, password);
     } catch (e) {
       alert("error!");
     } finally {

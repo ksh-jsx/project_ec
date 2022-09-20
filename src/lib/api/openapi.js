@@ -52,37 +52,88 @@ export const getAPTLttotPblancMdl = async(data) => {
    }
 }
 
-export const signup = async(data) => {
+export const signup = async (data) => {
    try {     
-      axios.post('http://localhost:3000/axios',{
-            name : data.name,
-            id : data.id,
-            pwd : data.pwd,
+      console.log(data)
+      await axios.post('http://127.0.0.1:8080/auth/signup',{
+            name : "kim",
+            email : data.email,
+            password : data.pwd,
       }).then((res)=>{
-         console.log('로그인 성공')
-      }).catch(error => {
-         console.log(error.message);            
-      });
-        
-      //return
+         console.log('가입 성공')
+      })    
    } catch (err) {
-     
+     console.log(err)
    }
+
+   /*
+   fetch("http://127.0.0.1:8080/signup", {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+         name: data.name,
+         email: data.email,
+         password: data.pwd,
+      }),
+   }).then((response) => console.log(response));
+   */
 }
 
 export const signin = async(id,pwd) => {
    try {     
       console.log(id,pwd)
-      
-      const res = await axios.get(``)
-      
-      console.log(res)
-
-      //return res
+      await axios.post('http://127.0.0.1:8080/auth/login',{
+            email : id,
+            password : pwd,
+      }).then((res)=>{
+         console.log('로그인 성공')
+         return (res.data.accessToken)
+      })    
    } catch (err) {
-      console.log(err);
-      throw err;
+     console.log(err)
    }
 }
 
+export const getIds = async(value) => {
+   try {     
+      console.log(value)
+      await axios.get(`http://127.0.0.1:8080/auth/validate?email=${value}`,{
+      }).then((res)=>{
+         //console.log(res.data.success)
+         return res.data.success
+      })    
+   } catch (err) {
+     console.log(err)
+   }
+}
 
+export const social = async (t) => {
+
+   fetch(`http://localhost:8080/oauth2/authorization/${t}`, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         'Access-Control-Allow-Origin': 'true',
+         'Access-Control-Allow-Headers': '*',
+         'Access-Control-Allow-Credentials': 'true',
+      },
+      
+   }).then((response) => console.log(response));
+
+   const url = `http://localhost:8080/oauth2/authorization/${t}`
+   let config = {
+      url,
+      method: "post",
+      headers: {
+        
+      }
+   }
+   try {     
+      console.log(t)
+      const res = await axios.request(config);  
+   } catch (err) {
+     console.log(err)
+   }
+}
