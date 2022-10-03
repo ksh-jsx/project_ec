@@ -1,10 +1,14 @@
 /*global kakao*/
 import { legacy_createStore as createStore } from "redux";
 
+export const TOKEN_TIME_OUT = 600 * 1000;
+
 const initState = {
-  inLogin:false,
   mode: "WELCOME",
   current_page: "HOME",
+  authenticated: false,
+  accessToken: null,
+  expireTime: null,
   house_data: null,
   searched_data: null,
   kakaoMap: null,
@@ -15,6 +19,24 @@ const initState = {
 };
 
 const reducer = (state = initState, action) => {
+  if (action.type === "SET_TOKEN") {
+    return {
+      ...state,
+      current_page: "HOME",
+      authenticated: true,
+      accessToken: action.token,
+      expireTime: new Date().getTime() + TOKEN_TIME_OUT,
+    };
+  }
+  if (action.type === "DELETE_TOKEN") {
+    return {
+      ...state,
+      current_page: "HOME",
+      authenticated: false,
+      accessToken: null,
+      expireTime: null,
+    };
+  }
   if (action.type === "HOME") {
     return {
       ...state,

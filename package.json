@@ -2,7 +2,7 @@
   "name": "zip",
   "version": "0.1.0",
   "private": true,
-  "proxy":"account.kakao.com",
+  "proxy": "http://openapi.reb.or.kr",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
@@ -17,6 +17,7 @@
     "@mui/material": "^5.5.3",
     "@mui/styled-engine-sc": "^5.5.2",
     "@react-navigation/drawer": "^6.4.3",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -26,6 +27,7 @@
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.2",
     "react": "^18.0.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.0.0",
     "react-drag-drawer": "^3.3.4",
     "react-redux": "^8.0.2",
@@ -60,6 +62,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://openapi.reb.or.kr"
+  }
 }

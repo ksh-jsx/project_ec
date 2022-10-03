@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import { signin } from "../../lib/api/openapi";
 import { Link } from "react-router-dom";
 
 const Signin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,9 +25,15 @@ const Signin = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      await signin(id, password);
+      const res = await signin(id, password);
+
+      if (res.status === 200) {
+        console.log("ok");
+        dispatch({ type: "SET_TOKEN", token: res.data.accessToken });
+        return navigate("/");
+      }
     } catch (e) {
-      alert("error!");
+      alert("존재하지 않는 아이디 입니다.");
     } finally {
       //sessionStorage.setItem('user',res) 자동로그인 하기 위해...
     }

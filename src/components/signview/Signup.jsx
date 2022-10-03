@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../Toast";
-import { getIds, signup } from "../../lib/api/openapi"
-
-const IDLIST = ["aaa", "sss", "shkim789"];
+import { getIds, signup } from "../../lib/api/openapi";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -11,7 +9,7 @@ const Signup = () => {
     pwd: "",
     pwd_confrim: "",
   });
-  const [pwdVible, setPwdVible] = useState({
+  const [pwdVisible, setPwdVisible] = useState({
     pwd_visible1: false,
     pwd_type1: "password",
     pwd_visible2: false,
@@ -30,6 +28,7 @@ const Signup = () => {
   });
 
   const [ToastStatus, setToastStatus] = useState(false);
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (ToastStatus) {
@@ -40,7 +39,19 @@ const Signup = () => {
   const onChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
 
-    validation(prop, e.target.value);
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    const newTimer = setTimeout(async () => {
+      try {
+        await validation(prop, e.target.value);
+      } catch (e) {
+        console.error("error", e);
+      }
+    }, 500);
+
+    setTimer(newTimer);
   };
 
   const validation = async (prop, value) => {
@@ -60,16 +71,13 @@ const Signup = () => {
       }
     }
     if (prop === "email") {
-
-      const res = await getIds(value) 
-      console.log(res)
       if (Kor.test(value) || value.length < 6) {
         setInvalids({
           ...invalids,
           [prop]: true,
           emailErrorWord: "영문 대소문자 포함 6자 이상 입력해 주세요",
         });
-      } else if (!res) {
+      } else if (!(await getIds(value))) {
         setInvalids({
           ...invalids,
           [prop]: true,
@@ -118,18 +126,18 @@ const Signup = () => {
   };
 
   const handlePasswordType = (num) => {
-    setPwdVible(() => {
+    setPwdVisible(() => {
       if (num === 1) {
-        if (!pwdVible.pwd_visible1) {
-          return { ...pwdVible, pwd_type1: "text", pwd_visible1: true };
+        if (!pwdVisible.pwd_visible1) {
+          return { ...pwdVisible, pwd_type1: "text", pwd_visible1: true };
         } else {
-          return { ...pwdVible, pwd_type1: "password", pwd_visible1: false };
+          return { ...pwdVisible, pwd_type1: "password", pwd_visible1: false };
         }
       } else {
-        if (!pwdVible.pwd_visible2) {
-          return { ...pwdVible, pwd_type2: "text", pwd_visible2: true };
+        if (!pwdVisible.pwd_visible2) {
+          return { ...pwdVisible, pwd_type2: "text", pwd_visible2: true };
         } else {
-          return { ...pwdVible, pwd_type2: "password", pwd_visible2: false };
+          return { ...pwdVisible, pwd_type2: "password", pwd_visible2: false };
         }
       }
     });
@@ -157,8 +165,7 @@ const Signup = () => {
       invalids.pwd === false &&
       invalids.pwd_confrim === false
     ) {
-      if (window.confirm("이대로 회원가입 하시겠습니까?"))
-        signup(values)
+      if (window.confirm("이대로 회원가입 하시겠습니까?")) signup(values);
     } else {
       console.log("문제있음");
       setToastStatus(true);
@@ -196,7 +203,7 @@ const Signup = () => {
         )}
         <div className="passwordForm">
           <input
-            type={pwdVible.pwd_type1}
+            type={pwdVisible.pwd_type1}
             name="pwd"
             className="pwd1"
             value={values.pwd}
@@ -209,7 +216,7 @@ const Signup = () => {
           >
             <img
               src={
-                pwdVible.pwd_visible1
+                pwdVisible.pwd_visible1
                   ? require("../../assets/img/password_visibility_on.png")
                   : require("../../assets/img/password_visibility_off.png")
               }
@@ -254,7 +261,7 @@ const Signup = () => {
 
         <div className="passwordForm">
           <input
-            type={pwdVible.pwd_type2}
+            type={pwdVisible.pwd_type2}
             name="pwd_confirm"
             className="pwd2"
             value={values.pwd_confrim}
@@ -267,7 +274,7 @@ const Signup = () => {
           >
             <img
               src={
-                pwdVible.pwd_visible2
+                pwdVisible.pwd_visible2
                   ? require("../../assets/img/password_visibility_on.png")
                   : require("../../assets/img/password_visibility_off.png")
               }
