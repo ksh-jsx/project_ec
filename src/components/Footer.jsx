@@ -27,7 +27,7 @@ const Footer = () => {
           alt="img"
         />
       </Link>
-      <Link to="/signin">
+      <Link to="/">
         <img src={require("../assets/img/mypage.png")} alt="img" />
       </Link>
     </div>

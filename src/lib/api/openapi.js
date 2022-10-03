@@ -1,5 +1,6 @@
 import { Alert } from "@mui/material";
 import axios from "axios";
+import jsonp from "simple-jsonp-promise";
 
 const Address = "https://api.odcloud.kr/api";
 
@@ -57,33 +58,16 @@ export const getAPTLttotPblancMdl = async (data) => {
 
 export const signup = async (data) => {
   try {
-    console.log(data);
-    await axios
-      .post("http://127.0.0.1:8080/auth/signup", {
-        name: "kim",
-        email: data.email,
-        password: data.pwd,
-      })
-      .then((res) => {
-        console.log("가입 성공");
-      });
+    const res = await axios.post(`http://127.0.0.1:8080/auth/signup`, {
+      name: data.name,
+      email: data.email,
+      password: data.pwd,
+    });
+    console.log(res.status);
+    return res.status;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
-
-  /*
-   fetch("http://127.0.0.1:8080/signup", {
-      method: "POST",
-      headers: {
-         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-         name: data.name,
-         email: data.email,
-         password: data.pwd,
-      }),
-   }).then((response) => console.log(response));
-   */
 };
 
 export const signin = async (id, pwd) => {
@@ -112,26 +96,37 @@ export const getIds = async (value) => {
 };
 
 export const social = async (t) => {
-  fetch(`http://localhost:8080/oauth2/authorization/${t}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "true",
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Credentials": "true",
-    },
-  }).then((response) => console.log(response));
-
-  const url = `http://localhost:8080/oauth2/authorization/${t}`;
-  let config = {
-    url,
-    method: "post",
-    headers: {},
-  };
   try {
-    console.log(t);
-    const res = await axios.request(config);
+    const res = await axios.post(
+      `http://localhost:8080/oauth2/authorization/${t}`
+    );
+    return res;
   } catch (err) {
     console.log(err);
+    throw err;
   }
+
+  /*
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/oauth2/authorization/${t}`
+      );
+      return res;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+
+    try {
+    const res = await axios({
+      method:'post',
+      url:`http://localhost:8080/oauth2/authorization/${t}`,
+      
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+  */
 };

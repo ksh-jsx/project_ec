@@ -10,6 +10,7 @@ const Signin = () => {
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [autoLogin, setAutoLogin] = useState(false);
 
   const onChange = (event) => {
     const {
@@ -23,19 +24,19 @@ const Signin = () => {
   };
 
   const onSubmit = async (event) => {
+    let res;
     event.preventDefault();
     try {
-      const res = await signin(id, password);
+      res = await signin(id, password);
 
       if (res.status === 200) {
-        console.log("ok");
         dispatch({ type: "SET_TOKEN", token: res.data.accessToken });
         return navigate("/");
       }
     } catch (e) {
       alert("존재하지 않는 아이디 입니다.");
     } finally {
-      //sessionStorage.setItem('user',res) 자동로그인 하기 위해...
+      if (autoLogin) sessionStorage.setItem("user", JSON.stringify(res));
     }
   };
 
@@ -67,6 +68,7 @@ const Signin = () => {
           id="radioForAutoSignin"
           name="rr"
           className="signinRadio"
+          onClick={() => setAutoLogin((prev) => !prev)}
         />
       </div>
       <input type="submit" value="로그인" className="SigninBtn" />

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../Toast";
+import { useNavigate } from "react-router";
 import { getIds, signup } from "../../lib/api/openapi";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -157,15 +159,22 @@ const Signup = () => {
     );
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(invalids);
     if (
       invalids.name === false &&
       invalids.email === false &&
       invalids.pwd === false &&
       invalids.pwd_confrim === false
     ) {
-      if (window.confirm("이대로 회원가입 하시겠습니까?")) signup(values);
+      if (window.confirm("이대로 회원가입 하시겠습니까?")) {
+        const res = await signup(values);
+        console.log(res);
+        if (res === 201) {
+          return navigate("/");
+        }
+      }
     } else {
       console.log("문제있음");
       setToastStatus(true);
