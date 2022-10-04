@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { signin } from "../../lib/api/openapi";
 import { Link } from "react-router-dom";
 
+import { SET_TOKEN } from "../../stores/tokenSlice";
+import { SET_STATE } from "../../stores/stateSlice";
+
 const Signin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,11 +33,13 @@ const Signin = () => {
       res = await signin(id, password);
 
       if (res.status === 200) {
-        dispatch({ type: "SET_TOKEN", token: res.data.accessToken });
+        dispatch(SET_TOKEN(res.data.accessToken));
+        dispatch(SET_STATE({ mode: "SIGNIN_SUCCESS", page: "SIGNIN" }));
         return navigate("/");
       }
     } catch (e) {
       alert("존재하지 않는 아이디 입니다.");
+      dispatch(SET_STATE({ mode: "SIGNIN_FAIL", page: "SIGNIN" }));
     } finally {
       if (autoLogin) sessionStorage.setItem("user", JSON.stringify(res));
     }

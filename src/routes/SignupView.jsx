@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../assets/css/signview.css";
 import Signup from "../components/signview/Signup";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SET_STATE } from "../stores/stateSlice";
 
-const SignupView = ({}) => {
-  useEffect(() => {}, []);
+const SignupView = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(SET_STATE({ mode: "INIT_SIGNUP", page: "SIGNUP" }));
+  }, []);
 
   return (
     <div className="authWrapper">

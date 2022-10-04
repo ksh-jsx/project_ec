@@ -3,19 +3,21 @@ import { Global } from "@emotion/react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import BasicCard from "./BasicCard";
 import { useDispatch, useSelector } from "react-redux";
+import { SORT } from "../../stores/mapSlice";
 
 const drawerBleeding = 120;
 
 function BottomDrawer() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
   const [sort, setSort] = useState(true);
 
-  const redux_data = useSelector((state) => state.searched_data);
-  const dispatch = useDispatch();
-
+  const searched_data = useSelector((state) => {
+    return state.mapCounter.searched_data;
+  });
   const onSortBtnClick = () => {
     setSort((prev) => !prev);
-    dispatch({ type: "SORT" });
+    dispatch(SORT());
   };
 
   useEffect(() => {}, []);
@@ -63,7 +65,7 @@ function BottomDrawer() {
             </div>
           </div>
           <div className="cardBox">
-            {redux_data?.map((x, i) => (
+            {searched_data?.map((x, i) => (
               <BasicCard data={x} i={i} key={i} />
             ))}
           </div>

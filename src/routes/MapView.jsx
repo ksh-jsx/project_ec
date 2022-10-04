@@ -5,8 +5,10 @@ import KakaoMap from "../components/mapview/KakaoMap";
 import Drawer from "../components/mapview/BottomDrawer";
 import { getAPTLttotPblancDetail } from "../lib/api/openapi";
 import { useDispatch } from "react-redux";
+import { SET_STATE } from "../stores/stateSlice";
+import { SET_DATA } from "../stores/mapSlice";
 
-const MapView = ({}) => {
+const MapView = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
@@ -17,13 +19,13 @@ const MapView = ({}) => {
 
   useEffect(() => {
     getHouseDate();
+    dispatch(SET_STATE({ mode: "INIT_MAP", page: "MAP" }));
   }, []);
 
   const getHouseDate = async () => {
-    setLoading(false);
     const ary = await getAPTLttotPblancDetail(searchData); //청약 데이터 가져오기
 
-    dispatch({ type: "MAP", initData: ary });
+    dispatch(SET_DATA(ary));
 
     setLoading(true);
   };

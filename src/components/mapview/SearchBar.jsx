@@ -3,8 +3,10 @@ import CategorySearch from "./CategorySearch";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
+import { SEARCH } from "../../stores/mapSlice";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const categoryData = [
     { id: "CS2", name: "편의점" },
     { id: "SW8", name: "지하철" },
@@ -12,19 +14,17 @@ const SearchBar = () => {
     { id: "BK9", name: "은행" },
     { id: "CE7", name: "카페" },
   ];
-
-  const dispatch = useDispatch();
-  const redux_data = useSelector((state) => state.house_data);
-
   const [inputData, setInputData] = useState("");
+  const house_data = useSelector((state) => {
+    return state.mapCounter.house_data;
+  });
 
   const handleChange = (e) => {
     setInputData(e.target.value);
-    const newDatas = redux_data.filter(
+    const newDatas = house_data.filter(
       (x) => x.HOUSE_NM.indexOf(e.target.value) !== -1
     );
-
-    dispatch({ type: "SEARCH", searched_data: newDatas });
+    dispatch(SEARCH(newDatas));
   };
 
   const onClickIcon = () => {};

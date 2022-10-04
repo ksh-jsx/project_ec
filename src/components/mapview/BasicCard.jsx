@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../Toast";
 import { useDispatch, useSelector } from "react-redux";
+import { CLICK_HOUSE_DATA } from "../../stores/mapSlice";
 
 function BasicCard({ data, i }) {
   const [likeStatus, setLikeStatus] = useState(data.like);
   const [ToastStatus, setToastStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const redux = useSelector((state) => state);
+  const mapSlice = useSelector((state) => {
+    return state.mapCounter;
+  });
 
   useEffect(() => {
     if (ToastStatus) {
@@ -19,7 +22,7 @@ function BasicCard({ data, i }) {
   const select = (i) => {
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(
-      redux.searched_data[i].HSSPLY_ADRES,
+      mapSlice.searched_data[i].HSSPLY_ADRES,
       function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
           const coords = new kakao.maps.LatLng(
@@ -27,19 +30,17 @@ function BasicCard({ data, i }) {
             result[0].x
           );
 
-          redux.kakaoMap.setLevel(3);
-          setTimeout(() => redux.kakaoMap.panTo(coords), 100);
+          mapSlice.kakaoMap.setLevel(3);
+          setTimeout(() => mapSlice.kakaoMap.panTo(coords), 100);
         } else {
           setToastStatus(true);
         }
       }
     );
-    dispatch({ type: "CLICK_HOUSE_DATA", id: data.HOUSE_MANAGE_NO });
+    dispatch(CLICK_HOUSE_DATA(data.HOUSE_MANAGE_NO));
   };
 
   const onClickLike = () => {};
-
-  useEffect(() => {}, []);
 
   return (
     <div onClick={() => select(i)}>

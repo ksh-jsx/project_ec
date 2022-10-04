@@ -59,11 +59,10 @@ export const getAPTLttotPblancMdl = async (data) => {
 export const signup = async (data) => {
   try {
     const res = await axios.post(`http://127.0.0.1:8080/auth/signup`, {
-      name: data.name,
+      name: "kim", //data.name,
       email: data.email,
       password: data.pwd,
     });
-    console.log(res.status);
     return res.status;
   } catch (err) {
     throw err;

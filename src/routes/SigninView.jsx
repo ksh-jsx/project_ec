@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../assets/css/signview.css";
 import Signin from "../components/signview/Signin";
 import Social from "../components/signview/Social";
+import { useDispatch } from "react-redux";
+import { SET_STATE } from "../stores/stateSlice";
 
-const SigninView = ({}) => {
+const SigninView = () => {
+  const dispatch = useDispatch();
+
   const [isSocialLogin, setIsSocialLogin] = useState(true);
 
   const toggleAccount = () => setIsSocialLogin((prev) => !prev);
@@ -20,7 +24,9 @@ const SigninView = ({}) => {
     );
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(SET_STATE({ mode: "INIT_SIGNIN", page: "SIGNIN" }));
+  }, []);
 
   return (
     <div className="authWrapper">

@@ -1,6 +1,7 @@
 /*global kakao*/
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { SET_MAP, MAPEVENT } from "../../stores/mapSlice";
 
 const clustererStyle = [
   {
@@ -36,8 +37,9 @@ const clustererStyle = [
 const KakaoMap = () => {
   const myPosContent = '<div class="myPos"></div>';
   const dispatch = useDispatch();
-  const redux = useSelector((state) => state);
-
+  const mapSlice = useSelector((state) => {
+    return state.mapCounter;
+  });
   const generateMap = () => {
     const container = document.getElementById("map");
     const options = {
@@ -46,15 +48,15 @@ const KakaoMap = () => {
     };
 
     const map = new kakao.maps.Map(container, options);
-    dispatch({ type: "SET_MAP", kakaoMap: map });
     const ps = new kakao.maps.services.Places(map);
+    dispatch(SET_MAP(map));
 
     kakao.maps.event.addListener(map, "zoom_changed", () => {
-      dispatch({ type: "MAPEVENT", ps: ps });
+      dispatch(MAPEVENT(ps));
     });
 
     kakao.maps.event.addListener(map, "dragend", function () {
-      dispatch({ type: "MAPEVENT", ps: ps });
+      dispatch(MAPEVENT(ps));
     });
 
     const clusterer = new kakao.maps.MarkerClusterer({
@@ -82,9 +84,7 @@ const KakaoMap = () => {
         map.setCenter(myPos);
       });
     }
-    redux.house_data?.map(function (x, i) {
-      createDataLocation(clusterer, x, i);
-    });
+    mapSlice.house_data?.map((x, i) => createDataLocation(clusterer, x, i));
   };
 
   const createDataLocation = (clusterer, data, i) => {
@@ -102,7 +102,7 @@ const KakaoMap = () => {
 
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.CustomOverlay({
-          map: redux.kakaoMap,
+          map: mapSlice.kakaoMap,
           position: coords,
           content: content2,
           clickable: true,
@@ -120,13 +120,11 @@ const KakaoMap = () => {
       .getElementsByClassName("cardBox")[0]
       .scrollTo({ top: location, behavior: "smooth" }); //스크롤 이동
 
-    redux.kakaoMap.setLevel(3);
+    mapSlice.kakaoMap.setLevel(3);
     setTimeout(
-      () => redux.kakaoMap.panTo(new kakao.maps.LatLng(lat, lng)),
+      () => mapSlice.kakaoMap.panTo(new kakao.maps.LatLng(lat, lng)),
       100
     );
-
-    dispatch({ type: "CLICK_CATEGORY", i: i });
   };
 
   useEffect(() => {

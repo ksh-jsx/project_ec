@@ -1,24 +1,33 @@
 /*global kakao*/
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  CLICK_CATEGORY,
+  MAPEVENT,
+  DELETE_CATEGORY_MARKERS,
+} from "../../stores/mapSlice";
 
 const CategorySearch = ({ id, name, i }) => {
   const dispatch = useDispatch();
 
-  const clickedCategoryId = useSelector((state) => state.clickedCategoryId);
-  const map_clicked_data_category = useSelector(
-    (state) => state.map_clicked_data_category
-  );
-  const kakaoMap = useSelector((state) => state.kakaoMap);
+  const clickedCategoryId = useSelector((state) => {
+    return state.mapCounter.clickedCategoryId;
+  });
+  const map_clicked_data_category = useSelector((state) => {
+    return state.mapCounter.map_clicked_data_category;
+  });
+  const kakaoMap = useSelector((state) => {
+    return state.mapCounter.kakaoMap;
+  });
   const ps = new kakao.maps.services.Places(kakaoMap);
 
   const onCategoryClick = () => {
-    if (clickedCategoryId) dispatch({ type: "DELETE_CATEGORY_MARKERS" });
+    if (clickedCategoryId) dispatch(DELETE_CATEGORY_MARKERS());
     if (clickedCategoryId === id) {
-      dispatch({ type: "CLICK_CATEGORY", i: null, clickedCategoryId: null });
+      dispatch(CLICK_CATEGORY({ i: null, clickedCategoryId: null }));
     } else {
-      dispatch({ type: "CLICK_CATEGORY", i: i, clickedCategoryId: id });
-      dispatch({ type: "MAPEVENT", ps: ps });
+      dispatch(CLICK_CATEGORY({ i: i, clickedCategoryId: id }));
+      dispatch(MAPEVENT(ps));
     }
   };
 

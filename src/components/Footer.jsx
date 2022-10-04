@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const current_page = useSelector((state) => state.current_page);
-
+  const current_page = useSelector((state) => {
+    return state.stateCounter.current_page;
+  });
   return (
     <div className="footer">
       <Link to="/">

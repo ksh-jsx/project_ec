@@ -5,7 +5,7 @@ import "./assets/css/main.css";
 import "./assets/css/loading.css";
 
 import { Provider } from "react-redux";
-import store from "./stores/store";
+import store from "./stores/toolKitStore";
 import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(

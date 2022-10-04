@@ -1,42 +1,17 @@
 /*global kakao*/
 import { legacy_createStore as createStore } from "redux";
 
-export const TOKEN_TIME_OUT = 600 * 1000;
-
 const initState = {
-  mode: "WELCOME",
-  current_page: "HOME",
-  authenticated: false,
-  accessToken: null,
-  expireTime: null,
-  house_data: null,
-  searched_data: null,
-  kakaoMap: null,
-  categoryMarkers: null,
-  clickedCategoryId: null,
-  clickedDataId: null,
+  house_data: null, //청약 데이터
+  searched_data: null, //검색된 청약 데이터
+  kakaoMap: null, //카카오맵 객체
+  categoryMarkers: null, //클릭한 카테고리의 마커들
+  clickedCategoryId: null, //클릭한 카테고리의 ID
+  clickedDataId: null, //클릭한 청약매물 마커의 ID
   map_clicked_data_category: Array(5).fill(false),
 };
 
 const reducer = (state = initState, action) => {
-  if (action.type === "SET_TOKEN") {
-    return {
-      ...state,
-      current_page: "HOME",
-      authenticated: true,
-      accessToken: action.token,
-      expireTime: new Date().getTime() + TOKEN_TIME_OUT,
-    };
-  }
-  if (action.type === "DELETE_TOKEN") {
-    return {
-      ...state,
-      current_page: "HOME",
-      authenticated: false,
-      accessToken: null,
-      expireTime: null,
-    };
-  }
   if (action.type === "HOME") {
     return {
       ...state,
@@ -76,7 +51,6 @@ const reducer = (state = initState, action) => {
     };
   }
   if (action.type === "CLICK_HOUSE_DATA") {
-    console.log(action.id);
     return {
       ...state,
       clickedDataId: action.id,

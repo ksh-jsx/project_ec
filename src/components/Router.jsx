@@ -15,7 +15,9 @@ import Footer from "./Footer";
 import { useSelector } from "react-redux";
 
 const AppRouter = () => {
-  const authenticated = useSelector((state) => state.authenticated);
+  const authenticated = useSelector((state) => {
+    return state.tokenCounter.authenticated;
+  });
 
   return (
     <Router>

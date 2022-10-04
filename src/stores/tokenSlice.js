@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const TOKEN_TIME_OUT = 600 * 1000;
 
 export const tokenSlice = createSlice({
-  name: "authToken",
+  name: "tokenSlice",
   initialState: {
     authenticated: false,
     accessToken: null,
@@ -23,6 +23,5 @@ export const tokenSlice = createSlice({
   },
 });
 
+export default tokenSlice;
 export const { SET_TOKEN, DELETE_TOKEN } = tokenSlice.actions;
-
-export default tokenSlice.reducer;

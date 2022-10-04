@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Main from "../components/Main";
 import { useDispatch } from "react-redux";
+import { SET_STATE } from "../stores/stateSlice";
 
-const settings = {
-  dots: true,
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-};
-
-const Home = ({}) => {
+const Home = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    dispatch({ type: "HOME" });
+    dispatch(SET_STATE({ mode: "INIT_HOME", page: "HOME" }));
   }, []);
 
   return (
