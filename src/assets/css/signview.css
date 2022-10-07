@@ -11,7 +11,7 @@
   width: calc(100% - 30px);
 }
 .authWrapper input {
-  color: #858585;
+  color: var(--gray50);
   font-size: 16px;
 }
 .authWrapper input:not(.signinRadio):not(.pwd1):not(.pwd2),
@@ -35,13 +35,13 @@
 }
 
 .authWrapper input[type="submit"] {
-  background-color: #6297ff;
-  border: 1px solid #6297ff;
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
   width: 100%;
 }
 .authWrapper input[type="button"] {
-  background-color: #c0d6ff;
-  border: 1px solid #c0d6ff;
+  background-color: var(--primary30);
+  border: 1px solid var(--primary30);
   width: 100%;
 }
 /*.logoContainer*/
@@ -65,7 +65,7 @@
   align-items: center;
 }
 .signupDescription > span {
-  color: #858585;
+  color: var(--gray50);
   font-size: 20px;
 }
 .signupContainer {
@@ -133,7 +133,7 @@
   top: -1.5px;
 }
 .radioContainer label {
-  color: #858585;
+  color: var(--gray50);
   font-size: 12px;
   padding-left: 1px;
 }
@@ -257,6 +257,6 @@ button.google > img {
   background-color: #ffafaf;
 }
 #gray {
-  color: #ebebeb;
-  background-color: #ebebeb;
+  color: var(--primary10);
+  background-color: var(--primary10);
 }

@@ -13,19 +13,19 @@ img {
   height: 50px;
   padding: 0 15px;
   font-size: 20px;
-  color: #858585;
+  color: var(--gray50);
   padding-top: 15vh;
 }
 .SurveyViewWrapper .progressBar {
   width: calc(100% - 30px);
   height: 5px;
   margin: 30px 15px;
-  background-color: #ebebeb;
+  background-color: var(--gray10);
   border-radius: 30px;
 }
 .SurveyViewWrapper .innerProgressBar {
   height: 100%;
-  background-color: #6297ff;
+  background-color: var(--primary);
   border-radius: 30px;
 }
 .SurveyViewWrapper .slick-arrow {
@@ -66,7 +66,7 @@ img {
 }
 .SurveyViewWrapper .title > span {
   font-weight: 600;
-  color: #6297ff;
+  color: var(--primary);
 }
 .SurveyViewWrapper .article {
   width: 100%;
@@ -81,7 +81,7 @@ img {
 .SurveyViewWrapper .article > button {
   width: 44%;
   margin: 8px 3%;
-  color: #858585;
+  color: var(--gray50);
 }
 .SurveyViewWrapper .article > input {
   width: calc(100% - 10px);
@@ -89,7 +89,7 @@ img {
   padding-left: 10px;
   border: 0;
   font-size: 16px;
-  color: #858585;
+  color: var(--gray50);
 }
 .SurveyViewWrapper .article > div {
   width: 98%;
@@ -113,8 +113,8 @@ img {
   margin: 0 8px;
   float: left;
   border-radius: 8px;
-  border: 1px solid #c2c2c2;
-  color: #858585;
+  border: 1px solid var(--gray30);
+  color: var(--gray50);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,7 +124,7 @@ img {
 .SurveyViewWrapper .article > div:first-child {
   height: 48px;
   font-size: 16px;
-  color: #858585;
+  color: var(--gray50);
   justify-content: center;
 }
 .SurveyViewWrapper .submit {
@@ -141,13 +141,13 @@ img {
   border: 0;
   border-radius: 8px;
   letter-spacing: 1px;
-  background-color: #6297ff;
+  background-color: var(--primary);
   color: #fff;
   font-size: 16px;
 }
 .SurveyViewWrapper .on {
-  border: 1px solid #6297ff !important;
-  color: #6297ff !important;
+  border: 1px solid var(--primary) !important;
+  color: var(--primary) !important;
 }
 /*media*/
 @media (max-height: 750px) {

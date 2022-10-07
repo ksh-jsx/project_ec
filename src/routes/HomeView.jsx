@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Main from "../components/Main";
+import "../assets/css/home.css";
+import Home from "../components/homeview/Home";
 import { useDispatch } from "react-redux";
 import { SET_STATE } from "../stores/stateSlice";
 
-const Home = () => {
+const HomeView = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -13,9 +14,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container">
-      {loading ? <Main /> : <div>loading...</div>}
+    <div className="mapViewWrapper">
+      {loading ? (
+        <div>
+          <Home />
+        </div>
+      ) : (
+        <div>loading...</div>
+      )}
     </div>
   );
 };
-export default Home;
+export default HomeView;

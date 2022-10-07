@@ -5,11 +5,12 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Home from "../routes/Home";
+import HomeView from "../routes/HomeView";
 import MapView from "../routes/MapView";
 import SigninView from "../routes/SigninView";
 import SignupView from "../routes/SignupView";
 import SurveyView from "../routes/SurveyView";
+import Header from "./Header";
 import Footer from "./Footer";
 
 import { useSelector } from "react-redux";
@@ -21,22 +22,25 @@ const AppRouter = () => {
 
   return (
     <Router>
-      <div>
+      {!authenticated || window.location.pathname === "/survey" ? (
+        <></>
+      ) : (
+        <Header />
+      )}
+      <div className="main">
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={authenticated ? <Home /> : <SigninView />}
-          />
           {authenticated ? (
             <>
+              <Route exact path="/" element={<HomeView />} />
               <Route exact path="/map" element={<MapView />} />
               <Route exact path="/survey" element={<SurveyView />} />
             </>
           ) : (
-            <Route exact path="/signup" element={<SignupView />} />
+            <>
+              <Route exact path="/" element={<SigninView />} />
+              <Route exact path="/signup" element={<SignupView />} />
+            </>
           )}
-          {/*<Route exact path="/signin" element={<SigninView />} />*/}
         </Routes>
       </div>
       {!authenticated || window.location.pathname === "/survey" ? (

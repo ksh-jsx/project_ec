@@ -1,3 +1,14 @@
+:root {
+  --primary: #6297ff; /* var(--primary)   */
+  --primary70: #91b6ff; /* var(--primary70) */
+  --primary30: #c0d6ff; /* var(--primary30) */
+  --primary10: #eff5ff; /* var(--primary10) */
+  --dark100: #333333; /* var(--dark100)   */
+  --gray50: #858585; /* var(--gray50)    */
+  --gray30: #c2c2c2; /* var(--gray30)    */
+  --gray10: #ebebeb; /* var(--gray10)    */
+}
+
 @font-face {
   font-family: "Pretandard_m";
   src: url("../font/Pretendard-Regular.otf") format("truetype");
@@ -12,7 +23,7 @@ input::placeholder {
   font-family: "Pretandard_m";
 }
 input::placeholder {
-  color: #c2c2c2;
+  color: var(--gray30);
   font-size: 16px;
 }
 html,
@@ -32,9 +43,6 @@ button {
 a {
   text-decoration: none;
 }
-#root > div:first-child {
-  height: calc(100% - 88px);
-}
 .toast {
   position: fixed;
   top: 25%;
@@ -43,19 +51,62 @@ a {
   min-width: 220px;
   transform: translate(-50%, -50%);
   z-index: 3;
-  background: #6297ff;
+  background: var(--primary);
   opacity: 0.8;
   color: #fff;
   border-radius: 8px;
   border: 0;
   text-align: center;
 }
-
+.main {
+  height: calc(100% - 88px);
+}
+/*header*/
+.header {
+  width: calc(100% - 30px);
+  height: 100px;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px 15px;
+}
+.inMap {
+  filter: brightness(38.5%);
+  background: linear-gradient(
+    rgba(51, 51, 51, 0.5) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+}
+.center,
+.left,
+.right {
+  width: 33%;
+}
+.center {
+  text-align: center;
+  position: relative;
+  top: 15px;
+  font-size: 16px;
+}
+.img_container {
+  width: 48px;
+  height: 48px;
+}
+.alarm {
+  float: right;
+}
+.like {
+  float: right;
+}
+/*footer*/
 .footer {
   width: 100%;
   height: 88px;
   border-radius: 24px 24px 0 0;
-  background-color: #fff;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.05) 0px -7px 8px;
   position: fixed;
   bottom: 0;

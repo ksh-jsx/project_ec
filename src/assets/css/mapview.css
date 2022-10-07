@@ -1,5 +1,5 @@
 /*맵뷰*/
-.mapViewWrapper{
+.mapViewWrapper {
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -7,17 +7,17 @@
 }
 
 /*mapviewContainer > drawerContainer*/
-.drawerContainer{
+.drawerContainer {
   position: absolute;
   z-index: 2;
 }
-.drawerContainer > input{
+.drawerContainer > input {
   position: fixed;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-.puller{
+.puller {
   width: 30px;
   height: 2px;
   background-color: #bdbdbd;
@@ -26,71 +26,70 @@
   top: 8px;
   left: calc(50% - 15px);
 }
-.drawerBox{
+.drawerBox {
   position: absolute;
   height: 70px;
-  top:-70px;
+  top: -70px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   visibility: visible;
   right: 0;
   left: 0;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   box-shadow: rgba(0, 0, 0, 0.1) 0px -7px 8px;
 }
-.drawerBoxSort{
+.drawerBoxSort {
   width: 95%;
   margin: 0 auto;
-  padding-top: 30px;  
+  padding-top: 30px;
   display: flex;
   flex-direction: row-reverse;
 }
-.drawerBoxSort span{
+.drawerBoxSort span {
   font-size: 12px;
   height: 18px;
   position: relative;
   top: -4px;
-  color:#8E8E8E
+  color: #8e8e8e;
 }
-.drawerBoxSort img{
+.drawerBoxSort img {
   width: 18px;
   height: 18px;
 }
-.cardBox{
-  background-color: #F8F8F8;
-  height:100%;
+.cardBox {
+  background-color: #f8f8f8;
+  height: 100%;
   overflow: scroll;
 }
-.cardBox > div{
-  width:95%;
+.cardBox > div {
+  width: 95%;
   height: 160px;
-  margin:0 auto;
+  margin: 0 auto;
   margin-bottom: 15px;
   border-radius: 8px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: #fff;
 }
-.cardInner{
-  height:100%;
+.cardInner {
+  height: 100%;
   padding: 0 15px 0 15px;
 }
-.cardInner > div{
+.cardInner > div {
   float: left;
-  
 }
-.cardLeft{
+.cardLeft {
   width: calc(70% - 10px);
   margin-right: 10px;
   display: flex;
   flex-direction: column;
   padding: 22px 0 22px 0;
 }
-.cardLeft .apt_place{
-  color: #8E8E8E;
+.cardLeft .apt_place {
+  color: #8e8e8e;
   font-size: 12px;
   font-weight: bold;
 }
-.cardLeft .apt_name{
+.cardLeft .apt_name {
   white-space: nowrap;
   float: left;
   font-weight: bold;
@@ -99,54 +98,72 @@
   font-size: 15px;
   padding: 8px 0 13px 0;
 }
-.cardLeft .like_count > span{
+.cardLeft .like_count > span {
   float: right;
   font-size: 10px;
-  color:#8E8E8E;
+  color: #8e8e8e;
   position: relative;
-  top:2px
+  top: 2px;
 }
-.cardLeft .like_count > span:last-child{
+.cardLeft .like_count > span:last-child {
   width: 8px;
   height: 10px;
   position: relative;
-  top:4px;
+  top: 4px;
   margin-right: 1px;
-  background-color: #E8E8E8;
-  clip-path: polygon(0 0, 0 0, 100% 0, 100% calc(100% - 3px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 3px), 0 0)
+  background-color: #e8e8e8;
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% calc(100% - 3px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    0 calc(100% - 3px),
+    0 0
+  );
 }
 
-.cardLeft .apt_period{
-  background-color: #F8F8F8;
+.cardLeft .apt_period {
+  background-color: #f8f8f8;
   max-width: 200px;
   border-radius: 8px;
-  color: #8E8E8E;
+  color: #8e8e8e;
   font-size: 12px;
   padding: 10px;
   line-height: 150%;
 }
-.cardRight{
- width: 30%;
- height: calc(100% - 22px);
- padding-bottom: 22px;
- display: flex;
- flex-direction: column;
- align-items: flex-end;
- justify-content:space-between ;
+.cardRight {
+  width: 30%;
+  height: calc(100% - 22px);
+  padding-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
 }
-.cardRight .like{
+.cardRight .like {
   width: 25px;
   height: 30px;
-  clip-path: polygon(0 0, 0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 8px), 0 0)
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0 calc(100% - 8px),
+    0 0
+  );
 }
-.cardRight .like.on{
-  background-color: #6297FF;
+.cardRight .like.on {
+  background-color: var(--primary);
 }
-.cardRight .like.off{
-  background-color: #E8E8E8;
+.cardRight .like.off {
+  background-color: #e8e8e8;
 }
 
-.cardRight .apt_img{
+.cardRight .apt_img {
   width: 95px;
   height: 95px;
   position: relative;
@@ -154,26 +171,25 @@
   background: url("../img/apt_ex.jfif");
   background-size: cover;
 }
-.css-1u2w381-MuiModal-root-MuiDrawer-root{
-  position: relative !important;  
+.css-1u2w381-MuiModal-root-MuiDrawer-root {
+  position: relative !important;
 }
 
 /*mapviewContainer > searchContainer*/
-.searchContainer{
+.searchContainer {
   width: 90%;
-  
   min-width: 350px;
   position: fixed;
   z-index: 3;
-  top: 5%;
+  top: 100px;
   left: 50%;
-  
+
   transform: translateX(-50%);
 }
-.searchContainer > div{
+.searchContainer > div {
   height: 50px;
 }
-.searchContainer > div:last-child{
+.searchContainer > div:last-child {
   overflow-x: auto;
   white-space: nowrap;
   -ms-overflow-style: none; /* IE and Edge */
@@ -182,126 +198,124 @@
 .searchContainer > div:last-child::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-.search{
+.search {
   width: calc(98% - 48px);
   height: 48px;
   margin-right: 2%;
   float: left;
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
-.search > input[type=text]{
-  padding:0 0 0 15px;
+.search > input[type="text"] {
+  padding: 0 0 0 15px;
   border-radius: 8px;
   height: 100%;
-  border:0;
+  border: 0;
   font-size: 15px;
 }
-.search > input[type=text]::placeholder{
-  color:#E8E8E8
+.search > input[type="text"]::placeholder {
+  color: #e8e8e8;
 }
 
-.icon{
-  width:48px;
+.icon {
+  width: 48px;
   height: 48px;
-  float:left;
-  background-color: #6297FF;
+  float: left;
+  background-color: var(--primary);
   border-radius: 8px;
 }
-.icon > *{
+.icon > * {
   width: 100%;
   height: 100%;
-  top:50%;
-  lefT:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.icon > * > *{
+.icon > * > * {
   width: 1.3em !important;
   height: 1.3em !important;
 }
-.categorys{
+.categorys {
   height: 100%;
   width: 500px;
-  
 }
-.category{
-  
+.category {
   height: 22px;
   padding: 8px;
   margin-left: 8px;
   margin-top: 10px;
   float: left;
-  background: #FFF;
+  background: #fff;
   border-radius: 8px;
   display: flex;
   align-items: center;
 }
-.categoryImg{
-   height: 100%;
-   padding-right: 5px;
+.categoryImg {
+  height: 100%;
+  padding-right: 5px;
 }
-.category > span{
-  color: #6297FF;
-  font-size: 14px
+.category > span {
+  color: var(--primary);
+  font-size: 14px;
 }
 
 /* mapviewContainer > mapContainer */
-.mapContainer{
+.mapContainer {
   width: 100%;
   position: absolute;
   z-index: 1;
 }
-#map{
+#map {
   width: 100%;
   height: 100vh;
   margin: 0 auto;
 }
-.imageMarker{
-  display: flex;  
+.imageMarker {
+  display: flex;
   width: 66px;
   height: 60px;
   background-size: cover !important;
   background-position: center;
   background: url("../img/marker1.png");
 }
-.imageMarker > div{
+.imageMarker > div {
   width: 100%;
   margin: 0 auto;
   text-align: center;
   padding-top: 10px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 13px;
 }
-.datePickerWrapper{
+.datePickerWrapper {
   display: flex;
 }
-.datePicker{
-  width:150px;
+.datePicker {
+  width: 150px;
 }
-.datePicker input{
+.datePicker input {
   font-size: 13px;
 }
 
-.myPos{
-  width:10px;
-  height:10px;
-  background-color: #E51B1C;
+.myPos {
+  width: 10px;
+  height: 10px;
+  background-color: #e51b1c;
   border-radius: 30px;
   border: 2px solid #ffffff;
-  box-shadow : 2px 2px 10px silver
+  box-shadow: 2px 2px 10px silver;
 }
 
-.active{  
-  border: 1px solid #6297FF;
+.active {
+  border: 1px solid var(--primary);
 }
-.inactive{
+.inactive {
   border: 0;
 }
 
-.active_category{
-  background-color: #EFF5FF;
+.active_category {
+  background-color: var(--primary10);
 }
-.inactive_category{
-  background-color: #FFF;
+.inactive_category {
+  background-color: #fff;
 }
