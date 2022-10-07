@@ -1,6 +1,4 @@
-import { Alert } from "@mui/material";
 import axios from "axios";
-import jsonp from "simple-jsonp-promise";
 
 const Address = "https://api.odcloud.kr/api";
 

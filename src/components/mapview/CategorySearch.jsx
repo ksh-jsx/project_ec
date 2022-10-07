@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  SET_MARKERS,
   CLICK_CATEGORY,
-  MAPEVENT,
   DELETE_CATEGORY_MARKERS,
 } from "../../stores/mapSlice";
 
@@ -19,15 +19,30 @@ const CategorySearch = ({ id, name, i }) => {
   const kakaoMap = useSelector((state) => {
     return state.mapCounter.kakaoMap;
   });
-  const ps = new kakao.maps.services.Places(kakaoMap);
-
   const onCategoryClick = () => {
     if (clickedCategoryId) dispatch(DELETE_CATEGORY_MARKERS());
     if (clickedCategoryId === id) {
       dispatch(CLICK_CATEGORY({ i: null, clickedCategoryId: null }));
     } else {
+      let markers = [];
       dispatch(CLICK_CATEGORY({ i: i, clickedCategoryId: id }));
-      dispatch(MAPEVENT(ps));
+      const ps = new kakao.maps.services.Places(kakaoMap);
+      ps.categorySearch(
+        id,
+        (data, status) => {
+          if (status === kakao.maps.services.Status.OK) {
+            for (let i = 0; i < data.length; i++) {
+              const marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(data[i].y, data[i].x),
+                map: kakaoMap,
+              });
+              markers.push(marker);
+            }
+            dispatch(SET_MARKERS(markers));
+          }
+        },
+        { useMapBounds: true }
+      );
     }
   };
 

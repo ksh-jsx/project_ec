@@ -1,7 +1,7 @@
 /*global kakao*/
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_MAP, MAPEVENT } from "../../stores/mapSlice";
+import { SET_MARKERS, SET_MAP, MAPEVENT } from "../../stores/mapSlice";
 
 const clustererStyle = [
   {
@@ -33,13 +33,15 @@ const clustererStyle = [
     lineHeight: "61px",
   },
 ];
-
+let map;
 const KakaoMap = () => {
   const myPosContent = '<div class="myPos"></div>';
   const dispatch = useDispatch();
+  const [isFirst, setIsFirst] = useState(true);
   const mapSlice = useSelector((state) => {
     return state.mapCounter;
   });
+
   const generateMap = () => {
     const container = document.getElementById("map");
     const options = {
@@ -47,17 +49,9 @@ const KakaoMap = () => {
       level: 13,
     };
 
-    const map = new kakao.maps.Map(container, options);
-    const ps = new kakao.maps.services.Places(map);
+    map = new kakao.maps.Map(container, options);
+
     dispatch(SET_MAP(map));
-
-    kakao.maps.event.addListener(map, "zoom_changed", () => {
-      dispatch(MAPEVENT(ps));
-    });
-
-    kakao.maps.event.addListener(map, "dragend", function () {
-      dispatch(MAPEVENT(ps));
-    });
 
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
@@ -85,6 +79,26 @@ const KakaoMap = () => {
       });
     }
     mapSlice.house_data?.map((x, i) => createDataLocation(clusterer, x, i));
+  };
+
+  const setCategoryMarkers = (ps, map) => {
+    let markers = [];
+    ps.categorySearch(
+      mapSlice.clickedCategoryId,
+      (data, status) => {
+        if (status === kakao.maps.services.Status.OK) {
+          for (let i = 0; i < data.length; i++) {
+            const marker = new kakao.maps.Marker({
+              position: new kakao.maps.LatLng(data[i].y, data[i].x),
+              map: map,
+            });
+            markers.push(marker);
+          }
+          dispatch(SET_MARKERS(markers));
+        }
+      },
+      { useMapBounds: true }
+    );
   };
 
   const createDataLocation = (clusterer, data, i) => {
@@ -128,8 +142,21 @@ const KakaoMap = () => {
   };
 
   useEffect(() => {
-    generateMap();
-  }, []);
+    if (isFirst) {
+      generateMap();
+      setIsFirst((prev) => !prev);
+    }
+    if (mapSlice.clickedCategoryId) {
+      const ps = new kakao.maps.services.Places(map);
+      kakao.maps.event.addListener(map, "zoom_changed", () => {
+        setCategoryMarkers(ps, map);
+      });
+
+      kakao.maps.event.addListener(map, "dragend", () => {
+        setCategoryMarkers(ps, map);
+      });
+    }
+  }, [mapSlice.clickedCategoryId]);
 
   return (
     <>
