@@ -13,6 +13,10 @@
   font-family: "Pretandard_m";
   src: url("../font/Pretendard-Regular.otf") format("truetype");
 }
+@font-face {
+  font-family: "Pretandard_l";
+  src: url("../font/Pretendard-Thin.otf") format("truetype");
+}
 input:focus {
   outline: none;
 }
@@ -64,14 +68,14 @@ a {
 /*header*/
 .header {
   width: calc(100% - 30px);
-  height: 100px;
+  height: 50px;
   position: fixed;
   top: 0;
   z-index: 9999;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 15px;
+  padding: 40px 15px 0 15px;
 }
 .inMap {
   filter: brightness(38.5%);
@@ -80,9 +84,9 @@ a {
     rgba(255, 255, 255, 0) 40%
   );
 }
-.center,
-.left,
-.right {
+.header > .center,
+.header > .left,
+.header > .right {
   width: 33%;
 }
 .center {

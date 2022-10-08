@@ -1,0 +1,99 @@
+.homeViewWrapper {
+  width: calc(100% - 30px);
+  height: calc(100% - 90px);
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 90px;
+  padding: 0 15px;
+}
+
+/*title*/
+.title {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.title > .left {
+  float: left;
+  line-height: 130%;
+}
+.title > .right {
+  float: right;
+}
+.imgInText1 {
+  width: 20px;
+  position: relative;
+  top: 4px;
+}
+.viewMore {
+  font-size: 12px;
+}
+.progressCircle {
+  width: 62px;
+  height: 62px;
+  background-color: #fff;
+  border-radius: 40px;
+  border: 2px solid var(--primary);
+}
+.progressCircle > img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+
+/*nav*/
+.nav {
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  height: 70px;
+}
+.nav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.nav > div {
+  height: 50px;
+  float: left;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 10px 0;
+}
+.nav .tag {
+  height: 16px;
+  padding: 10px 7px;
+  font-size: 14px;
+  margin-right: 10px;
+  float: left;
+  border-radius: 8px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  font-family: "Pretandard_l";
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 10px;
+}
+.nav .tag.type1 {
+  background-color: var(--primary);
+  color: #fff;
+}
+.nav .tag.type2.on {
+  background-color: var(--primary70);
+  color: #fff;
+}
+.nav .tag.type2.off {
+  background-color: #fff;
+  color: var(--primary70);
+  font-weight: 600;
+}
+.nav .tag.type1 > span {
+  font-weight: 600;
+}
+.nav .tag.type1 > img {
+  width: 15px;
+}

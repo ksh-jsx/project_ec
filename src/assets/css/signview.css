@@ -235,13 +235,12 @@ button.google > img {
   font-size: 12px;
   margin: 0 1px;
   border-radius: 10px;
-
   position: relative;
   top: 1px;
 }
 .securityGrade > span:last-child {
   width: 25px;
-  background-color: #fff !important;
+  background-color: #f8f8f8 !important;
   top: 0px;
 }
 #high {
