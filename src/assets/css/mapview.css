@@ -90,13 +90,21 @@
   font-weight: bold;
 }
 .cardLeft .apt_name {
-  white-space: nowrap;
   float: left;
   font-weight: bold;
+  font-size: 18px;
+  padding: 8px 0 13px 0;
+}
+.cardLeft .apt_name > div:first-child {
+  width: calc(100% - 35px);
+  float: left;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 15px;
-  padding: 8px 0 13px 0;
+}
+.cardLeft .like_count {
+  float: left;
+  width: 35px;
 }
 .cardLeft .like_count > span {
   float: right;

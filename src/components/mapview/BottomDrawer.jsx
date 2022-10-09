@@ -20,8 +20,6 @@ function BottomDrawer() {
     dispatch(SORT());
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div>
       <Global

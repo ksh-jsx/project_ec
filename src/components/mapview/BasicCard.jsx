@@ -13,12 +13,6 @@ function BasicCard({ data, i }) {
     return state.mapCounter;
   });
 
-  useEffect(() => {
-    if (ToastStatus) {
-      setTimeout(() => setToastStatus(false), 1000);
-    }
-  }, [ToastStatus]);
-
   const select = (i) => {
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(
@@ -42,6 +36,12 @@ function BasicCard({ data, i }) {
 
   const onClickLike = () => {};
 
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => setToastStatus(false), 1000);
+    }
+  }, [ToastStatus]);
+
   return (
     <div onClick={() => select(i)}>
       {ToastStatus && <Toast msg="등록된 위치 없음" />}
@@ -53,11 +53,11 @@ function BasicCard({ data, i }) {
             {data.HSSPLY_ADRES.split(" ")[1]}
           </div>
           <div className="apt_name">
-            <span>{data.HOUSE_NM}</span>
-            <span className="like_count">
+            <div>{data.HOUSE_NM}</div>
+            <div className="like_count">
               <span>254</span>
               <span />
-            </span>
+            </div>
           </div>
           <div className="apt_period">
             <div>

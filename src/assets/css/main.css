@@ -15,7 +15,11 @@
 }
 @font-face {
   font-family: "Pretandard_l";
-  src: url("../font/Pretendard-Thin.otf") format("truetype");
+  src: url("../font/Pretendard-Light.otf") format("truetype");
+}
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 input:focus {
   outline: none;
@@ -34,12 +38,12 @@ html,
 body,
 #root {
   margin: 0;
-  height: 100%;
-  overflow: hidden;
+  overflow: auto;
   font-family: "Pretandard_m";
   letter-spacing: 1px;
   background-color: #f8f8f8;
 }
+
 button {
   border: 0;
   background-color: rgba(255, 255, 255, 0);
@@ -62,14 +66,11 @@ a {
   border: 0;
   text-align: center;
 }
-.main {
-  height: calc(100% - 88px);
-}
 /*header*/
 .header {
   width: calc(100% - 30px);
   height: 50px;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 9999;
   display: flex;

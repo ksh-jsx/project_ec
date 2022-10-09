@@ -23,7 +23,7 @@ const SignupView = () => {
       <div className="signupContainer">
         <Signup />
         <div className="etcContainer">
-          <Link to="/signin">
+          <Link to="/">
             <span>로그인 화면으로 돌아가기</span>
           </Link>
         </div>

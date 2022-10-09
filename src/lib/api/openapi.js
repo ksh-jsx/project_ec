@@ -35,6 +35,7 @@ export const getAPTLttotPblancDetail = async () => {
       return 0;
     });
     new_res = new_res.map((x) => (x = { ...x, like: false }));
+    //console.log(new_res);
     return new_res;
   } catch (err) {
     console.log(err);

@@ -19,6 +19,7 @@ const CategorySearch = ({ id, name, i }) => {
   const kakaoMap = useSelector((state) => {
     return state.mapCounter.kakaoMap;
   });
+
   const onCategoryClick = () => {
     if (clickedCategoryId) dispatch(DELETE_CATEGORY_MARKERS());
     if (clickedCategoryId === id) {
@@ -45,8 +46,6 @@ const CategorySearch = ({ id, name, i }) => {
       );
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div

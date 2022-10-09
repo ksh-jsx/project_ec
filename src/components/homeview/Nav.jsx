@@ -1,0 +1,64 @@
+import React, { useState } from "react";
+
+const navs = [
+  ["국민주택", "민영주택", "신혼부부"],
+  ["접수 시작일", "접수 종료일", "신규 공고 순"],
+];
+
+const Nav = ({ sequence, type }) => {
+  const [isClick, setIsClick] = useState(new Array(3).fill("off"));
+
+  const nav = (data, type) => {
+    const tags = data.map((x, i) => {
+      return (
+        <div key={i} className="tag type1">
+          {x.indexOf("주택") !== -1 ? (
+            <>
+              <img
+                src={require("../../assets/img/emoji_medal.png")}
+                alt="img"
+              />
+              &nbsp;
+              {x}&nbsp;
+              <span>1분위</span>
+            </>
+          ) : (
+            <>
+              <img src={require("../../assets/img/emoji_ring.png")} alt="img" />
+              &nbsp;
+              {x}&nbsp;
+            </>
+          )}
+        </div>
+      );
+    });
+
+    const tags2 = data.map((x, i) => {
+      return (
+        <div
+          key={i}
+          onClick={() => {
+            let tmp_arr = new Array(3).fill(0).map((x, n) => {
+              if (n === i) return (x = "on");
+              else return (x = "off");
+            });
+            setIsClick(tmp_arr);
+          }}
+          className={"tag type2 " + isClick[i]}
+        >
+          {x}
+        </div>
+      );
+    });
+
+    return (
+      <div className="nav">
+        <div>{type === 1 ? tags : tags2}</div>
+      </div>
+    );
+  };
+
+  return nav(navs[sequence], Number(type));
+};
+
+export default Nav;

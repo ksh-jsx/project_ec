@@ -294,7 +294,6 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
   return (
     <>
       <div className="title" dangerouslySetInnerHTML={{ __html: Q }} />
-
       <div className="article">{setArticle()}</div>
       {i === 5 ? (
         <div className="submit">

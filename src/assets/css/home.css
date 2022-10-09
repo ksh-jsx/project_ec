@@ -1,10 +1,10 @@
 .homeViewWrapper {
   width: calc(100% - 30px);
-  height: calc(100% - 90px);
   max-width: 100%;
   margin: 0 auto;
   margin-top: 90px;
   padding: 0 15px;
+  margin-bottom: 108px;
 }
 
 /*title*/
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   font-family: "Pretandard_l";
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 10px;
+  box-shadow: 0px 0px 10px #dcdcdc;
 }
 .nav .tag.type1 {
   background-color: var(--primary);
@@ -96,4 +96,203 @@
 }
 .nav .tag.type1 > img {
   width: 15px;
+}
+
+/*article*/
+.calculatorContainer,
+.chungyakInfoContainer {
+  box-shadow: 0px 0px 10px #dcdcdc;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.calculatorContainer {
+  padding: 25px 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.calculatorContainer .mainTitle {
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--primary);
+  padding: 5px 0;
+}
+.calculatorContainer .subTitle {
+  font-size: 12px;
+  color: var(--gray50);
+  font-family: "Pretandard_l";
+}
+.calculatorContainer .circles {
+  padding-top: 20px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+.calculatorContainer .circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+  float: left;
+  background-color: #f8f8f8;
+  border: 1px solid var(--gray10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.calculatorContainer .circle > img {
+  width: 24px;
+  height: 26px;
+}
+
+.chungyakInfoContainer {
+  padding: 10px 20px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.chungyakInfoContainer .infoOption {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  height: 30px;
+  padding: 11px 15px;
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+}
+.chungyakInfoContainer .infoOption > img {
+  width: 32px;
+}
+.chungyakInfoContainer .infoOption > span {
+  padding-left: 10px;
+}
+
+/*CustomData*/
+.dataContainer {
+  height: 460px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.dataContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.dataContainer > div {
+  display: flex;
+}
+.dataContainer .card {
+  width: 45%;
+  max-width: 160px;
+  height: 220px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.dataContainer .card > div:not(.data_img) {
+  padding-left: 3px;
+}
+.dataContainer .data_img {
+  width: 100%;
+  height: 125px;
+  position: relative;
+  border-radius: 8px;
+  background: url("../img/apt_ex.jfif");
+  background-size: cover;
+}
+.dataContainer .data_img > img {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  left: 10px;
+  top: 10px;
+}
+.dataContainer .like {
+  position: relative;
+  right: 13px;
+  width: 20px;
+  height: 24px;
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% calc(100% - 6px),
+    calc(100% - 9px) 100%,
+    9px 100%,
+    0 calc(100% - 6px),
+    0 0
+  );
+}
+.dataContainer .like.on {
+  background-color: var(--primary);
+}
+.dataContainer .like.off {
+  background-color: #e8e8e8;
+}
+.dataContainer .data_type {
+  color: var(--gray50);
+  font-size: 10px;
+  font-family: "Pretandard_m";
+}
+.dataContainer .data_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+}
+.dataContainer .data_subTitle {
+  font-size: 14px;
+  position: relative;
+  top: -7px;
+}
+.dataContainer .like_count {
+  position: relative;
+  top: -5px;
+}
+.dataContainer .like_count > span {
+  float: left;
+  font-size: 12px;
+  color: #8e8e8e;
+  position: relative;
+  top: 2px;
+}
+.dataContainer .like_count > span:first-child {
+  width: 8px;
+  height: 10px;
+  position: relative;
+  top: 4px;
+  margin-right: 3px;
+  background-color: #e8e8e8;
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% calc(100% - 3px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    0 calc(100% - 3px),
+    0 0
+  );
+}
+/*media*/
+@media (max-width: 400px) {
+  .nav .tag {
+    font-size: 12px;
+  }
+}
+@media (max-width: 350px) {
+  .nav .tag {
+    font-size: 11px;
+  }
+  .calculatorContainer .circle {
+    width: 50px;
+    height: 50px;
+  }
+  .calculatorContainer .circle > img {
+    width: 18px;
+    height: 20px;
+  }
 }

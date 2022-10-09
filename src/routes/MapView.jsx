@@ -23,7 +23,7 @@ const MapView = () => {
   }, []);
 
   const getHouseDate = async () => {
-    const ary = await getAPTLttotPblancDetail(searchData); //청약 데이터 가져오기
+    const ary = await getAPTLttotPblancDetail(); //청약 데이터 가져오기
 
     dispatch(SET_DATA(ary));
 

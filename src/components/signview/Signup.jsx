@@ -32,12 +32,6 @@ const Signup = () => {
   const [ToastStatus, setToastStatus] = useState(false);
   const [timer, setTimer] = useState(0);
 
-  useEffect(() => {
-    if (ToastStatus) {
-      setTimeout(() => setToastStatus(false), 1000);
-    }
-  }, [ToastStatus]);
-
   const onChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
 
@@ -180,6 +174,12 @@ const Signup = () => {
       setToastStatus(true);
     }
   };
+
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => setToastStatus(false), 1000);
+    }
+  }, [ToastStatus]);
 
   return (
     <form onSubmit={onSubmit} className="signupForm">
