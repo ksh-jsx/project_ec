@@ -10,9 +10,10 @@ const SearchBar = () => {
   const categoryData = [
     { id: "CS2", name: "편의점" },
     { id: "SW8", name: "지하철" },
+    { id: "HP8", name: "병원" },
+    { id: "FD6", name: "음식점" },
     { id: "SC4", name: "학교" },
     { id: "BK9", name: "은행" },
-    { id: "CE7", name: "카페" },
   ];
   const [inputData, setInputData] = useState("");
   const house_data = useSelector((state) => {
@@ -22,7 +23,9 @@ const SearchBar = () => {
   const handleChange = (e) => {
     setInputData(e.target.value);
     const newDatas = house_data.filter(
-      (x) => x.HOUSE_NM.indexOf(e.target.value) !== -1
+      (x) =>
+        x.HOUSE_NM.indexOf(e.target.value) !== -1 ||
+        x.HSSPLY_ADRES.indexOf(e.target.value) !== -1
     );
     dispatch(SEARCH(newDatas));
   };

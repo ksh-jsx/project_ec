@@ -10,7 +10,7 @@ export const mapSlice = createSlice({
     categoryMarkers: [], //클릭한 카테고리의 마커들
     clickedCategoryId: null, //클릭한 카테고리의 ID
     clickedDataId: null, //클릭한 청약매물 마커의 ID
-    map_clicked_data_category: Array(5).fill(false),
+    map_clicked_data_category: Array(6).fill(false),
   },
   reducers: {
     SET_DATA: (state, action) => {
@@ -30,12 +30,13 @@ export const mapSlice = createSlice({
     },
     SORT: (state) => {
       state.house_data = state.house_data.reverse();
+      state.searched_data = state.searched_data.reverse();
     },
     CLICK_HOUSE_DATA: (state, action) => {
       state.clickedDataId = action.payload;
     },
     CLICK_CATEGORY: (state, action) => {
-      const newArr = Array(5).fill(false);
+      const newArr = Array(6).fill(false);
       if (action.payload.i !== null) newArr[action.payload.i] = true;
       state.clickedCategoryId = action.payload.clickedCategoryId;
       state.map_clicked_data_category = newArr;

@@ -26,10 +26,7 @@ const CustomData = () => {
           {x.HSSPLY_ADRES.split(" ")[0].substr(0, 2)}{" "}
           {x.HSSPLY_ADRES.split(" ")[1]} | 국민
         </div>
-        <div className="data_name">
-          {i}
-          {x.HOUSE_NM}
-        </div>
+        <div className="data_name">{x.HOUSE_NM}</div>
         <div className="data_subTitle">sub title</div>
         <div className="like_count">
           <span />

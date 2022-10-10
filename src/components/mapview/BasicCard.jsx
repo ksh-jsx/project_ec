@@ -53,32 +53,37 @@ function BasicCard({ data, i }) {
             {data.HSSPLY_ADRES.split(" ")[1]}
           </div>
           <div className="apt_name">
-            <div>{data.HOUSE_NM}</div>
-            <div className="like_count">
-              <span>254</span>
-              <span />
-            </div>
+            <img src={require(`../../assets/img/emoji_apt.png`)} alt="img" />
+            <div className="HOUSE_NM">{data.HOUSE_NM}</div>
           </div>
           <div className="apt_period">
             <div>
-              청약 기간&nbsp;&nbsp;|&nbsp;&nbsp;
-              {data.RCEPT_BGNDE.replace(/-/g, ".").substr(2)} ~{" "}
+              <img src={require(`../../assets/img/date.png`)} alt="img" />
+              기간&nbsp;&nbsp;|&nbsp;&nbsp;
+              {data.RCEPT_BGNDE.replace(/-/g, ".").substr(2)} -{" "}
               {data.RCEPT_ENDDE.replace(/-/g, ".").substr(2)}
             </div>
             <div>
-              청약 발표&nbsp;&nbsp;|&nbsp;&nbsp;
+              <img src={require(`../../assets/img/inform.png`)} alt="img" />
+              발표&nbsp;&nbsp;|&nbsp;&nbsp;
               {data.PRZWNER_PRESNATN_DE.replace(/-/g, ".").substr(2)}
             </div>
           </div>
         </div>
         <div className="cardRight">
-          <div
-            className={likeStatus ? "like on" : "like off"}
-            onClick={(e) => {
-              e.stopPropagation();
-              setLikeStatus((prev) => !prev);
-            }}
-          />
+          <div className="likeContainer">
+            <div className="like_count">
+              <span />
+              <span>254</span>
+            </div>
+            <div
+              className={likeStatus ? "like on" : "like off"}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLikeStatus((prev) => !prev);
+              }}
+            />
+          </div>
           <div className="apt_img" />
         </div>
       </div>

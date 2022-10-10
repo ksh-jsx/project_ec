@@ -25,7 +25,7 @@ function BottomDrawer() {
       <Global
         styles={{
           ".MuiDrawer-root > .MuiPaper-root": {
-            height: `50%`,
+            height: `35%`,
             overflow: "visible",
           },
         }}
