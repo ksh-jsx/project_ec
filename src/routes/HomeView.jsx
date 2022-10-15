@@ -5,9 +5,11 @@ import Nav from "../components/homeview/Nav";
 import Article from "../components/homeview/Article";
 import CustomData from "../components/homeview/CustomData";
 import { getAPTLttotPblancDetail } from "../lib/api/openapi";
+//import { getImgUrl } from "../module/crawl";
 import { useDispatch } from "react-redux";
 import { SET_STATE } from "../stores/stateSlice";
 import { SET_DATA } from "../stores/mapSlice";
+//const GoogleImages = require("google-images");
 
 const HomeView = () => {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const HomeView = () => {
   useEffect(() => {
     getCustomDate();
     dispatch(SET_STATE({ mode: "INIT_HOME", page: "HOME" }));
+    //getImgUrl();
   }, []);
 
   return (

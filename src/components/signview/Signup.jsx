@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../Toast";
 import { useNavigate } from "react-router";
-import { getIds, signup } from "../../lib/api/openapi";
+import { getIds, signup } from "../../lib/api/auth";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -155,7 +155,7 @@ const Signup = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(invalids);
+    //console.log(invalids);
     if (
       invalids.name === false &&
       invalids.email === false &&
@@ -164,7 +164,7 @@ const Signup = () => {
     ) {
       if (window.confirm("이대로 회원가입 하시겠습니까?")) {
         const res = await signup(values);
-        console.log(res);
+        //console.log(res);
         if (res === 201) {
           return navigate("/");
         }

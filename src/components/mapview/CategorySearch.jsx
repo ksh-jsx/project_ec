@@ -9,7 +9,6 @@ import {
 
 const CategorySearch = ({ id, name, i }) => {
   const dispatch = useDispatch();
-  const [isEventProceeding, setIsEventProceeding] = useState(false);
 
   const clickedCategoryId = useSelector((state) => {
     return state.mapCounter.clickedCategoryId;
@@ -43,33 +42,29 @@ const CategorySearch = ({ id, name, i }) => {
       },
       { useMapBounds: true }
     );
-    setEvent();
-    setIsEventProceeding(false);
   };
 
   const onCategoryClick = () => {
     if (clickedCategoryId) {
       dispatch(DELETE_CATEGORY_MARKERS());
-      setIsEventProceeding(false);
+      setEvent(false);
     }
     if (clickedCategoryId === id) {
       dispatch(CLICK_CATEGORY({ i: null, clickedCategoryId: null }));
-      setIsEventProceeding(false);
     } else {
       dispatch(CLICK_CATEGORY({ i: i, clickedCategoryId: id }));
-      setIsEventProceeding(true);
+      setEvent(true);
       eventHandler();
     }
   };
 
-  const setEvent = () => {
-    console.log(isEventProceeding);
-    if (isEventProceeding) {
+  const setEvent = (isActive) => {
+    if (isActive) {
       kakao.maps.event.addListener(kakaoMap, "zoom_changed", eventHandler);
       kakao.maps.event.addListener(kakaoMap, "dragend", eventHandler);
     } else {
-      kakao.maps.event.removeListener(kakaoMap, "zoom_changed", eventHandler);
-      kakao.maps.event.removeListener(kakaoMap, "dragend", eventHandler);
+      const o = kakaoMap.o;
+      kakaoMap.o = { idle: o.idle, zoom_changed: [o.zoom_changed[0]] };
     }
   };
 

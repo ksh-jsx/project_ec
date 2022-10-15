@@ -55,76 +55,14 @@ export const getAPTLttotPblancMdl = async (data) => {
   }
 };
 
-export const signup = async (data) => {
-  try {
-    const res = await axios.post(`http://127.0.0.1:8080/auth/signup`, {
-      name: "kim", //data.name,
-      email: data.email,
-      password: data.pwd,
-    });
-    return res.status;
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const signin = async (id, pwd) => {
-  try {
-    const res = await axios.post(`http://127.0.0.1:8080/auth/login`, {
-      email: id,
-      password: pwd,
-    });
-    return res;
-  } catch (err) {
-    console.log("존재하지 않는 아이디");
-    throw err;
-  }
-};
-
-export const getIds = async (value) => {
+export const getHtml = async (data) => {
   try {
     const res = await axios.get(
-      `http://127.0.0.1:8080/auth/validate?email=${value}`
+      `/google/search?q=아이유&source=lmns&bih=970&biw=1920&hl=ko&sa=X&ved=2ahUKEwjS24DYhNj6AhVH8JQKHc4dDJQQ_AUoAHoECAEQAA`
     );
-    return res.data.success;
+    return res.data;
   } catch (err) {
     console.log(err);
     throw err;
   }
-};
-
-export const social = async (t) => {
-  try {
-    const res = await axios.post(
-      `http://localhost:8080/oauth2/authorization/${t}`
-    );
-    return res;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-
-  /*
-    try {
-      const res = await axios.post(
-        `http://localhost:8080/oauth2/authorization/${t}`
-      );
-      return res;
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-
-    try {
-    const res = await axios({
-      method:'post',
-      url:`http://localhost:8080/oauth2/authorization/${t}`,
-      
-    });
-    return res;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-  */
 };

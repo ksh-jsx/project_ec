@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { signin } from "../../lib/api/openapi";
+import { signin } from "../../lib/api/auth";
 import { Link } from "react-router-dom";
 
 import { SET_TOKEN } from "../../stores/tokenSlice";
