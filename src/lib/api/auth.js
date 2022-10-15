@@ -43,8 +43,6 @@ export const social = async (t) => {
     const res = await axios.post(
       `http://localhost:8080/oauth2/authorization/${t}`
     );
-    window.location.href =
-      "https://accounts.kakao.com/login?continue=https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fscope%3Dprofile_nickname%2520account_email%26response_type%3Dcode%26state%3DYMnmUS9kWtprQbmVw2uktwM6W2DvDamjfj9kdfgPOp4%253D%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A8080%252Flogin%252Foauth2%252Fcode%252Fkakao%26through_account%3Dtrue%26client_id%3D07d51c68d2546ddfb6946a15ece3f0fd";
     return res;
   } catch (err) {
     console.log(err);

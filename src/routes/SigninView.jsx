@@ -4,6 +4,7 @@ import Signin from "../components/signview/Signin";
 import Social from "../components/signview/Social";
 import { useDispatch } from "react-redux";
 import { SET_STATE } from "../stores/stateSlice";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const SigninView = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,11 @@ const SigninView = () => {
       </div>
       {isSocialLogin ? (
         <div className="socialContainer">
-          <Social />
+          <GoogleOAuthProvider
+            clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+          >
+            <Social />
+          </GoogleOAuthProvider>
           {etcContainer()}
         </div>
       ) : (

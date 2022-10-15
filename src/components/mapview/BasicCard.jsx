@@ -4,6 +4,8 @@ import Toast from "../Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CLICK_HOUSE_DATA } from "../../stores/mapSlice";
 
+const { naver } = window;
+
 function BasicCard({ data, i }) {
   const [likeStatus, setLikeStatus] = useState(data.like);
   const [ToastStatus, setToastStatus] = useState(false);
@@ -14,11 +16,16 @@ function BasicCard({ data, i }) {
   });
 
   const select = (i) => {
-    const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(
-      mapSlice.searched_data[i].HSSPLY_ADRES,
-      function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
+    naver.maps.Service.geocode(
+      {
+        query: mapSlice.searched_data[i].HSSPLY_ADRES,
+      },
+      (status, response) => {
+        if (status === naver.maps.Service.Status.ERROR) {
+          return alert("Something Wrong!");
+        } else {
+          console.log(response.v2.addresses[0]);
+          const result = response.v2.addresses[0];
           const coords = new kakao.maps.LatLng(
             result[0].y - 0.001,
             result[0].x
@@ -26,11 +33,10 @@ function BasicCard({ data, i }) {
 
           mapSlice.kakaoMap.setLevel(3);
           setTimeout(() => mapSlice.kakaoMap.panTo(coords), 100);
-        } else {
-          setToastStatus(true);
         }
       }
     );
+
     dispatch(CLICK_HOUSE_DATA(data.HOUSE_MANAGE_NO));
   };
 
