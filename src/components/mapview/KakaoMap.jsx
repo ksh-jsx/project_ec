@@ -86,29 +86,32 @@ const KakaoMap = () => {
   };
 
   const createDataLocation = (clusterer, data, i) => {
-    const geocoder = new kakao.maps.services.Geocoder();
+    const navermaps = window.naver.maps;
+    navermaps.Service.geocode(
+      {
+        query: data.HSSPLY_ADRES,
+      },
+      (status, response) => {
+        if (status === navermaps.Service.Status.ERROR) {
+          return alert("Something Wrong!");
+        } else {
+          const result = response.v2.addresses[0];
+          const coords = new kakao.maps.LatLng(result.y, result.x);
 
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(data.HSSPLY_ADRES, (result, status) => {
-      // 정상적으로 검색이 완료됐으면
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          var content2 = `<div class="imageMarker" onclick="onMarkerClick(${i},${result.y},${result.x})"><div>${data.HOUSE_SECD_NM}</div></div>`;
 
-        var content2 = `<div class="imageMarker" onclick="onMarkerClick(${i},${
-          result[0].y - 0.001
-        },${result[0].x})"><div>${data.HOUSE_SECD_NM}</div></div>`;
+          // 결과값으로 받은 위치를 마커로 표시합니다
+          const marker = new kakao.maps.CustomOverlay({
+            map: mapSlice.kakaoMap,
+            position: coords,
+            content: content2,
+            clickable: true,
+          });
 
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        const marker = new kakao.maps.CustomOverlay({
-          map: mapSlice.kakaoMap,
-          position: coords,
-          content: content2,
-          clickable: true,
-        });
-
-        clusterer.addMarker(marker);
+          clusterer.addMarker(marker);
+        }
       }
-    });
+    );
   };
 
   window.onMarkerClick = (i, lat, lng) => {

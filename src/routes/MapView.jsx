@@ -7,10 +7,12 @@ import { getAPTLttotPblancDetail } from "../lib/api/openapi";
 import { useDispatch } from "react-redux";
 import { SET_STATE } from "../stores/stateSlice";
 import { SET_DATA } from "../stores/mapSlice";
+import { NaverMap, RenderAfterNavermapsLoaded } from "react-naver-maps";
 
 const MapView = () => {
   const dispatch = useDispatch();
 
+  const mySubModule = ["geocoder"];
   const [loading, setLoading] = useState(false);
   const [searchData, setSearchData] = useState({
     startmonth: "202005",
@@ -38,7 +40,12 @@ const MapView = () => {
             <SearchBar />
           </div>
           <div className="mapContainer">
-            <KakaoMap />
+            <RenderAfterNavermapsLoaded
+              ncpClientId={process.env.REACT_APP_NAVER_MAP_CLIENT_ID}
+              submodules={mySubModule}
+            >
+              <KakaoMap />
+            </RenderAfterNavermapsLoaded>
           </div>
           <div className="drawerContainer">
             <Drawer />
