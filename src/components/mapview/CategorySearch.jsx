@@ -7,6 +7,11 @@ import {
   DELETE_CATEGORY_MARKERS,
 } from "../../stores/mapSlice";
 
+const imageSrc = require("../../assets/img/map_filter_pin.png"), // 마커이미지의 주소
+  imageSize = new kakao.maps.Size(32, 32); // 마커이미지의 크기
+
+const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
 const CategorySearch = ({ id, name, i }) => {
   const dispatch = useDispatch();
 
@@ -34,6 +39,7 @@ const CategorySearch = ({ id, name, i }) => {
             const marker = new kakao.maps.Marker({
               position: new kakao.maps.LatLng(data[i].y, data[i].x),
               map: kakaoMap,
+              image: markerImage,
             });
             markers.push(marker);
           }

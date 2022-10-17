@@ -11,26 +11,48 @@ const CustomData = () => {
     return (
       <div className="card" key={i}>
         <div className="data_img">
-          <img src={require(`../../assets/img/emoji_apt.png`)} alt="img" />
-          <div
-            className={likeStatus[i] ? "like on" : "like off"}
-            onClick={() => {
-              let temp = likeStatus;
-              temp[i] = !temp[i];
-              setLikeStatus([...temp]);
-            }}
-          />
+          <div className="like_count">
+            <span />
+            <span>254</span>
+          </div>
         </div>
         <div className="data_type">
           {" "}
           {x.HSSPLY_ADRES.split(" ")[0].substr(0, 2)}{" "}
           {x.HSSPLY_ADRES.split(" ")[1]} | 국민
         </div>
-        <div className="data_name">{x.HOUSE_NM}</div>
-        <div className="data_subTitle">sub title</div>
-        <div className="like_count">
-          <span />
-          <span>254</span>
+        <div>
+          <div className="left">
+            <div className="data_name">{x.HOUSE_NM}</div>
+            <div className="data_price">
+              {" "}
+              <img
+                src={require(`../../assets/img/emoji_price.png`)}
+                alt="img"
+                style={{ width: "14px" }}
+              />
+              5억 2천-12억 8천
+            </div>
+          </div>
+          <div className="right">
+            <div
+              className={likeStatus[i] ? "like on" : "like off"}
+              onClick={() => {
+                let temp = likeStatus;
+                temp[i] = !temp[i];
+                setLikeStatus([...temp]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="data_period">
+          <img
+            src={require(`../../assets/img/emoji_apt.png`)}
+            alt="img"
+            style={{ width: "16px" }}
+          />
+          {x.RCEPT_BGNDE.replace(/-/g, ".")} -{" "}
+          {x.RCEPT_ENDDE.replace(/-/g, ".").substr(5)}
         </div>
       </div>
     );

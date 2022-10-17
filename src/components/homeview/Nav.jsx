@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 const navs = [
   ["국민주택", "민영주택", "신혼부부"],
-  ["접수 시작일", "접수 종료일", "신규 공고 순"],
+  ["접수 시작일", "접수 종료일", "신규 공고 순", "마감 임박 순"],
 ];
 
 const Nav = ({ sequence, type }) => {
-  const [isClick, setIsClick] = useState(new Array(3).fill("off"));
+  const [isClick, setIsClick] = useState(new Array(navs[1].length).fill("off"));
 
   const nav = (data, type) => {
     const tags = data.map((x, i) => {
@@ -38,7 +38,7 @@ const Nav = ({ sequence, type }) => {
         <div
           key={i}
           onClick={() => {
-            let tmp_arr = new Array(3).fill(0).map((x, n) => {
+            let tmp_arr = new Array(navs[1].length).fill(0).map((x, n) => {
               if (n === i) return (x = "on");
               else return (x = "off");
             });

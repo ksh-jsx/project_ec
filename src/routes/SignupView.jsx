@@ -17,7 +17,12 @@ const SignupView = () => {
       <div className="signupDescription">
         <span>
           가입을 위해 <br />
-          간단한 어쩌고 저쩌고 🤗
+          간단한 절차를 진행할게요 &nbsp;
+          <img
+            src={require("../assets/img/emoji_smile.png")}
+            alt="img"
+            style={{ position: "relative", top: "2px" }}
+          />
         </span>
       </div>
       <div className="signupContainer">
