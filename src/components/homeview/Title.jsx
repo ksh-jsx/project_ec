@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import $ from "jquery";
 
 const TEMP_NAME = "아무무";
 
@@ -31,7 +32,7 @@ const titles = [
   },
 ];
 
-const Title = ({ sequence }) => {
+const Title = ({ sequence, progress }) => {
   const title = ({
     type,
     text1,
@@ -75,6 +76,25 @@ const Title = ({ sequence }) => {
       </div>
     );
   };
+
+  const sleep = (ms) => {
+    //sleep 함수
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  const fillAnimation = async (fill) => {
+    for (let i = 0; i <= fill; i++) {
+      $(".progressCircle").css(
+        "background-image",
+        `conic-gradient(#6297ff 0%,#6297ff ${i}%,#fff ${i}%)`
+      );
+      await sleep(5);
+    }
+  };
+
+  useEffect(() => {
+    if (progress) fillAnimation(progress);
+  }, []);
 
   return title(titles[sequence]);
 };

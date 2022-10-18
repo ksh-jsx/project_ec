@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import $ from "jquery";
 
-const Article = ({ type }) => {
+const Article = ({ type, progress }) => {
   const calculator = () => {
     const imgs = ["home", "castle", "building", "tent"];
 
@@ -20,6 +20,28 @@ const Article = ({ type }) => {
               </div>
             );
           })}
+        </div>
+      </div>
+    );
+  };
+
+  const fill_recommend = () => {
+    return (
+      <div className="fillRecommendContainer">
+        <div className="left">
+          <div>
+            <span>추가 정보</span>를 입력하고
+          </div>
+          <div>
+            더 <span>자세한 맞춤 정보</span>를 받아보세요
+            <img src={require("../../assets/img/emoji_gift.png")} alt="img" />
+          </div>
+        </div>
+        <div className="right">
+          <div className="waveBox">
+            <div>{progress}%</div>
+            <span class="wave"></span>
+          </div>
         </div>
       </div>
     );
@@ -50,9 +72,34 @@ const Article = ({ type }) => {
     );
   };
 
-  useEffect(() => {}, []);
+  const sleep = (ms) => {
+    //sleep 함수
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
-  return <>{type === "calculator" ? calculator() : chungyakInfo()}</>;
+  const fillAnimation = async (fill) => {
+    if (fill >= 80) fill -= 13;
+    else if (fill >= 70) fill -= 8;
+    else if (fill >= 60) fill -= 5;
+    for (let i = 108; i >= 150 - fill - (100 - fill) / 2 + 3; i--) {
+      $(".wave").css("bottom", `-${i}px`);
+      await sleep(20);
+    }
+  };
+
+  useEffect(() => {
+    if (progress) fillAnimation(progress);
+  }, []);
+
+  return (
+    <>
+      {type === "calculator"
+        ? calculator()
+        : type === "chungyakInfo"
+        ? chungyakInfo()
+        : fill_recommend()}
+    </>
+  );
 };
 
 export default Article;

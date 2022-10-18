@@ -17,9 +17,8 @@ const CustomData = () => {
           </div>
         </div>
         <div className="data_type">
-          {" "}
-          {x.HSSPLY_ADRES.split(" ")[0].substr(0, 2)}{" "}
-          {x.HSSPLY_ADRES.split(" ")[1]} | 국민
+          {x.HOUSE_DTL_SECD_NM} | {x.HSSPLY_ADRES.split(" ")[0].substr(0, 2)}{" "}
+          {x.HSSPLY_ADRES.split(" ")[1]}
         </div>
         <div>
           <div className="left">

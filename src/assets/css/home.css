@@ -33,17 +33,29 @@
 .progressCircle {
   width: 62px;
   height: 62px;
+  border-radius: 40px;
+  background: conic-gradient(
+    var(--primary) 0%,
+    var(--primary) 100%,
+    #ffffff 100%
+  );
+}
+.progressCircle:before {
+  content: "";
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  transform: translate(2px, 2px);
   background-color: #fff;
   border-radius: 40px;
-  border: 2px solid var(--primary);
 }
 .progressCircle > img {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  width: 75%;
+  height: 75%;
 }
 
 /*nav*/
@@ -144,6 +156,80 @@
   height: 26px;
 }
 
+.fillRecommendContainer {
+  box-shadow: 0px 0px 10px #dcdcdc;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+}
+.fillRecommendContainer .left {
+  line-height: 130%;
+}
+.fillRecommendContainer .left img {
+  position: relative;
+  top: 3px;
+  left: 3px;
+}
+.fillRecommendContainer .left > div {
+  font-size: 14px;
+  color: var(--gray50);
+}
+.fillRecommendContainer .left > div span {
+  color: var(--primary);
+  font-weight: bold;
+}
+.fillRecommendContainer .right {
+  width: 42px;
+  height: 42px;
+}
+.fillRecommendContainer .waveBox {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid var(--gray10);
+  border-radius: 25px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.fillRecommendContainer .waveBox > div:first-child {
+  font-size: 12px;
+  text-align: center;
+  color: var(--primary);
+  font-weight: bold;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+.fillRecommendContainer .wave {
+  opacity: 0.4;
+  position: absolute;
+  left: -25px;
+  bottom: -70px; /*edit here*/
+  background: var(--primary30);
+  width: 100px;
+  height: 100px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  transition-timing-function: ease;
+  animation: rotate 2000ms infinite linear;
+}
+
+.waveBox:hover .wave {
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
 .chungyakInfoContainer {
   padding: 10px 20px;
   margin-top: 25px;
@@ -290,7 +376,8 @@
 }
 .dataContainer .data_price {
   font-size: 12px;
-  letter-spacing: 1;
+  letter-spacing: 1px;
+  color: var(--gray50);
 }
 .dataContainer .data_price > img {
   position: relative;
