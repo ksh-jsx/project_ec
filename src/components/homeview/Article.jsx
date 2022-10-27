@@ -40,7 +40,7 @@ const Article = ({ type, progress }) => {
         <div className="right">
           <div className="waveBox">
             <div>{progress}%</div>
-            <span class="wave"></span>
+            <span className="wave"></span>
           </div>
         </div>
       </div>

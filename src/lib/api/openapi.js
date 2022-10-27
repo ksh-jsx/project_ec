@@ -15,7 +15,7 @@ export const getAPTLttotPblancDetail = async () => {
     var new_res = res.data.data.filter(
       (x) =>
         x.RCEPT_ENDDE.split("-")[0] * 1 >= year &&
-        x.RCEPT_ENDDE.split("-")[1] * 1 >= month &&
+        x.RCEPT_ENDDE.split("-")[1] * 1 >= month - 1 &&
         x.RCEPT_ENDDE.split("-")[2] * 1 >= day
     );
     new_res = new_res.sort((a, b) => {

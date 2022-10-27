@@ -29,12 +29,21 @@ const Signin = () => {
   const onSubmit = async (event) => {
     let res;
     event.preventDefault();
+
     try {
       res = await signin(id, password);
 
       if (res.status === 200) {
+        console.log(res);
         dispatch(SET_TOKEN(res.data.accessToken));
-        dispatch(SET_STATE({ mode: "SIGNIN_SUCCESS", page: "SIGNIN" }));
+        dispatch(
+          SET_STATE({
+            mode: "SIGNIN_SUCCESS",
+            page: "SIGNIN",
+            user_name: "아무무",
+            id: "shkim787",
+          })
+        );
         return navigate("/");
       }
     } catch (e) {

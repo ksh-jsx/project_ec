@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
   const [isClicked, setIsClicked] = useState({
@@ -51,7 +52,10 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
       case 1:
         return (
           <>
-            <div>지역을 선택해 주세요</div>
+            <div>
+              <SearchIcon />
+              <span>도로명 주소 검색하기</span>
+            </div>
             <div>
               <div>
                 <button

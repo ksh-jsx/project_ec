@@ -93,7 +93,7 @@ const KakaoMap = () => {
     const today = Date.now();
     const dDay = (endDate.getTime() - today) / 1000 / 60 / 60 / 24;
 
-    console.log(dDay);
+    //console.log(dDay);
     navermaps.Service.geocode(
       {
         query: data.HSSPLY_ADRES,

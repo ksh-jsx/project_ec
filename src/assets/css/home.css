@@ -8,29 +8,29 @@
 }
 
 /*title*/
-.title {
+.homeViewWrapper .title {
   width: 100%;
   padding-top: 20px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
-.title > .left {
+.homeViewWrapper .title > .left {
   float: left;
   line-height: 130%;
 }
-.title > .right {
+.homeViewWrapper .title > .right {
   float: right;
 }
-.imgInText1 {
+.homeViewWrapper .imgInText1 {
   width: 20px;
   position: relative;
   top: 4px;
 }
-.viewMore {
+.homeViewWrapper .viewMore {
   font-size: 12px;
 }
-.progressCircle {
+.homeViewWrapper .progressCircle {
   width: 62px;
   height: 62px;
   border-radius: 40px;
@@ -40,7 +40,7 @@
     #ffffff 100%
   );
 }
-.progressCircle:before {
+.homeViewWrapper .progressCircle:before {
   content: "";
   position: absolute;
   width: 58px;
@@ -49,7 +49,7 @@
   background-color: #fff;
   border-radius: 40px;
 }
-.progressCircle > img {
+.homeViewWrapper .progressCircle > img {
   position: relative;
   top: 50%;
   left: 50%;
@@ -59,17 +59,17 @@
 }
 
 /*nav*/
-.nav {
+.homeViewWrapper .nav {
   overflow-x: auto;
   white-space: nowrap;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   height: 70px;
 }
-.nav::-webkit-scrollbar {
+.homeViewWrapper .nav::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-.nav > div {
+.homeViewWrapper .nav > div {
   height: 50px;
   float: left;
   display: flex;
@@ -77,7 +77,7 @@
   align-items: center;
   padding: 10px 0;
 }
-.nav .tag {
+.homeViewWrapper .nav .tag {
   height: 16px;
   padding: 10px 7px;
   font-size: 14px;
@@ -90,23 +90,23 @@
   font-family: "Pretandard_l";
   box-shadow: 0px 0px 10px #dcdcdc;
 }
-.nav .tag.type1 {
+.homeViewWrapper .nav .tag.type1 {
   background-color: var(--primary);
   color: #fff;
 }
-.nav .tag.type2.on {
+.homeViewWrapper .nav .tag.type2.on {
   background-color: var(--primary70);
   color: #fff;
 }
-.nav .tag.type2.off {
+.homeViewWrapper .nav .tag.type2.off {
   background-color: #fff;
   color: var(--primary70);
   font-weight: 600;
 }
-.nav .tag.type1 > span {
+.homeViewWrapper .nav .tag.type1 > span {
   font-weight: 600;
 }
-.nav .tag.type1 > img {
+.homeViewWrapper .nav .tag.type1 > img {
   width: 15px;
 }
 
@@ -217,9 +217,6 @@
   border-radius: 43%;
   transition-timing-function: ease;
   animation: rotate 2000ms infinite linear;
-}
-
-.waveBox:hover .wave {
 }
 
 @keyframes rotate {
