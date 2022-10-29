@@ -64,16 +64,13 @@
   white-space: nowrap;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  height: 70px;
 }
 .homeViewWrapper .nav::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
 .homeViewWrapper .nav > div {
-  height: 50px;
   float: left;
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   padding: 10px 0;
 }

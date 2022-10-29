@@ -79,6 +79,12 @@
   border-radius: 8px;
   background-color: #fff;
 }
+.SurveyViewWrapper .display_on{
+  display: flex !important;
+}
+.SurveyViewWrapper .display_off{
+display: none !important;
+}
 .SurveyViewWrapper .article > button {
   width: 44%;
   margin: 8px 3%;

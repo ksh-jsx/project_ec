@@ -45,6 +45,7 @@ const Nav = ({ sequence, type }) => {
             setIsClick(tmp_arr);
           }}
           className={"tag type2 " + isClick[i]}
+          style={{flexWrap:"no-wrap"}}
         >
           {x}
         </div>
@@ -53,7 +54,7 @@ const Nav = ({ sequence, type }) => {
 
     return (
       <div className="nav">
-        <div>{type === 1 ? tags : tags2}</div>
+        {type === 1 ? <div style={{flexWrap:"wrap", height:"90px"}}>{tags}</div> : <div style={{flexWrap:"no-wrap"}}>{tags2}</div>}
       </div>
     );
   };

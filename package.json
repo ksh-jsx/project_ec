@@ -39,6 +39,7 @@
     "querystring": "^0.2.1",
     "react": "^18.0.0",
     "react-cookie": "^4.1.1",
+    "react-daum-postcode": "^3.1.1",
     "react-dom": "^18.0.0",
     "react-drag-drawer": "^3.3.4",
     "react-google-login": "^5.2.2",

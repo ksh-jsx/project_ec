@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { social } from "../../lib/api/auth";
 
 const RedirectHandler = () => {
   useEffect(() => {
@@ -10,7 +11,8 @@ const RedirectHandler = () => {
     } else if (type === "naver") {
       code = window.location.hash.split("=")[1].split("&")[0];
     }
-    console.log(code);
+    
+    social(code)
   }, []);
 
   return <></>;

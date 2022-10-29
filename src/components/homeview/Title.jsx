@@ -44,7 +44,7 @@ const Title = ({ sequence, progress }) => {
   }) => {
     return (
       <div className="title">
-        <div className="left" style={{ fontSize: size }}>
+        <h1 className="left" style={{ fontSize: size, fontWeight: "normal" }}>
           {type === 1 ? (
             <>
               <span>{text1}</span>
@@ -61,7 +61,7 @@ const Title = ({ sequence, progress }) => {
               />
             </>
           )}
-        </div>
+        </h1>
         <div className="right">
           {view_more === true ? (
             <div className="viewMore">더보기 ▶</div>

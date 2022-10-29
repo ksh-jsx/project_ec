@@ -38,11 +38,11 @@ export const getIds = async (value) => {
   }
 };
 
-export const social = async (t) => {
+export const social = async (code) => {
+  console.log(code)
+  console.log(`http://127.0.0.1:8080/oauth2/login/kakao?code=${code}`)
   try {
-    const res = await axios.post(
-      `http://localhost:8080/oauth2/authorization/${t}`
-    );
+    const res = await axios.get(`http://127.0.0.1:8080/oauth2/login/kakao?code=${code}`);
     return res;
   } catch (err) {
     console.log(err);

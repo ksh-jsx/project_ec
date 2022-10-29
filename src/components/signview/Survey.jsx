@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import DaumPostcode from 'react-daum-postcode';
 
 const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
+  const [openPostcode, setOpenPostcode] = useState(false);
+  const [address, setAddress] = useState("도로명 주소 검색하기");
   const [isClicked, setIsClicked] = useState({
     q1: Array(2).fill(false),
-    q2: Array(16).fill(false),
+    q2: Array(1).fill(false),
     q3: Array(2).fill(false),
     q4: Array(4).fill(false),
     q5: Array(1).fill(false),
@@ -17,16 +20,37 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
   };
 
   const onChange = (prop, i) => (e) => {
-    if (prop === "q5") checkInvalid(e);
+    if (prop === "q5"){ 
+      checkInvalid(e);
+    }
     setSelectedValues({
       ...selectedValues,
       [prop]: e.target.value.replace(/[, 원]/gi, ""),
     });
+
     let tmpArr = Array(isClicked[prop].length).fill(false);
     tmpArr[i] = true;
+
     setIsClicked({ ...isClicked, [prop]: tmpArr });
     console.log(selectedValues);
   };
+
+  const adressHandle = {
+    // 버튼 클릭 이벤트
+    clickButton: () => {
+      setOpenPostcode(prev => !prev);
+    },
+
+    // 주소 선택 이벤트
+    selectAddress: (data) => {
+        setOpenPostcode(false);
+        setAddress(data.address)
+        setSelectedValues({
+          ...selectedValues,
+          q2: data.address,
+        });
+    },
+}
 
   const setArticle = () => {
     switch (i) {
@@ -52,10 +76,17 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
       case 1:
         return (
           <>
-            <div>
+            <div onClick={adressHandle.clickButton} className={openPostcode ? "display_off" : "display_on"}>
               <SearchIcon />
-              <span>도로명 주소 검색하기</span>
+              <span>{address}</span>
             </div>
+            {openPostcode && 
+                <DaumPostcode 
+                    onComplete={adressHandle.selectAddress}  // 값을 선택할 경우 실행되는 이벤트
+                    autoClose={true} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                    defaultQuery='' // 팝업을 열때 기본적으로 입력되는 검색어 
+                    />}
+            {/*
             <div>
               <div>
                 <button
@@ -185,7 +216,7 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
                   제주특별자치도
                 </button>
               </div>
-            </div>
+            </div>*/}
           </>
         );
       case 2:

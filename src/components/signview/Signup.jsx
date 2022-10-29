@@ -45,7 +45,7 @@ const Signup = () => {
       } catch (e) {
         console.error("error", e);
       }
-    }, 500);
+    }, 300);
 
     setTimer(newTimer);
   };
