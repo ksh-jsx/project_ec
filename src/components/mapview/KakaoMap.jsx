@@ -63,7 +63,7 @@ const KakaoMap = () => {
     });
 
     gotoMyPos();
-
+    console.log("hi");
     mapSlice.house_data?.map((x, i) => createDataLocation(clusterer, x, i));
   };
 
@@ -71,10 +71,7 @@ const KakaoMap = () => {
     if (navigator.geolocation) {
       //내위치 찾아서 이동하기
       navigator.geolocation.getCurrentPosition((position) => {
-        const myPos = new kakao.maps.LatLng(
-          position.coords.latitude,
-          position.coords.longitude
-        );
+        const myPos = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         new kakao.maps.CustomOverlay({
           map: map,
@@ -93,7 +90,6 @@ const KakaoMap = () => {
     const today = Date.now();
     const dDay = (endDate.getTime() - today) / 1000 / 60 / 60 / 24;
 
-    //console.log(dDay);
     navermaps.Service.geocode(
       {
         query: data.HSSPLY_ADRES,
@@ -103,14 +99,19 @@ const KakaoMap = () => {
           return alert("Something Wrong!");
         } else {
           const result = response.v2.addresses[0];
+
           const coords = new kakao.maps.LatLng(result.y, result.x);
 
-          var content2 = `<div class="imageMarker" onclick="onMarkerClick(${i},${
-            result.y
-          },${result.x})">
-          <div>${data.HOUSE_SECD_NM}</div>
-          <div>D-${Math.ceil(dDay)}</div>
-          </div>`;
+          var content2 = `
+            <div class="imageMarker" onclick="onMarkerClick(
+              ${i},
+              ${result.y},
+              ${result.x}
+            )">
+            <div>${data.HOUSE_SECD_NM}</div>
+            <div>D-${Math.ceil(dDay)}</div>
+            </div>
+          `;
 
           // 결과값으로 받은 위치를 마커로 표시합니다
           const marker = new kakao.maps.CustomOverlay({
@@ -127,17 +128,11 @@ const KakaoMap = () => {
   };
 
   window.onMarkerClick = (i, lat, lng) => {
-    const location =
-      document.getElementsByClassName("cardInner")[i].offsetTop - 50; //클릭한 마커에 맞는 카드의 offset 가져오기
-    document
-      .getElementsByClassName("cardBox")[0]
-      .scrollTo({ top: location, behavior: "smooth" }); //스크롤 이동
+    const location = document.getElementsByClassName("cardInner")[i].offsetTop - 50; //클릭한 마커에 맞는 카드의 offset 가져오기
+    document.getElementsByClassName("cardBox")[0].scrollTo({ top: location, behavior: "smooth" }); //스크롤 이동
 
     mapSlice.kakaoMap.setLevel(3);
-    setTimeout(
-      () => mapSlice.kakaoMap.panTo(new kakao.maps.LatLng(lat, lng)),
-      100
-    );
+    setTimeout(() => mapSlice.kakaoMap.panTo(new kakao.maps.LatLng(lat, lng)), 100);
   };
 
   useEffect(() => {

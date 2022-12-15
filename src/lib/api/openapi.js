@@ -10,12 +10,12 @@ const day = ("0" + today.getDate()).slice(-2) * 1;
 export const getAPTLttotPblancDetail = async () => {
   try {
     const res = await axios.get(
-      `${Address}/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail?page=1&perPage=1000&cond%5BRCRIT_PBLANC_DE%3A%3AGTE%5D=2022-07-01&serviceKey=${process.env.REACT_APP_OPEN_API_KEY}`
+      `${Address}/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail?page=1&perPage=1000&cond%5BRCRIT_PBLANC_DE%3A%3AGTE%5D=2022-11-01&serviceKey=${process.env.REACT_APP_OPEN_API_KEY}`
     );
     var new_res = res.data.data.filter(
       (x) =>
         x.RCEPT_ENDDE.split("-")[0] * 1 >= year &&
-        x.RCEPT_ENDDE.split("-")[1] * 1 >= month - 1 &&
+        x.RCEPT_ENDDE.split("-")[1] * 1 >= month &&
         x.RCEPT_ENDDE.split("-")[2] * 1 >= day
     );
     new_res = new_res.sort((a, b) => {

@@ -19,42 +19,26 @@ const AppRouter = () => {
 
   return (
     <Router>
-      {!authenticated || window.location.pathname === "/survey" ? (
-        <></>
-      ) : (
-        <Header />
-      )}
+      {!authenticated || window.location.pathname === "/survey" ? <></> : <Header />}
       <div className="main">
         <Routes>
           {authenticated ? (
             <>
               <Route exact path="/" element={<HomeView />} />
               <Route exact path="/map" element={<MapView />} />
-              <Route exact path="/survey" element={<SurveyView />} />
             </>
           ) : (
             <>
               <Route exact path="/" element={<SigninView />} />
               <Route exact path="/signup" element={<SignupView />} />
-              <Route
-                exact
-                path="/oauth/callback/kakao"
-                element={<RedirectHandler />}
-              />
-              <Route
-                exact
-                path="/oauth/callback/naver"
-                element={<RedirectHandler />}
-              />
+              <Route exact path="/survey" element={<SurveyView />} />
+              <Route exact path="/oauth/callback/kakao" element={<RedirectHandler />} />
+              <Route exact path="/oauth/callback/naver" element={<RedirectHandler />} />
             </>
           )}
         </Routes>
       </div>
-      {!authenticated || window.location.pathname === "/survey" ? (
-        <></>
-      ) : (
-        <Footer />
-      )}
+      {!authenticated || window.location.pathname === "/survey" ? <></> : <Footer />}
     </Router>
   );
 };
