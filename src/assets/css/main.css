@@ -3,7 +3,7 @@
   --primary70: #91b6ff; /* var(--primary70) */
   --primary30: #c0d6ff; /* var(--primary30) */
   --primary10: #eff5ff; /* var(--primary10) */
-  --dark100: #333333; /* var(--dark100)   */
+  --dark100: #464646; /* var(--dark100)   */
   --gray50: #858585; /* var(--gray50)    */
   --gray30: #c2c2c2; /* var(--gray30)    */
   --gray10: #ebebeb; /* var(--gray10)    */
@@ -37,7 +37,7 @@ input::placeholder {
 html,
 body,
 #root {
-  margin: 0;
+  margin: 0 auto;
   overflow: auto;
   font-family: "Pretandard_m";
   letter-spacing: 1px;

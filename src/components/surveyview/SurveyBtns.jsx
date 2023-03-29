@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import DaumPostcode from "react-daum-postcode";
+import { Router, useNavigate } from "react-router-dom";
 
 const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
+  const navigate = useNavigate();
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState("도로명 주소 검색하기");
   const [isClicked, setIsClicked] = useState({
@@ -226,17 +228,21 @@ const Survey = ({ Q, i, selectedValues, setSelectedValues }) => {
       {i === 6 ? (
         <div className="submit">
           <button
-            onClick={() =>
-              alert(`
-          1: ${selectedValues.q1}
-          2: ${selectedValues.q2}
-          3: ${selectedValues.q3}
-          4: ${selectedValues.q4}
-          5: ${selectedValues.q5}
-          6: ${selectedValues.q6}
-          7: ${selectedValues.q6}
-          `)
-            }
+            onClick={() => {
+              if (
+                window.confirm(`
+                1: ${selectedValues.q1}
+                2: ${selectedValues.q2}
+                3: ${selectedValues.q3}
+                4: ${selectedValues.q4}
+                5: ${selectedValues.q5}
+                6: ${selectedValues.q6}
+                7: ${selectedValues.q6}
+              `)
+              ) {
+                navigate("/survey/result");
+              }
+            }}
           >
             제출하기
           </button>

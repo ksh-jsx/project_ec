@@ -5,6 +5,7 @@ import MapView from "../routes/MapView";
 import SigninView from "../routes/SigninView";
 import SignupView from "../routes/SignupView";
 import SurveyView from "../routes/SurveyView";
+import SurveyResultView from "../routes/SurveyResultView";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -19,7 +20,11 @@ const AppRouter = () => {
 
   return (
     <Router>
-      {!authenticated || window.location.pathname === "/survey" ? <></> : <Header />}
+      {!authenticated || window.location.pathname === "/survey" ? (
+        <></>
+      ) : (
+        <Header />
+      )}
       <div className="main">
         <Routes>
           {authenticated ? (
@@ -32,13 +37,30 @@ const AppRouter = () => {
               <Route exact path="/" element={<SigninView />} />
               <Route exact path="/signup" element={<SignupView />} />
               <Route exact path="/survey" element={<SurveyView />} />
-              <Route exact path="/oauth/callback/kakao" element={<RedirectHandler />} />
-              <Route exact path="/oauth/callback/naver" element={<RedirectHandler />} />
+              <Route
+                exact
+                path="/survey/result"
+                element={<SurveyResultView />}
+              />
+              <Route
+                exact
+                path="/oauth/callback/kakao"
+                element={<RedirectHandler />}
+              />
+              <Route
+                exact
+                path="/oauth/callback/naver"
+                element={<RedirectHandler />}
+              />
             </>
           )}
         </Routes>
       </div>
-      {!authenticated || window.location.pathname === "/survey" ? <></> : <Footer />}
+      {!authenticated || window.location.pathname === "/survey" ? (
+        <></>
+      ) : (
+        <Footer />
+      )}
     </Router>
   );
 };
