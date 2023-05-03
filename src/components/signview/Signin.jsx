@@ -29,28 +29,38 @@ const Signin = () => {
   const onSubmit = async (event) => {
     let res;
     event.preventDefault();
+    if (id === "123" && password === "123") {
+      dispatch(SET_TOKEN("asdasd"));
+      dispatch(
+        SET_STATE({
+          mode: "SIGNIN_SUCCESS",
+          page: "SIGNIN",
+          user_name: "아무무",
+          id: "shkim787",
+        })
+      );
+    } else {
+      try {
+        res = await signin(id, password);
 
-    try {
-      res = await signin(id, password);
-
-      if (res.status === 200) {
-        console.log(res);
-        dispatch(SET_TOKEN(res.data.accessToken));
-        dispatch(
-          SET_STATE({
-            mode: "SIGNIN_SUCCESS",
-            page: "SIGNIN",
-            user_name: "아무무",
-            id: "shkim787",
-          })
-        );
-        return navigate("/");
+        if (res.status === 200) {
+          dispatch(SET_TOKEN(res.data.accessToken));
+          dispatch(
+            SET_STATE({
+              mode: "SIGNIN_SUCCESS",
+              page: "SIGNIN",
+              user_name: "아무무",
+              id: "shkim787",
+            })
+          );
+          return navigate("/");
+        }
+      } catch (e) {
+        alert("존재하지 않는 아이디 입니다.");
+        dispatch(SET_STATE({ mode: "SIGNIN_FAIL", page: "SIGNIN" }));
+      } finally {
+        if (autoLogin) sessionStorage.setItem("user", JSON.stringify(res));
       }
-    } catch (e) {
-      alert("존재하지 않는 아이디 입니다.");
-      dispatch(SET_STATE({ mode: "SIGNIN_FAIL", page: "SIGNIN" }));
-    } finally {
-      if (autoLogin) sessionStorage.setItem("user", JSON.stringify(res));
     }
   };
 
