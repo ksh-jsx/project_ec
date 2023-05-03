@@ -27,10 +27,10 @@ const Signin = () => {
   };
 
   const onSubmit = async (event) => {
-    let res;
     event.preventDefault();
     if (id === "123" && password === "123") {
-      dispatch(SET_TOKEN("asdasd"));
+      dispatch(SET_TOKEN("temp"));
+
       dispatch(
         SET_STATE({
           mode: "SIGNIN_SUCCESS",
@@ -41,10 +41,14 @@ const Signin = () => {
       );
     } else {
       try {
-        res = await signin(id, password);
+        const res = await signin(id, password);
 
         if (res.status === 200) {
           dispatch(SET_TOKEN(res.data.accessToken));
+          sessionStorage.setItem("user", JSON.stringify(res));
+          if (autoLogin) {
+            localStorage.setItem("user", JSON.stringify(res));
+          }
           dispatch(
             SET_STATE({
               mode: "SIGNIN_SUCCESS",
@@ -58,8 +62,6 @@ const Signin = () => {
       } catch (e) {
         alert("존재하지 않는 아이디 입니다.");
         dispatch(SET_STATE({ mode: "SIGNIN_FAIL", page: "SIGNIN" }));
-      } finally {
-        if (autoLogin) sessionStorage.setItem("user", JSON.stringify(res));
       }
     }
   };
